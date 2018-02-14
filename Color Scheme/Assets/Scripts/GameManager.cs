@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     [Header("Controls")]
     public KeyCode INTERACT = KeyCode.E;
 
+    [Header("Debug")]
     public bool debug = false;
 
     public static GameManager INSTANCE;

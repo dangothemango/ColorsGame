@@ -6,8 +6,12 @@ public class InteractableObject : MonoBehaviour {
 
     protected Renderer r;
     protected Material outline;
+
+    [Header("Outline Helpers")]
     public GameObject outlinedMesh;
     public float outlineWidth = .2f;
+
+    public bool interactable = true;
 
     private void Awake() {
         DoAwake();
