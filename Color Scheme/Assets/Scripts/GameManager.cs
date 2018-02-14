@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    [Header("Controls")]
+    public KeyCode INTERACT = KeyCode.E;
+
+    public bool debug = false;
+
     public static GameManager INSTANCE;
 
 	// Use this for initialization
