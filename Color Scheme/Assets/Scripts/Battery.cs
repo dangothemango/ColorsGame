@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Battery : PaintableObject {
 
+    [Header("Object References")]
+    public Lightbulb lightbulb;
+
     private void Awake() {
         DoAwake();
     }
@@ -17,5 +20,10 @@ public class Battery : PaintableObject {
 	void Update () {
         DoUpdate();
 	}
-    
+
+    public override void Paint(Color c) {
+        base.Paint(c);
+        lightbulb.OnBatteryChange(c);
+    }
+
 }
