@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battery : InteractableObject {
+public class Battery : PaintableObject {
 
-	// Use this for initialization
-	void Start () {
+    private void Awake() {
+        DoAwake();
+    }
+
+    // Use this for initialization
+    void Start () {
         DoStart();
 	}
 	
@@ -13,8 +17,5 @@ public class Battery : InteractableObject {
 	void Update () {
         DoUpdate();
 	}
-
-    public override void Interact() {
-        base.Interact();
-    }
+    
 }

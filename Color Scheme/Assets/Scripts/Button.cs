@@ -8,11 +8,6 @@ public class Button : InteractableObject {
     public float depressionTime = .5f;
     public float depressionDistance = .5f;
 
-	// Use this for initialization
-	void Start () {
-        DoStart();
-	}
-
     private void Awake() {
         DoAwake();
     }
@@ -20,6 +15,11 @@ public class Button : InteractableObject {
     protected override void DoAwake() {
         base.DoAwake();
     }
+
+    // Use this for initialization
+    void Start () {
+        DoStart();
+	}
 
     // Update is called once per frame
     void Update () {

@@ -2,23 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaintableObject : InteractableObject {
+public class PaintableObject : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public Color color;
+
+    Renderer r;
+
+    private void Awake() {
+        DoAwake();
+    }
+
+    protected virtual void DoAwake() {}
+
+    // Use this for initialization
+    void Start () {
         DoStart();
 	}
+
+    protected virtual void DoStart() {
+        r = GetComponent<Renderer>();
+        r.sharedMaterial.color = color;
+    }
 	
 	// Update is called once per frame
 	void Update () {
         DoUpdate();
 	}
 
-    public override void Interact() {
-        base.Interact();
-    }
+    protected virtual void DoUpdate() {}
 
-    protected virtual void Paint(Color c) {
-        //TODO change objects color
+    public virtual void Paint(Color c) {
+        color = c;
+        r.sharedMaterial.color = color;
     }
 }
