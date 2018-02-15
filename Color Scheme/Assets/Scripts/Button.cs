@@ -7,6 +7,10 @@ public class Button : InteractableObject {
     [Header("Button Helpers")]
     public float depressionTime = .5f;
     public float depressionDistance = .5f;
+    public PaintableObject[] connectedObjects;
+
+    //Component references
+    PaintableObject paint;
 
     private void Awake() {
         DoAwake();
@@ -14,6 +18,7 @@ public class Button : InteractableObject {
 
     protected override void DoAwake() {
         base.DoAwake();
+        paint = GetComponent<PaintableObject>();
     }
 
     // Use this for initialization
@@ -46,6 +51,12 @@ public class Button : InteractableObject {
 
     void OnPress() {
         Debug.Log(string.Format("{0} Pressed", gameObject.name));
+        foreach (PaintableObject p in connectedObjects) {
+            p.Paint(paint.color);
+        }
+        if (GameManager.INSTANCE.debug) {
+            paint.Paint(Random.ColorHSV());
+        }
     }
 
     IEnumerator Lift() {

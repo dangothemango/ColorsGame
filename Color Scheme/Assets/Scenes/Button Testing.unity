@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 374226156}
   - component: {fileID: 374226161}
   - component: {fileID: 374226160}
+  - component: {fileID: 374226162}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -229,6 +230,18 @@ MonoBehaviour:
   outlinedMesh: {fileID: 0}
   outlineWidth: 0.2
   interactable: 1
+--- !u!114 &374226162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 374226155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39211734ed6cc6e48967dd443324dff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.9448277, g: 1, b: 0, a: 1}
 --- !u!1001 &394319892
 Prefab:
   m_ObjectHideFlags: 0
@@ -312,8 +325,9 @@ GameObject:
   - component: {fileID: 415071265}
   - component: {fileID: 415071264}
   - component: {fileID: 415071268}
+  - component: {fileID: 415071269}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -401,8 +415,23 @@ MonoBehaviour:
   outlinedMesh: {fileID: 0}
   outlineWidth: 0.2
   interactable: 1
-  depressionTime: 0.2
+  depressionTime: 0.25
   depressionDistance: 0.175
+  connectedObjects:
+  - {fileID: 1402033446}
+  - {fileID: 374226162}
+--- !u!114 &415071269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 415071263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39211734ed6cc6e48967dd443324dff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 1, b: 0.21379304, a: 1}
 --- !u!1 &982034319
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +528,7 @@ GameObject:
   - component: {fileID: 1402033443}
   - component: {fileID: 1402033442}
   - component: {fileID: 1402033441}
+  - component: {fileID: 1402033446}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -535,7 +565,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 23271547d42571e42b0811242bbbb2fb, type: 2}
-  - {fileID: 2100000, guid: 1954613744eba0c48bea85c56cf14877, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -587,6 +616,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1402033446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1402033440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39211734ed6cc6e48967dd443324dff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.11724138, g: 0, b: 1, a: 1}
 --- !u!1 &1857012001
 GameObject:
   m_ObjectHideFlags: 0

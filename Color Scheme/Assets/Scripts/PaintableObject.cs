@@ -21,7 +21,7 @@ public class PaintableObject : MonoBehaviour {
 
     protected virtual void DoStart() {
         r = GetComponent<Renderer>();
-        r.sharedMaterial.color = color;
+        r.material.color = color;
     }
 	
 	// Update is called once per frame
@@ -33,6 +33,6 @@ public class PaintableObject : MonoBehaviour {
 
     public virtual void Paint(Color c) {
         color = c;
-        r.sharedMaterial.color = color;
+        r.material.color = color;
     }
 }
