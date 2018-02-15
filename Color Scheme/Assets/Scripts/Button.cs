@@ -7,10 +7,13 @@ public class Button : InteractableObject {
     [Header("Button Helpers")]
     public float depressionTime = .5f;
     public float depressionDistance = .5f;
-    public PaintableObject[] connectedObjects;
+    public ButtonableObject[] connectedObjects;
 
     //Component references
     PaintableObject paint;
+
+    //World references
+    Vector3 originalPosition;
 
     private void Awake() {
         DoAwake();
@@ -19,6 +22,7 @@ public class Button : InteractableObject {
     protected override void DoAwake() {
         base.DoAwake();
         paint = GetComponent<PaintableObject>();
+        originalPosition = transform.position;
     }
 
     // Use this for initialization
@@ -39,20 +43,22 @@ public class Button : InteractableObject {
 
     IEnumerator Depress() {
         interactable = false;
+        Vector3 destination = originalPosition - transform.up * depressionDistance;
         float t = 0;
         while (t < depressionTime) {
             t += Time.deltaTime;
-            transform.position -= transform.up * Time.deltaTime / depressionTime * depressionDistance;
+            transform.position = Vector3.Lerp(originalPosition, destination, t / depressionTime);
             yield return null;
         }
+        transform.position = destination;
         OnPress();
         StartCoroutine(Lift());
     }
 
     void OnPress() {
         Debug.Log(string.Format("{0} Pressed", gameObject.name));
-        foreach (PaintableObject p in connectedObjects) {
-            p.Paint(paint.color);
+        foreach (ButtonableObject p in connectedObjects) {
+            p.OnPressed(paint.color);
         }
         if (GameManager.INSTANCE.debug) {
             paint.Paint(Random.ColorHSV());
@@ -60,12 +66,14 @@ public class Button : InteractableObject {
     }
 
     IEnumerator Lift() {
+        Vector3 start = transform.position;
         float t = 0;
         while (t < depressionTime) {
             t += Time.deltaTime;
-            transform.position += transform.up * Time.deltaTime / depressionTime * depressionDistance;
+            transform.position = Vector3.Lerp(start, originalPosition, t / depressionTime);
             yield return null;
         }
+        transform.position = originalPosition;
         interactable = true;
     }
 

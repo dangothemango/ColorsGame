@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaintableObject : MonoBehaviour {
+public class PaintableObject : ButtonableObject {
 
     public Color color;
 
@@ -12,14 +12,14 @@ public class PaintableObject : MonoBehaviour {
         DoAwake();
     }
 
-    protected virtual void DoAwake() {}
+    protected override void DoAwake() {}
 
     // Use this for initialization
     void Start () {
         DoStart();
 	}
 
-    protected virtual void DoStart() {
+    protected override void DoStart() {
         r = GetComponent<Renderer>();
         r.material.color = color;
     }
@@ -29,10 +29,15 @@ public class PaintableObject : MonoBehaviour {
         DoUpdate();
 	}
 
-    protected virtual void DoUpdate() {}
+    protected override void DoUpdate() {}
 
     public virtual void Paint(Color c) {
         color = c;
         r.material.color = color;
+    }
+
+    public override void OnPressed(Color c) {
+        base.OnPressed(c);
+        this.Paint(c);
     }
 }
