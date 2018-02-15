@@ -5,9 +5,7 @@ using UnityEngine;
 public class PaintableObject : ButtonableObject {
 
     public Color color;
-
-    Renderer r;
-
+    
     private void Awake() {
         DoAwake();
     }
@@ -20,8 +18,7 @@ public class PaintableObject : ButtonableObject {
 	}
 
     protected override void DoStart() {
-        r = GetComponent<Renderer>();
-        r.material.color = color;
+        Paint(color);
     }
 	
 	// Update is called once per frame
@@ -33,7 +30,6 @@ public class PaintableObject : ButtonableObject {
 
     public virtual void Paint(Color c) {
         color = c;
-        r.material.color = color;
     }
 
     public override void OnPressed(Color c) {

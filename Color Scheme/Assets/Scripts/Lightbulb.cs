@@ -12,7 +12,7 @@ public class Lightbulb : MonoBehaviour {
     Material lightMat;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         r = GetComponent<Renderer>();
         lightSource = GetComponentInChildren<Light>();
         foreach (Material m in r.materials) {
@@ -22,13 +22,16 @@ public class Lightbulb : MonoBehaviour {
                 lightMat = m;
             }
         }
+	}
+
+    private void Start() {
         if (battery != null) {
             OnBatteryChange(battery.color);
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 

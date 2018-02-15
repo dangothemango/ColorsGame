@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battery : PaintableObject {
+public class Battery : ComplexPaintableObject {
 
     [Header("Object References")]
     public Lightbulb lightbulb;

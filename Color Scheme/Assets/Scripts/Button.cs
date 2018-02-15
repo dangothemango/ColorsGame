@@ -35,6 +35,13 @@ public class Button : InteractableObject {
         DoUpdate();
 	}
 
+    protected override void DoUpdate() {
+        base.DoUpdate();
+        if (Input.GetKeyDown(KeyCode.R)) {
+            paint.Paint(new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f)));
+        }
+    }
+
     public override void Interact() {
         if (interactable) {
             StartCoroutine(Depress());
@@ -59,9 +66,6 @@ public class Button : InteractableObject {
         Debug.Log(string.Format("{0} Pressed", gameObject.name));
         foreach (ButtonableObject p in connectedObjects) {
             p.OnPressed(paint.color);
-        }
-        if (GameManager.INSTANCE.debug) {
-            paint.Paint(Random.ColorHSV());
         }
     }
 
