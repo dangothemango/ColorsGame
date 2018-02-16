@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour {
     [Header("Controls")]
     public KeyCode INTERACT = KeyCode.E;
 
+    [Header("Game System References")]
+    public Narrator narrator;
+
     [Header("Debug")]
     public bool debug = false;
 
