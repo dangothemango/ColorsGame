@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 33798870682467682}
   - component: {fileID: 23862592560685084}
   - component: {fileID: 114794060731078596}
+  - component: {fileID: 136678361966953940}
   m_Layer: 0
   m_Name: Lightbulb
   m_TagString: Untagged
@@ -204,27 +205,27 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1959711977886792}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4929564436902506}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4929564436902506
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1270675633530296}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: 1.5, y: 29.6, z: 11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4798341604276446}
   m_Father: {fileID: 4330540403606574}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!23 &23275614238937574
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -415,10 +416,10 @@ Light:
   m_GameObject: {fileID: 1959711977886792}
   m_Enabled: 1
   serializedVersion: 8
-  m_Type: 2
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_Intensity: 5
-  m_Range: 10
+  m_Type: 0
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
+  m_Intensity: 10
+  m_Range: 20
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -430,7 +431,7 @@ Light:
     m_NormalBias: 0.4
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
-  m_DrawHalo: 1
+  m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
@@ -472,3 +473,16 @@ MonoBehaviour:
   variableColors:
   - _EmissionColor
   lightbulb: {fileID: 114794060731078596}
+--- !u!136 &136678361966953940
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270675633530296}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 5.3499255
+  m_Height: 26.4756
+  m_Direction: 1
+  m_Center: {x: 0.022718906, y: 13.23964, z: 0.04810953}
