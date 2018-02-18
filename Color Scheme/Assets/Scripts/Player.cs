@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    public const int maxHealth
+
 	// Use this for initialization
 	void Start () {
 		
