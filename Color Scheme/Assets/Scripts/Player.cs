@@ -7,9 +7,12 @@ public class Player : MonoBehaviour {
     public float reachDistance = 5f;
     public InteractableObject gazedObject;
 
+    [SerializeField] private Transform startLocation;
 
     Camera view;
     RaycastHit reachCast;
+
+    [SerializeField] private AudioSource sound;
 
     void Awake() {
 
@@ -18,6 +21,8 @@ public class Player : MonoBehaviour {
 
     void Start() {
         view = GetComponentInChildren<Camera>();
+        // sound = gameObject.GetComponent<AudioSource>();
+        resetPosition();
     }
 
     // Update is called once per frame
@@ -52,5 +57,23 @@ public class Player : MonoBehaviour {
         if (gazedObject) {
             gazedObject.onGazeEnter();
         }
+    }
+
+    public void die(bool fallOver) {
+        if(fallOver)
+        {
+            // TODO: Manipulate rotation to make the player fall over
+        }
+
+        sound.Play();
+        Invoke("resetPosition", 7.5f);
+        
+    }
+
+    void resetPosition()
+    {
+        transform.localPosition = startLocation.position;
+        transform.localRotation = startLocation.rotation;
+        transform.localScale = startLocation.localScale;    // Just covering all bases
     }
 }
