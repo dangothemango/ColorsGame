@@ -39,4 +39,33 @@ public class Lightbulb : MonoBehaviour {
         lightMat.SetColor("_EmissionColor", c);
         lightSource.color = c;
     }
+
+    private void OnTriggerStay(Collider other) {
+        Vector3 oPos = other.transform.position;
+        if (lightSource.type == LightType.Point || ObjectInCone(oPos)) {
+            ShimmeringObject s = other.GetComponent<ShimmeringObject>();
+            if (s == null) return;
+        }
+    }
+
+    private bool ObjectInCone(Vector3 oPos) {
+        if (lightSource.type != LightType.Spot) {
+            return false;
+        }
+        //TODO there has to be a better way to do this mathematically.
+        Vector3 direction = (lightSource.transform.position - transform.position).normalized;
+        Vector3 objectDirection = oPos-lightSource.transform.position;
+        float coneHeight = lightSource.range;
+        float halfAngle = lightSource.spotAngle/2;
+        
+        float yDist = Vector3.Dot(objectDirection, direction);
+        if (yDist <= 0 || yDist > coneHeight) return false;
+
+        float xDist = Mathf.Sqrt(Mathf.Pow(objectDirection.magnitude, 2) - Mathf.Pow(yDist, 2));
+
+        float coneRadius = Mathf.Tan(halfAngle)*yDist;
+
+        if (xDist < coneRadius) return true;
+        return false;
+    }
 }
