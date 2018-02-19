@@ -7,6 +7,9 @@ public class Lightbulb : MonoBehaviour {
     [Header("Object References")]
     public Battery battery;
 
+    [Header("Configuration Values")]
+    public float chargeRate = .5f;
+
     Light lightSource;
     Renderer r;
     Material lightMat;
@@ -45,6 +48,9 @@ public class Lightbulb : MonoBehaviour {
         if (lightSource.type == LightType.Point || ObjectInCone(oPos)) {
             ShimmeringObject s = other.GetComponent<ShimmeringObject>();
             if (s == null) return;
+            if (battery.color == s.color) {
+                s.Charge(chargeRate * Time.deltaTime);
+            }
         }
     }
 
