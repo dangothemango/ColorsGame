@@ -46,7 +46,7 @@ Shader "Custom/ShimmeringShader" {
 
 		half _DistortionScale;
 		half _Controller;
-		half _RippleScale;
+		half _RippleScale; 
 		half _RippleSpeed;
 		fixed4 _NaturalTint;
 		fixed4 _BaseColor;
