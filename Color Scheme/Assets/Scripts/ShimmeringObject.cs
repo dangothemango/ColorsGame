@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ShimmeringObject : PaintableObject {
 
-	// Use this for initialization
-	void Start () {
+    private void Awake() {
+        DoAwake();
+    }
+
+    // Use this for initialization
+    void Start () {
         DoStart();
 	}
 	
@@ -14,7 +18,7 @@ public class ShimmeringObject : PaintableObject {
         DoUpdate();
 	}
 
-    protected override void Paint(Color c) {
+    public override void Paint(Color c) {
         //TODO if the object is not active you cant paint it
         base.Paint(c);
     }

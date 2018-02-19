@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class InteractableObject : MonoBehaviour {
 
+    protected Renderer r;
+    protected Material outline;
+
+    [Header("Outline Helpers")]
+    public GameObject outlinedMesh;
+    public float outlineWidth = .2f;
+
+    public bool interactable = true;
+
     private void Awake() {
         DoAwake();
     }
@@ -15,7 +24,21 @@ public class InteractableObject : MonoBehaviour {
         DoStart();
 	}
 
-    protected virtual void DoStart() {}
+    protected virtual void DoStart() {
+        if (outlinedMesh) {
+            r = outlinedMesh.GetComponent<Renderer>();
+        }
+        else {
+            r = GetComponent<Renderer>();
+        }
+        if (r) {
+            foreach (Material m in r.materials) {
+                if (m.name.ToLower().Contains("outline")) {
+                    outline = m;
+                }
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,6 +46,18 @@ public class InteractableObject : MonoBehaviour {
 	}
 
     protected virtual void DoUpdate() {}
+
+    public virtual void onGazeEnter() {
+        if (outline) {
+            outline.SetFloat("_Outline", outlineWidth);
+        }
+    }
+
+    public virtual void onGazeExit() {
+        if (outline) {
+            outline.SetFloat("_Outline", 0f);
+        }
+    }
 
     public virtual void Interact() {
         throw new System.NotImplementedException("Function must be overrided");

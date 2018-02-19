@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class FuseBox : InteractableObject {
 
-	// Use this for initialization
-	void Start () {
+    private void Awake() {
+        DoAwake();
+    }
+
+    // Use this for initialization
+    void Start () {
         DoStart();
 	}
 	

@@ -1,0 +1,7 @@
+{
+	"gameStart":["Hello"],
+	"enteringFirstDungeon":[],
+	"deathMessages":[],
+	"respawnMessages":[],
+	"debugMessages":["Hey Friend", "Message 2", "Glorious", "This is fun", "How low can you go?"]
+}
