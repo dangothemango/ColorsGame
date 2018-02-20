@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bucket : PlayerItem 
 {
 	[SerializeField] private SimplePaintableObject paint;
+
+	Color currentColor;
 	bool hasPaint = false;
 
 	// Use this for initialization
@@ -22,7 +24,7 @@ public class Bucket : PlayerItem
 
 	private void UsePaint(PaintableObject target)
 	{
-		target.Paint(paint.color);
+		target.Paint(currentColor);
 		hasPaint = false;
 		paint.gameObject.SetActive(false);
 	}
@@ -36,6 +38,7 @@ public class Bucket : PlayerItem
 		}
 
 		paint.Paint(c);
+		currentColor = c;
 	}
 
 	public override bool CanUseOn(InteractableObject target)
@@ -47,7 +50,11 @@ public class Bucket : PlayerItem
 	{
 		if (target is PaintFountain)
 		{
-			
+			PaintFountain p = target as PaintFountain;
+			FillBucket(p.col);
+
+			// TODO: Uncomment this once PaintFountain.Interact() is implemented.
+			//p.Interact();
 		}
 		else if (hasPaint)
 		{
@@ -61,5 +68,10 @@ public class Bucket : PlayerItem
 				throw new System.Exception("WHAT THE ACTUAL FU-");
 			}
 		}
+	}
+
+	public override void Filter(Color c)
+	{
+		
 	}
 }

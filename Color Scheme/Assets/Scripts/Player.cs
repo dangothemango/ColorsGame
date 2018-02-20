@@ -7,6 +7,9 @@ public class Player : MonoBehaviour {
     public float reachDistance = 5f;
     public InteractableObject gazedObject;
 
+	[SerializeField] List<PlayerItem> items = new List<PlayerItem>();
+	PlayerItem equippedItem = null;
+
     [SerializeField] private Transform startLocation;
 
     Camera view;
@@ -28,6 +31,14 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         calcView();
+
+		if (Input.GetKeyDown(GameManager.INSTANCE.NO_ITEM))
+			equippedItem = null;
+		else
+		{
+			
+		}
+
         if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) {
             if (gazedObject != null) {
                 gazedObject.Interact();
@@ -76,4 +87,24 @@ public class Player : MonoBehaviour {
         transform.localRotation = startLocation.rotation;
         transform.localScale = startLocation.localScale;    // Just covering all bases
     }
+
+	// Change currently equipped item.
+	void setItem(PlayerItem item)
+	{
+		if (equippedItem == item)
+			return;
+
+		Destroy(equippedItem);
+
+		if (item != null)
+		{
+			equippedItem = Instantiate(item.gameObject, transform).GetComponent<PlayerItem>();
+			equippedItem.transform.localPosition = equippedItem.itemOffset;
+		}
+	}
+
+	public void addItem(PlayerItem item)
+	{
+		
+	}
 }
