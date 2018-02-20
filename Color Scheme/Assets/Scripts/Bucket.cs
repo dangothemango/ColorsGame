@@ -6,7 +6,7 @@ public class Bucket : PlayerItem
 {
 	[SerializeField] private SimplePaintableObject paint;
 
-	Color currentColor;
+	static Color currentColor = Color.clear;
 	bool hasPaint = false;
 
 	// Use this for initialization
@@ -15,6 +15,16 @@ public class Bucket : PlayerItem
 		if (!paint)
 			paint = GetComponentInChildren<SimplePaintableObject>();
 		itemKey = GameManager.INSTANCE.BUCKET;
+	}
+
+	void Start()
+	{
+		if (currentColor != Color.clear)
+		{
+			paint.gameObject.GetComponent<Renderer>().enabled = true;
+			paint.Paint(currentColor);
+			hasPaint = true;
+		}
 	}
 	
 	// Update is called once per frame
@@ -27,6 +37,7 @@ public class Bucket : PlayerItem
 	{
 		target.Paint(currentColor);
 		hasPaint = false;
+		currentColor = Color.clear;
 		paint.Paint(Color.clear);
 		paint.gameObject.GetComponent<Renderer>().enabled = false;
 	}

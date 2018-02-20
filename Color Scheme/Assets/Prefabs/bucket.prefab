@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4155896898853908}
   - component: {fileID: 114138543530626358}
   m_Layer: 0
-  m_Name: Bucket
+  m_Name: bucket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -15,9 +15,9 @@ public class SimplePaintableObject : PaintableObject {
         DoStart();
     }
 
-    protected override void DoStart() {
+    protected override void DoAwake() {
         r = GetComponent<Renderer>();
-		base.DoStart();
+		base.DoAwake();
     }
 
     // Update is called once per frame
