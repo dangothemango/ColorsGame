@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SimplePaintableObject : PaintableObject {
 
-    Renderer r;
+	Renderer r;
 
     private void Awake() {
         DoAwake();
@@ -17,7 +17,7 @@ public class SimplePaintableObject : PaintableObject {
 
     protected override void DoStart() {
         r = GetComponent<Renderer>();
-        base.DoStart();
+		base.DoStart();
     }
 
     // Update is called once per frame

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PaintFountain : InteractableObject {
 
+	[Header("Paint Fountain Parameters")]
 	public Color col;
 
     private void Awake() {

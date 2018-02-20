@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4155896898853908}
   - component: {fileID: 114138543530626358}
   m_Layer: 0
-  m_Name: bucket
+  m_Name: Bucket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4155896898853908
 Transform:
   m_ObjectHideFlags: 1
@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1133858258101836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4403, y: 1.4079, z: -0.28587}
+  m_LocalPosition: {x: 7.5678644, y: 0.5, z: 4.160604}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4293035217323894}
@@ -110,7 +110,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1589542734892366}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -211,7 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94233a73d68be2499a3b178b8dd9874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemKey: 0
+  itemKey: 49
+  itemOffset: {x: 0, y: 0, z: 0}
   paint: {fileID: 114336146442690352}
 --- !u!114 &114336146442690352
 MonoBehaviour:

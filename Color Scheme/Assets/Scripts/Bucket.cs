@@ -10,10 +10,11 @@ public class Bucket : PlayerItem
 	bool hasPaint = false;
 
 	// Use this for initialization
-	void Start() 
+	void Awake() 
 	{
 		if (!paint)
 			paint = GetComponentInChildren<SimplePaintableObject>();
+		itemKey = GameManager.INSTANCE.BUCKET;
 	}
 	
 	// Update is called once per frame
@@ -26,7 +27,8 @@ public class Bucket : PlayerItem
 	{
 		target.Paint(currentColor);
 		hasPaint = false;
-		paint.gameObject.SetActive(false);
+		paint.Paint(Color.clear);
+		paint.gameObject.GetComponent<Renderer>().enabled = false;
 	}
 
 	private void FillBucket(Color c)
@@ -34,7 +36,7 @@ public class Bucket : PlayerItem
 		if (!hasPaint)
 		{
 			hasPaint = true;
-			paint.gameObject.SetActive(true);
+			paint.gameObject.GetComponent<Renderer>().enabled = true;
 		}
 
 		paint.Paint(c);
@@ -72,6 +74,10 @@ public class Bucket : PlayerItem
 
 	public override void Filter(Color c)
 	{
-		
+		if (currentColor != c)
+		{
+			hasPaint = false;
+			paint.gameObject.SetActive(false);
+		}
 	}
 }

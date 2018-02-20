@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 
 	[SerializeField] List<PlayerItem> items = new List<PlayerItem>();
 	PlayerItem equippedItem = null;
+	PlayerItem equippedInstance = null;
 
     [SerializeField] private Transform startLocation;
 
@@ -33,15 +34,25 @@ public class Player : MonoBehaviour {
         calcView();
 
 		if (Input.GetKeyDown(GameManager.INSTANCE.NO_ITEM))
-			equippedItem = null;
+			setItem(null);
 		else
 		{
-			
+			foreach (PlayerItem i in items)
+			{
+				if (Input.GetKeyDown(i.itemKey))
+				{
+					setItem(i);
+					break;
+				}
+			}
 		}
 
         if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) {
             if (gazedObject != null) {
-                gazedObject.Interact();
+				if (equippedInstance != null && equippedInstance.CanUseOn(gazedObject))
+					equippedInstance.UseOn(gazedObject);
+				else
+                	gazedObject.Interact();
             }
         }
     }
@@ -94,13 +105,16 @@ public class Player : MonoBehaviour {
 		if (equippedItem == item)
 			return;
 
-		Destroy(equippedItem);
+		if (equippedInstance)
+			Destroy(equippedInstance.gameObject);
 
 		if (item != null)
 		{
-			equippedItem = Instantiate(item.gameObject, transform).GetComponent<PlayerItem>();
-			equippedItem.transform.localPosition = equippedItem.itemOffset;
+			equippedInstance = Instantiate(item.gameObject, transform).GetComponent<PlayerItem>();
+			equippedInstance.transform.localPosition = equippedInstance.itemOffset;
 		}
+
+		equippedItem = item;
 	}
 
 	public void addItem(PlayerItem item)
