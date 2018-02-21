@@ -25,10 +25,21 @@ public class EmancipationFilter : MonoBehaviour
 			}
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () 
+
+	void OnTriggerEnter(Collider other)
 	{
-		
+		if (other.GetComponent<Player>())
+		{
+			Player player = other.GetComponent<Player>();
+		}
+		else if (other.GetComponent<PaintableObject>())
+		{
+			if (other.GetComponent<PaintableObject>().color != filterColor)
+			{
+				print("FUCKING DIE " + other);
+				Destroy(other.gameObject);
+				print("TERMINATED");
+			}
+		}
 	}
 }
