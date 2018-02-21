@@ -6,7 +6,7 @@ public class Bucket : PlayerItem
 {
 	[SerializeField] private SimplePaintableObject paint;
 
-	static Color currentColor = Color.clear;
+	Color currentColor = Color.clear;
 	bool hasPaint = false;
 
 	// Use this for initialization
@@ -85,10 +85,10 @@ public class Bucket : PlayerItem
 
 	public override void Filter(Color c)
 	{
-		if (currentColor != c)
+		if (hasPaint && currentColor != c)
 		{
 			hasPaint = false;
-			paint.gameObject.SetActive(false);
+			paint.gameObject.GetComponent<Renderer>().enabled = false;
 		}
 	}
 }

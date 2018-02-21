@@ -7,8 +7,10 @@ public class ShimmeringObject : ComplexPaintableObject {
     [Header("Configuration Values")]
     public float decayRate = .3f;
     public float meltingPoint = .4f;
+	Material m;
 
-    float chargeLevel = 0;
+    public float chargeLevel = 0;
+    bool charging = false;
 
     public float ChargeLevel {
         get {
@@ -16,6 +18,7 @@ public class ShimmeringObject : ComplexPaintableObject {
         }
         set {
             chargeLevel = value;
+			m.SetFloat ("Controller", ChargeLevel);
             if (solid && chargeLevel < meltingPoint) {
                 DeSolidify();
             }
@@ -25,7 +28,7 @@ public class ShimmeringObject : ComplexPaintableObject {
         }
     }
 
-    bool solid = false;
+    protected bool solid = false;
 
     private void Awake() {
         DoAwake();
@@ -38,6 +41,7 @@ public class ShimmeringObject : ComplexPaintableObject {
     // Use this for initialization
     void Start () {
         DoStart();
+		m = GetComponent<Renderer> ().material;
 	}
 	
 	// Update is called once per frame
@@ -47,7 +51,11 @@ public class ShimmeringObject : ComplexPaintableObject {
 
     protected override void DoUpdate() {
         base.DoUpdate();
-        ChargeLevel = Mathf.Max(ChargeLevel - decayRate * Time.deltaTime, 0);
+        if (!charging) {
+            ChargeLevel = Mathf.Max(ChargeLevel - decayRate * Time.deltaTime, 0);
+        } else {
+            charging = false;
+        }
     }
 
     public override void Paint(Color c) {
@@ -56,19 +64,20 @@ public class ShimmeringObject : ComplexPaintableObject {
     }
 
     public void Charge(float c) {
+        charging = true;
         ChargeLevel = Mathf.Min(ChargeLevel + c, 1f);
     }
 
-    private void Solidify() {
+    protected virtual void Solidify() {
         Debug.Log(name + " is becoming solid");
         solid = true;
-        gameObject.layer = SortingLayer.GetLayerValueFromName("SolidShimmering");
+        gameObject.layer = LayerMask.NameToLayer("SolidShimmering");
     
     }
 
-    private void DeSolidify() {
+    protected virtual void DeSolidify() {
         Debug.Log(name + " is becoming not solid");
         solid = false;
-        gameObject.layer = SortingLayer.GetLayerValueFromName("LiquidShimmering");
+        gameObject.layer = LayerMask.NameToLayer("LiquidShimmering");
     }
 }

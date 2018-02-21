@@ -46,7 +46,6 @@ public class Lightbulb : MonoBehaviour {
     private void OnTriggerStay(Collider other) {
         Vector3 oPos = other.transform.position;
         if (lightSource.type == LightType.Point || ObjectInCone(oPos)) {
-            
             ShimmeringObject s = other.GetComponent<ShimmeringObject>();
             if (s == null) return;
             //Debug.Log("Charging");
