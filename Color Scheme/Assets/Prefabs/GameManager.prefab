@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793a36df74f98554e911ec886f2c1a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  INTERACT: 102
+  INTERACT: 323
   NO_ITEM: 96
   BUCKET: 49
   narrator: {fileID: 114899685468508216}
