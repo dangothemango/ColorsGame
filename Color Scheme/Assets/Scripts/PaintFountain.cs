@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PaintFountain : InteractableObject {
 
+	[Header("Paint Fountain Parameters")]
+	public Color col;
+
     private void Awake() {
         DoAwake();
     }
@@ -18,6 +21,7 @@ public class PaintFountain : InteractableObject {
         DoUpdate();
 	}
 
+	// TODO: Do some animation of paint fountain filling paint bucket
     public override void Interact() {
         base.Interact();
     }
