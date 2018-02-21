@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65119216907510072}
   - component: {fileID: 54716428637528506}
   m_Layer: 10
-  m_Name: Green_shim_cube
+  m_Name: Shim_cube_green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
