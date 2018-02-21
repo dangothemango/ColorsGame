@@ -129,6 +129,11 @@ public class Player : MonoBehaviour {
 
 	public void addItem(PlayerItem item)
 	{
-		
+		items.Add(item);
+		item.transform.SetParent(transform);
+		item.transform.localScale = Vector3.one * item.itemScale;
+		item.transform.localRotation = Quaternion.identity;
+		item.transform.localPosition = item.itemOffset;
+		setItem(item);
 	}
 }

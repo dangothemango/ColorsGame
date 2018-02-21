@@ -5,13 +5,11 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     public RawImage uiimage;
-    public Text txt;
 
     void Start()
     {
         uiimage = GetComponent<RawImage>();
         uiimage.enabled = false;
-        txt.enabled = false;
     }
 
     void Update()

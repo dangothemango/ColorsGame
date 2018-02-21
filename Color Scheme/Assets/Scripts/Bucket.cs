@@ -6,7 +6,7 @@ public class Bucket : PlayerItem
 {
 	[SerializeField] private SimplePaintableObject paint;
 
-	Color currentColor = Color.clear;
+	public Color currentColor = Color.clear;
 	bool hasPaint = false;
 
 	// Use this for initialization
