@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ShimmeringObject : ComplexPaintableObject {
 
+    [Header("Configuration Values")]
+    public float decayRate = .3f;
+    public float meltingPoint = .4f;
+
     float chargeLevel = 0;
 
     public float ChargeLevel {
@@ -21,14 +25,16 @@ public class ShimmeringObject : ComplexPaintableObject {
         }
     }
 
-    [Header("Configuration Values")]
-    public float decayRate = .3f;
-    public float meltingPoint = .4f;
-
     bool solid = false;
+    Collider collider;
 
     private void Awake() {
         DoAwake();
+    }
+
+    protected override void DoAwake() {
+        base.DoAwake();
+        collider = GetComponent<Collider>();
     }
 
     // Use this for initialization
