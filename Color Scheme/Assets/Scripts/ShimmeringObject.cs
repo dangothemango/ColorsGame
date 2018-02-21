@@ -27,7 +27,7 @@ public class ShimmeringObject : ComplexPaintableObject {
         }
     }
 
-    bool solid = false;
+    protected bool solid = false;
 
     private void Awake() {
         DoAwake();
@@ -50,7 +50,7 @@ public class ShimmeringObject : ComplexPaintableObject {
 
     protected override void DoUpdate() {
         base.DoUpdate();
-        ChargeLevel = Mathf.Max(ChargeLevel - decayRate * Time.deltaTime, 0);
+        //ChargeLevel = Mathf.Max(ChargeLevel - decayRate * Time.deltaTime, 0);
     }
 
     public override void Paint(Color c) {
@@ -62,14 +62,14 @@ public class ShimmeringObject : ComplexPaintableObject {
         ChargeLevel = Mathf.Min(ChargeLevel + c, 1f);
     }
 
-    private void Solidify() {
+    protected virtual void Solidify() {
         Debug.Log(name + " is becoming solid");
 		solid = true;
 		gameObject.layer = SortingLayer.GetLayerValueFromName("SolidShimmering");
     
     }
 
-    private void DeSolidify() {
+    protected virtual void DeSolidify() {
         Debug.Log(name + " is becoming not solid");
 		solid = false;
         gameObject.layer = SortingLayer.GetLayerValueFromName("LiquidShimmering");

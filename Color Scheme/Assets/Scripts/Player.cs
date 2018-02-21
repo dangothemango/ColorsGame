@@ -9,7 +9,6 @@ public class Player : MonoBehaviour {
 
 	[SerializeField] List<PlayerItem> items = new List<PlayerItem>();
 	PlayerItem equippedItem = null;
-	PlayerItem equippedInstance = null;
 
     [SerializeField] private Transform startLocation;
 
@@ -35,27 +34,36 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKeyDown(GameManager.INSTANCE.NO_ITEM))
 			setItem(null);
-		else
+		else if (Input.GetKeyDown(GameManager.INSTANCE.BUCKET))
 		{
-			foreach (PlayerItem i in items)
-			{
-				if (Input.GetKeyDown(i.itemKey))
-				{
-					setItem(i);
-					break;
-				}
-			}
+//			foreach (PlayerItem i in items)
+//			{
+//				if (Input.GetKeyDown(i.itemKey))
+//				{
+//					setItem(i);
+//					break;
+//				}
+//			}
+			setItem(items[0]);
 		}
 
         if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) {
             if (gazedObject != null) {
-				if (equippedInstance != null && equippedInstance.CanUseOn(gazedObject))
-					equippedInstance.UseOn(gazedObject);
+				if (equippedItem != null && equippedItem.CanUseOn(gazedObject))
+					equippedItem.UseOn(gazedObject);
 				else
                 	gazedObject.Interact();
             }
         }
     }
+
+	public void FilterItems(Color c)
+	{
+		foreach (PlayerItem i in items)
+		{
+			i.Filter(c);
+		}
+	}
 
     void calcView() {
         Physics.Raycast(view.transform.position, view.transform.forward, out reachCast, reachDistance);
@@ -105,13 +113,15 @@ public class Player : MonoBehaviour {
 		if (equippedItem == item)
 			return;
 
-		if (equippedInstance)
-			Destroy(equippedInstance.gameObject);
+		if (equippedItem != null)
+		{
+			equippedItem.gameObject.SetActive(false);
+		}
+			
 
 		if (item != null)
 		{
-			equippedInstance = Instantiate(item.gameObject, transform).GetComponent<PlayerItem>();
-			equippedInstance.transform.localPosition = equippedInstance.itemOffset;
+			item.gameObject.SetActive(true);
 		}
 
 		equippedItem = item;
