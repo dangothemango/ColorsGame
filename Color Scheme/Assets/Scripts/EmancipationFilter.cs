@@ -11,6 +11,19 @@ public class EmancipationFilter : MonoBehaviour
 	// Use this for initialization
 	void Awake() 
 	{
+		SetColor();
+	}
+
+	public void ChangeColor(Color c)
+	{
+		if (filterColor == c)
+			return;
+		filterColor = c;
+		SetColor();
+	}
+
+	void SetColor()
+	{
 		foreach (WaterBase w in GetComponentsInChildren<WaterBase>())
 		{
 			//w.sharedMaterial.SetColor("_BaseColor", new Color(filterColor.r, filterColor.g, filterColor.b, w.sharedMaterial.GetColor("_BaseColor").a));
