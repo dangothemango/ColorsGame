@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightActivatedDoor : ShimmeringObject {
+public class ButtonActivatedDoor : ButtonableObject {
 
     public float openTime = 1f;
     public GameObject mesh;
 
     float startY;
     Coroutine doorMovement;
+    Collider collider;
 
     private void Awake() {
         DoAwake();
@@ -21,26 +22,25 @@ public class LightActivatedDoor : ShimmeringObject {
     protected override void DoStart() {
         base.DoStart();
         startY = mesh.transform.localPosition.y;
+        collider = GetComponent<Collider>();
     }
 
     private void Update() {
         DoUpdate();
     }
 
-    protected override void Solidify() {
-        solid = true;
+    void TriggerOpen() {
         if (doorMovement == null) {
             doorMovement = StartCoroutine(Open());
         }
-        gameObject.layer = LayerMask.NameToLayer("LiquidShimmering");
+        
     }
 
-    protected override void DeSolidify() {
-        solid = false;
+    void TriggerClose() {
         if (doorMovement == null) {
             StartCoroutine(Close());
         }
-        gameObject.layer = LayerMask.NameToLayer("SolidShimmering");
+        
     }
 
     IEnumerator Open() {
@@ -48,18 +48,18 @@ public class LightActivatedDoor : ShimmeringObject {
         float t = 0;
         Vector3 o = mesh.transform.localPosition;
         Vector3 d = new Vector3(o.x, -startY, o.z);
-        while (t<openTime){
+        while (t < openTime) {
             mesh.transform.localPosition = Vector3.Lerp(o, d, t / openTime); ;
             yield return null;
             t += Time.deltaTime;
         }
-        mesh.SetActive(false);
+        collider.enabled = false;
         doorMovement = null;
     }
 
     IEnumerator Close() {
         Debug.Log("Closing");
-        mesh.SetActive(true);
+        collider.enabled = true;
         float t = 0;
         Vector3 o = mesh.transform.localPosition;
         Vector3 d = new Vector3(o.x, startY, o.z);
@@ -73,3 +73,4 @@ public class LightActivatedDoor : ShimmeringObject {
     }
 
 }
+

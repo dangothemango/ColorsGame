@@ -18,7 +18,9 @@ public class ShimmeringObject : ComplexPaintableObject {
         }
         set {
             chargeLevel = value;
-			m.SetFloat ("Controller", ChargeLevel);
+            if (m != null) {
+                m.SetFloat("_Controller", ChargeLevel);
+            }
             if (solid && chargeLevel < meltingPoint) {
                 DeSolidify();
             }
@@ -41,8 +43,13 @@ public class ShimmeringObject : ComplexPaintableObject {
     // Use this for initialization
     void Start () {
         DoStart();
-		m = GetComponent<Renderer> ().material;
 	}
+
+    protected override void DoStart() {
+        base.DoStart();
+        Renderer r = GetComponent<Renderer>();
+        m = r == null ? null : r.material;
+    }
 	
 	// Update is called once per frame
 	void Update () {

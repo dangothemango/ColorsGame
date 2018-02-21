@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (INSTANCE != null) {
-            this.enabled = false;
+            Destroy(gameObject);
             return;
         }
         INSTANCE = this;
