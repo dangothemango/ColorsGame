@@ -232,6 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4529543753354616}
   - component: {fileID: 65484746718117666}
+  - component: {fileID: 114316135310708872}
   m_Layer: 0
   m_Name: Emancipation Filter
   m_TagString: Untagged
@@ -342,8 +343,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1946619816757012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.9642429, y: 2.21, z: 11.035752}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4856892931966938}
   - {fileID: 4088201563729448}
@@ -881,6 +882,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reflection: {fileID: 114093656097320396}
   waterBase: {fileID: 114845586270372840}
+--- !u!114 &114316135310708872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1946619816757012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e859d297bdb5047b97e13b94e87ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  front: {fileID: 114845586270372840}
+  back: {fileID: 114098160638149260}
+  filterColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114352207880350148
 MonoBehaviour:
   m_ObjectHideFlags: 1

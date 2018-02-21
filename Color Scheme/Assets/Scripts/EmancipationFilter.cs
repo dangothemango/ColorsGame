@@ -18,7 +18,9 @@ public class EmancipationFilter : MonoBehaviour
 	{
 		if (filterColor == c)
 			return;
+
 		filterColor = c;
+
 		SetColor();
 	}
 
@@ -37,10 +39,16 @@ public class EmancipationFilter : MonoBehaviour
 				t.GetComponent<Renderer>().material = mat;
 			}
 		}
+		if (filterColor == Color.black)
+			GetComponent<Collider>().isTrigger = false;
+		else
+			GetComponent<Collider>().isTrigger = true;
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
+		if (filterColor == Color.white)
+			return;
 		if (other.GetComponent<Player>())
 		{
 			Player player = other.GetComponent<Player>();
