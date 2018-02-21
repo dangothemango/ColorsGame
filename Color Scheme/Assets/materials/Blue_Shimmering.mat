@@ -63,7 +63,7 @@ Material:
     - _Controller: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DistortionScale: 0.3
+    - _DistortionScale: 0.15
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
