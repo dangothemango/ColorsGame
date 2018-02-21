@@ -4,16 +4,35 @@ using UnityEngine;
 
 public class ShimmeringObject : ComplexPaintableObject {
 
-    float chargeLevel = 0;
-
     [Header("Configuration Values")]
     public float decayRate = .3f;
     public float meltingPoint = .4f;
+
+    float chargeLevel = 0;
+
+    public float ChargeLevel {
+        get {
+            return chargeLevel;
+        }
+        set {
+            chargeLevel = value;
+            if (solid && chargeLevel < meltingPoint) {
+                DeSolidify();
+            }
+            else if (!solid && chargeLevel > meltingPoint) {
+                Solidify();
+            }
+        }
+    }
 
     bool solid = false;
 
     private void Awake() {
         DoAwake();
+    }
+
+    protected override void DoAwake() {
+        base.DoAwake();
     }
 
     // Use this for initialization
@@ -28,10 +47,7 @@ public class ShimmeringObject : ComplexPaintableObject {
 
     protected override void DoUpdate() {
         base.DoUpdate();
-        chargeLevel = Mathf.Max(chargeLevel - decayRate * Time.deltaTime, 0);
-        if (solid && chargeLevel < meltingPoint) {
-            DeSolidify();
-        }
+        ChargeLevel = Mathf.Max(ChargeLevel - decayRate * Time.deltaTime, 0);
     }
 
     public override void Paint(Color c) {
@@ -40,19 +56,19 @@ public class ShimmeringObject : ComplexPaintableObject {
     }
 
     public void Charge(float c) {
-        chargeLevel = Mathf.Min(chargeLevel + c, 1f);
-        if (!solid && chargeLevel > meltingPoint) {
-            Solidify();
-        }
+        ChargeLevel = Mathf.Min(ChargeLevel + c, 1f);
     }
 
     private void Solidify() {
         Debug.Log(name + " is becoming solid");
         solid = true;
+        gameObject.layer = SortingLayer.GetLayerValueFromName("SolidShimmering");
+    
     }
 
     private void DeSolidify() {
         Debug.Log(name + " is becoming not solid");
         solid = false;
+        gameObject.layer = SortingLayer.GetLayerValueFromName("LiquidShimmering");
     }
 }
