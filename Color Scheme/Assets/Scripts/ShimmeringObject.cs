@@ -64,10 +64,16 @@ public class ShimmeringObject : ComplexPaintableObject {
     private void Solidify() {
         Debug.Log(name + " is becoming solid");
         solid = true;
+        if (collider != null) {
+            collider.enabled = true;
+        }
     }
 
     private void DeSolidify() {
         Debug.Log(name + " is becoming not solid");
         solid = false;
+        if (collider != null) {
+            collider.enabled = false;
+        }
     }
 }
