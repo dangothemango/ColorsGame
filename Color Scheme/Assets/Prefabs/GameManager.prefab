@@ -64,7 +64,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793a36df74f98554e911ec886f2c1a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  INTERACT: 101
+  INTERACT: 102
+  NO_ITEM: 96
+  BUCKET: 49
   narrator: {fileID: 114899685468508216}
   debug: 1
 --- !u!114 &114899685468508216
@@ -79,3 +81,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   narrativeText: {fileID: 4900000, guid: 939a53ba12bf7ba42928a15a71defea1, type: 3}
+  subtitleGameObject: {fileID: 0}
+  subtitleText: {fileID: 0}
+  showTimePerCharacter: 0.2
