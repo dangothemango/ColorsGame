@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bucket : PlayerItem 
 {
 	[SerializeField] private SimplePaintableObject paint;
+    private AudioSource splish;
 
 	public Color currentColor = Color.clear;
 	bool hasPaint = false;
@@ -14,6 +15,7 @@ public class Bucket : PlayerItem
 	{
 		if (!paint)
 			paint = GetComponentInChildren<SimplePaintableObject>();
+        splish = GetComponent<AudioSource>();
 	}
 
 	void Start()
@@ -64,6 +66,7 @@ public class Bucket : PlayerItem
 		{
 			PaintFountain p = target as PaintFountain;
 			FillBucket(p.col);
+            p.SendMessage("GurgleNoise");
 
 			// TODO: Uncomment this once PaintFountain.Interact() is implemented.
 			//p.Interact();
@@ -71,6 +74,7 @@ public class Bucket : PlayerItem
 		else if (hasPaint)
 		{
 			PaintableObject surface = target.GetComponent<PaintableObject>();
+            splish.Play();
 			if (surface)
 			{
 				UsePaint(surface);
