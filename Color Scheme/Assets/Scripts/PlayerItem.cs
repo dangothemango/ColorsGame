@@ -6,6 +6,7 @@ public abstract class PlayerItem : MonoBehaviour
 {
 	public KeyCode itemKey;
 	public Vector3 itemOffset = Vector3.zero;
+	public float itemScale = 1f;
 
 	// Use this for initialization
 	void Start() 

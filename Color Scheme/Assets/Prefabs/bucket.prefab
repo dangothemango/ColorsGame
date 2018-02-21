@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4155896898853908}
   - component: {fileID: 114138543530626358}
+  - component: {fileID: 114048963675430212}
+  - component: {fileID: 136209585486967326}
   m_Layer: 0
   m_Name: bucket
   m_TagString: Untagged
@@ -70,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1133858258101836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.5678644, y: 0.5, z: 4.160604}
+  m_LocalPosition: {x: 0, y: 0.499, z: 2.055}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4293035217323894}
@@ -83,8 +85,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1575832295389360}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.4043}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4322512368251898}
@@ -200,6 +202,20 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114048963675430212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133858258101836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4757f8ad1746cd148b14698e36411741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlinedMesh: {fileID: 0}
+  outlineWidth: 0.2
+  interactable: 1
 --- !u!114 &114138543530626358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,7 +228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemKey: 49
-  itemOffset: {x: 0, y: 0, z: 0}
+  itemOffset: {x: 0, y: 0, z: 0.9}
+  itemScale: 3
   paint: {fileID: 114336146442690352}
 --- !u!114 &114336146442690352
 MonoBehaviour:
@@ -226,3 +243,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!136 &136209585486967326
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133858258101836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.12
+  m_Height: 0.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.1, z: 0}
