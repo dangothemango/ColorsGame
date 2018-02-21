@@ -26,7 +26,6 @@ public class ShimmeringObject : ComplexPaintableObject {
     }
 
     bool solid = false;
-    Collider collider;
 
     private void Awake() {
         DoAwake();
@@ -34,7 +33,6 @@ public class ShimmeringObject : ComplexPaintableObject {
 
     protected override void DoAwake() {
         base.DoAwake();
-        collider = GetComponent<Collider>();
     }
 
     // Use this for initialization
@@ -64,16 +62,13 @@ public class ShimmeringObject : ComplexPaintableObject {
     private void Solidify() {
         Debug.Log(name + " is becoming solid");
         solid = true;
-        if (collider != null) {
-            collider.enabled = true;
-        }
+        gameObject.layer = SortingLayer.GetLayerValueFromName("SolidShimmering");
+    
     }
 
     private void DeSolidify() {
         Debug.Log(name + " is becoming not solid");
         solid = false;
-        if (collider != null) {
-            collider.enabled = false;
-        }
+        gameObject.layer = SortingLayer.GetLayerValueFromName("LiquidShimmering");
     }
 }
