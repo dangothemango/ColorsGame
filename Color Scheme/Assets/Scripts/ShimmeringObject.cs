@@ -6,6 +6,21 @@ public class ShimmeringObject : ComplexPaintableObject {
 
     float chargeLevel = 0;
 
+    public float ChargeLevel {
+        get {
+            return chargeLevel;
+        }
+        set {
+            chargeLevel = value;
+            if (solid && chargeLevel < meltingPoint) {
+                DeSolidify();
+            }
+            else if (!solid && chargeLevel > meltingPoint) {
+                Solidify();
+            }
+        }
+    }
+
     [Header("Configuration Values")]
     public float decayRate = .3f;
     public float meltingPoint = .4f;
@@ -28,10 +43,7 @@ public class ShimmeringObject : ComplexPaintableObject {
 
     protected override void DoUpdate() {
         base.DoUpdate();
-        chargeLevel = Mathf.Max(chargeLevel - decayRate * Time.deltaTime, 0);
-        if (solid && chargeLevel < meltingPoint) {
-            DeSolidify();
-        }
+        ChargeLevel = Mathf.Max(ChargeLevel - decayRate * Time.deltaTime, 0);
     }
 
     public override void Paint(Color c) {
@@ -40,10 +52,7 @@ public class ShimmeringObject : ComplexPaintableObject {
     }
 
     public void Charge(float c) {
-        chargeLevel = Mathf.Min(chargeLevel + c, 1f);
-        if (!solid && chargeLevel > meltingPoint) {
-            Solidify();
-        }
+        ChargeLevel = Mathf.Min(ChargeLevel + c, 1f);
     }
 
     private void Solidify() {
