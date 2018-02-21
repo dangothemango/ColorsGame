@@ -9,47 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1515823754737310}
+  m_RootGameObject: {fileID: 1695611803464702}
   m_IsPrefabParent: 1
---- !u!1 &1515823754737310
+--- !u!1 &1695611803464702
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4401218306389366}
-  - component: {fileID: 33291098187322844}
-  - component: {fileID: 23206436832949156}
-  - component: {fileID: 95717446743113740}
-  - component: {fileID: 65039186432417850}
-  - component: {fileID: 54250590400186210}
+  - component: {fileID: 4131245045306918}
+  - component: {fileID: 33053504579352742}
+  - component: {fileID: 23680976880185986}
+  - component: {fileID: 65431449619950592}
+  - component: {fileID: 54269862336697448}
   m_Layer: 10
-  m_Name: Red_shim_cube 1
+  m_Name: xShim_cube_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4401218306389366
+--- !u!4 &4131245045306918
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1515823754737310}
+  m_GameObject: {fileID: 1695611803464702}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.52, y: 2.03, z: 0.42}
-  m_LocalScale: {x: 0.031971212, y: 0.030607464, z: 0.035104632}
+  m_LocalScale: {x: 0.006, y: 0.006, z: 0.006}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23206436832949156
+--- !u!23 &23680976880185986
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1515823754737310}
+  m_GameObject: {fileID: 1695611803464702}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2dec6ef16e5fe4b429e5cee87af4ed21, type: 2}
+  - {fileID: 2100000, guid: 9d134ff36a635f0438d527dd5fbc9b8b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,19 +77,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33291098187322844
+--- !u!33 &33053504579352742
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1515823754737310}
+  m_GameObject: {fileID: 1695611803464702}
   m_Mesh: {fileID: 4300000, guid: f15eb909c0990db4e93130eed48056d0, type: 3}
---- !u!54 &54250590400186210
+--- !u!54 &54269862336697448
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1515823754737310}
+  m_GameObject: {fileID: 1695611803464702}
   serializedVersion: 2
   m_Mass: 10
   m_Drag: 0
@@ -100,32 +99,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65039186432417850
+--- !u!65 &65431449619950592
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1515823754737310}
+  m_GameObject: {fileID: 1695611803464702}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 100, y: 99.99998, z: 100.000015}
   m_Center: {x: 0, y: -0.000007629394, z: 0}
---- !u!95 &95717446743113740
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1515823754737310}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f15eb909c0990db4e93130eed48056d0, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
