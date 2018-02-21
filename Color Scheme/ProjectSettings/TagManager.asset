@@ -14,9 +14,10 @@ TagManager:
   - 
   - 
   - MapUI
-  - 
-  - 
-  - 
+  - Player
+  - SolidShimmering
+  - LiquidShimmering
+  - Lightbulb
   - 
   - 
   - 

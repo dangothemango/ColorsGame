@@ -6,6 +6,11 @@ public class GameManager : MonoBehaviour {
 
     [Header("Controls")]
     public KeyCode INTERACT = KeyCode.E;
+	public KeyCode NO_ITEM = KeyCode.BackQuote;
+	public KeyCode BUCKET = KeyCode.Alpha1;
+
+    [Header("Game System References")]
+    public Narrator narrator;
 
     [Header("Debug")]
     public bool debug = false;

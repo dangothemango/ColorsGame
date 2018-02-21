@@ -7,9 +7,16 @@ public class Player : MonoBehaviour {
     public float reachDistance = 5f;
     public InteractableObject gazedObject;
 
+	[SerializeField] List<PlayerItem> items = new List<PlayerItem>();
+	PlayerItem equippedItem = null;
+	PlayerItem equippedInstance = null;
+
+    [SerializeField] private Transform startLocation;
 
     Camera view;
     RaycastHit reachCast;
+
+    [SerializeField] private AudioSource sound;
 
     void Awake() {
 
@@ -18,14 +25,34 @@ public class Player : MonoBehaviour {
 
     void Start() {
         view = GetComponentInChildren<Camera>();
+        // sound = gameObject.GetComponent<AudioSource>();
+        resetPosition();
     }
 
     // Update is called once per frame
     void Update() {
         calcView();
+
+		if (Input.GetKeyDown(GameManager.INSTANCE.NO_ITEM))
+			setItem(null);
+		else
+		{
+			foreach (PlayerItem i in items)
+			{
+				if (Input.GetKeyDown(i.itemKey))
+				{
+					setItem(i);
+					break;
+				}
+			}
+		}
+
         if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) {
             if (gazedObject != null) {
-                gazedObject.Interact();
+				if (equippedInstance != null && equippedInstance.CanUseOn(gazedObject))
+					equippedInstance.UseOn(gazedObject);
+				else
+                	gazedObject.Interact();
             }
         }
     }
@@ -53,4 +80,45 @@ public class Player : MonoBehaviour {
             gazedObject.onGazeEnter();
         }
     }
+
+    public void die(bool fallOver) {
+        if(fallOver)
+        {
+            // TODO: Manipulate rotation to make the player fall over
+        }
+
+        sound.Play();
+        Invoke("resetPosition", 7.5f);
+        
+    }
+
+    void resetPosition()
+    {
+        transform.localPosition = startLocation.position;
+        transform.localRotation = startLocation.rotation;
+        transform.localScale = startLocation.localScale;    // Just covering all bases
+    }
+
+	// Change currently equipped item.
+	void setItem(PlayerItem item)
+	{
+		if (equippedItem == item)
+			return;
+
+		if (equippedInstance)
+			Destroy(equippedInstance.gameObject);
+
+		if (item != null)
+		{
+			equippedInstance = Instantiate(item.gameObject, transform).GetComponent<PlayerItem>();
+			equippedInstance.transform.localPosition = equippedInstance.itemOffset;
+		}
+
+		equippedItem = item;
+	}
+
+	public void addItem(PlayerItem item)
+	{
+		
+	}
 }

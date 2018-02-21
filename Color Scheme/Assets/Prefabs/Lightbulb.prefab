@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4185661669544230}
   - component: {fileID: 33158350962767500}
   - component: {fileID: 23229383573314790}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lightbulb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4010521748918350}
   - component: {fileID: 108263163580932914}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
