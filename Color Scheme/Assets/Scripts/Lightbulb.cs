@@ -49,7 +49,7 @@ public class Lightbulb : MonoBehaviour {
             
             ShimmeringObject s = other.GetComponent<ShimmeringObject>();
             if (s == null) return;
-            Debug.Log("Charging");
+            //Debug.Log("Charging");
             if (battery.color == s.color) {
                 s.Charge(chargeRate * Time.deltaTime);
             }
