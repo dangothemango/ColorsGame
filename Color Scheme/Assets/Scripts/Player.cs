@@ -57,6 +57,14 @@ public class Player : MonoBehaviour {
         }
     }
 
+	public void FilterItems(Color c)
+	{
+		foreach (PlayerItem i in items)
+		{
+			i.Filter(c);
+		}
+	}
+
     void calcView() {
         Physics.Raycast(view.transform.position, view.transform.forward, out reachCast, reachDistance);
         if (GameManager.INSTANCE.debug) {

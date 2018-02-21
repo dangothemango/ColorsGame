@@ -31,6 +31,7 @@ public class EmancipationFilter : MonoBehaviour
 		if (other.GetComponent<Player>())
 		{
 			Player player = other.GetComponent<Player>();
+			player.FilterItems(filterColor);
 		}
 		else if (other.GetComponent<PaintableObject>())
 		{

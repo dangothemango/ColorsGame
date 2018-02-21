@@ -85,10 +85,10 @@ public class Bucket : PlayerItem
 
 	public override void Filter(Color c)
 	{
-		if (currentColor != c)
+		if (hasPaint && currentColor != c)
 		{
 			hasPaint = false;
-			paint.gameObject.SetActive(false);
+			paint.gameObject.GetComponent<Renderer>().enabled = false;
 		}
 	}
 }
