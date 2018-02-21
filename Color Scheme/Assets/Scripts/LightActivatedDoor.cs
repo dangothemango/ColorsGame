@@ -19,7 +19,7 @@ public class LightActivatedDoor : ShimmeringObject {
 
     protected override void DoStart() {
         base.DoStart();
-        startY = mesh.transform.localScale.y;
+        startY = mesh.transform.localPosition.y;
     }
 
     private void Update() {
@@ -36,20 +36,23 @@ public class LightActivatedDoor : ShimmeringObject {
         solid = true;
         StopAllCoroutines();
         StartCoroutine(Open());
+        gameObject.layer = LayerMask.NameToLayer("LiquidShimmering");
     }
 
     protected override void DeSolidify() {
         solid = false;
         StopAllCoroutines();
         StartCoroutine(Close());
+        gameObject.layer = LayerMask.NameToLayer("SolidShimmering");
     }
 
     IEnumerator Open() {
+        Debug.Log("Opening");
         float t = 0;
-        Vector3 o = mesh.transform.localScale;
-        Vector3 d = new Vector3(o.x, 0, o.z);
+        Vector3 o = mesh.transform.localPosition;
+        Vector3 d = new Vector3(o.x, -startY, o.z);
         while (t<openTime){
-            mesh.transform.localScale = Vector3.Lerp(o, d, t / openTime); ;
+            mesh.transform.localPosition = Vector3.Lerp(o, d, t / openTime); ;
             yield return null;
             t += Time.deltaTime;
         }
@@ -57,16 +60,17 @@ public class LightActivatedDoor : ShimmeringObject {
     }
 
     IEnumerator Close() {
+        Debug.Log("Closing");
         mesh.SetActive(true);
         float t = 0;
-        Vector3 o = mesh.transform.localScale;
+        Vector3 o = mesh.transform.localPosition;
         Vector3 d = new Vector3(o.x, startY, o.z);
         while (t < openTime) {
-            mesh.transform.localScale = Vector3.Lerp(o, d, t / openTime); ;
+            mesh.transform.localPosition = Vector3.Lerp(o, d, t / openTime); ;
             yield return null;
             t += Time.deltaTime;
         }
-        mesh.transform.localScale = d;
+        mesh.transform.localPosition = d;
     }
 
 }

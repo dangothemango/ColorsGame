@@ -8,7 +8,8 @@ public class ShimmeringObject : ComplexPaintableObject {
     public float decayRate = .3f;
     public float meltingPoint = .4f;
 
-    float chargeLevel = 0;
+    public float chargeLevel = 0;
+    bool charging = false;
 
     public float ChargeLevel {
         get {
@@ -47,7 +48,11 @@ public class ShimmeringObject : ComplexPaintableObject {
 
     protected override void DoUpdate() {
         base.DoUpdate();
-        //ChargeLevel = Mathf.Max(ChargeLevel - decayRate * Time.deltaTime, 0);
+        if (!charging) {
+            ChargeLevel = Mathf.Max(ChargeLevel - decayRate * Time.deltaTime, 0);
+        } else {
+            charging = false;
+        }
     }
 
     public override void Paint(Color c) {
@@ -56,19 +61,23 @@ public class ShimmeringObject : ComplexPaintableObject {
     }
 
     public void Charge(float c) {
+        charging = true;
         ChargeLevel = Mathf.Min(ChargeLevel + c, 1f);
     }
 
     protected virtual void Solidify() {
         Debug.Log(name + " is becoming solid");
         solid = true;
-        gameObject.layer = SortingLayer.GetLayerValueFromName("SolidShimmering");
+        gameObject.layer = LayerMask.NameToLayer("SolidShimmering"); //SortingLayer.GetLayerValueFromName("SolidShimmering");
+        Debug.Break();
     
     }
 
     protected virtual void DeSolidify() {
         Debug.Log(name + " is becoming not solid");
         solid = false;
-        gameObject.layer = SortingLayer.GetLayerValueFromName("LiquidShimmering");
+        gameObject.layer = LayerMask.NameToLayer("LiquidShimmering");
+        Debug.Break();
+
     }
 }
