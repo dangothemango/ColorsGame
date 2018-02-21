@@ -107,6 +107,7 @@ public class Player : MonoBehaviour {
 
     void resetPosition()
     {
+        if (startLocation == null) return;
         transform.localPosition = startLocation.position;
         transform.localRotation = startLocation.rotation;
         transform.localScale = startLocation.localScale;    // Just covering all bases

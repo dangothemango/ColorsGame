@@ -14,7 +14,6 @@ public class Bucket : PlayerItem
 	{
 		if (!paint)
 			paint = GetComponentInChildren<SimplePaintableObject>();
-		itemKey = GameManager.INSTANCE.BUCKET;
 	}
 
 	void Start()
@@ -25,7 +24,8 @@ public class Bucket : PlayerItem
 			paint.Paint(currentColor);
 			hasPaint = true;
 		}
-	}
+        itemKey = GameManager.INSTANCE.BUCKET;
+    }
 	
 	// Update is called once per frame
 	void Update() 
