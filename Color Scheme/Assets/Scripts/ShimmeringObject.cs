@@ -7,6 +7,7 @@ public class ShimmeringObject : ComplexPaintableObject {
     [Header("Configuration Values")]
     public float decayRate = .3f;
     public float meltingPoint = .4f;
+	Material m;
 
     float chargeLevel = 0;
 
@@ -16,6 +17,7 @@ public class ShimmeringObject : ComplexPaintableObject {
         }
         set {
             chargeLevel = value;
+			m.SetFloat ("Controller", ChargeLevel);
             if (solid && chargeLevel < meltingPoint) {
                 DeSolidify();
             }
@@ -38,6 +40,7 @@ public class ShimmeringObject : ComplexPaintableObject {
     // Use this for initialization
     void Start () {
         DoStart();
+		m = GetComponent<Renderer> ().material;
 	}
 	
 	// Update is called once per frame
@@ -61,14 +64,14 @@ public class ShimmeringObject : ComplexPaintableObject {
 
     protected virtual void Solidify() {
         Debug.Log(name + " is becoming solid");
-        solid = true;
-        gameObject.layer = SortingLayer.GetLayerValueFromName("SolidShimmering");
+		solid = true;
+		gameObject.layer = SortingLayer.GetLayerValueFromName("SolidShimmering");
     
     }
 
     protected virtual void DeSolidify() {
         Debug.Log(name + " is becoming not solid");
-        solid = false;
+		solid = false;
         gameObject.layer = SortingLayer.GetLayerValueFromName("LiquidShimmering");
     }
 }
