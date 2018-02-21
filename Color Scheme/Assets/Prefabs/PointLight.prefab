@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23691482884125206}
   - component: {fileID: 114237615009322040}
   - component: {fileID: 135010889137423898}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lightbulb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4244457007781640}
   - component: {fileID: 108414311797053880}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PointLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

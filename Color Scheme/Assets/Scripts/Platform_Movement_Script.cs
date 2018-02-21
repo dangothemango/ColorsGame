@@ -10,7 +10,7 @@ public class Platform_Movement_Script : MonoBehaviour {
 		Xward,
 		Yward
 	}
-	public float speed = 1.0f;
+	public float speed = 0.1f;
 	public Direction dir = Direction.Zward;
 	Transform trans;
 

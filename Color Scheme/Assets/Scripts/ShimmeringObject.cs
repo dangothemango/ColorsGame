@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ShimmeringObject : ComplexPaintableObject {
 
+    [Header("Configuration Values")]
+    public float decayRate = .3f;
+    public float meltingPoint = .4f;
+
     float chargeLevel = 0;
 
     public float ChargeLevel {
@@ -21,14 +25,14 @@ public class ShimmeringObject : ComplexPaintableObject {
         }
     }
 
-    [Header("Configuration Values")]
-    public float decayRate = .3f;
-    public float meltingPoint = .4f;
-
     bool solid = false;
 
     private void Awake() {
         DoAwake();
+    }
+
+    protected override void DoAwake() {
+        base.DoAwake();
     }
 
     // Use this for initialization
@@ -58,10 +62,13 @@ public class ShimmeringObject : ComplexPaintableObject {
     private void Solidify() {
         Debug.Log(name + " is becoming solid");
         solid = true;
+        gameObject.layer = SortingLayer.GetLayerValueFromName("SolidShimmering");
+    
     }
 
     private void DeSolidify() {
         Debug.Log(name + " is becoming not solid");
         solid = false;
+        gameObject.layer = SortingLayer.GetLayerValueFromName("LiquidShimmering");
     }
 }

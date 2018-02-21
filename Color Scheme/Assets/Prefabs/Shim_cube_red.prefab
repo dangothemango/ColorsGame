@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 95717446743113740}
   - component: {fileID: 65039186432417850}
   - component: {fileID: 54250590400186210}
-  m_Layer: 0
-  m_Name: Shim_cube_red
+  m_Layer: 10
+  m_Name: Red_shim_cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
