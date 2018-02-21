@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
 	PlayerItem equippedItem = null;
 
     [SerializeField] private Transform startLocation;
+    [SerializeField]
+    private Transform cameraTransform;
 
     Camera view;
     RaycastHit reachCast;
@@ -32,6 +34,9 @@ public class Player : MonoBehaviour {
     void Update() {
         calcView();
 
+        if (equippedItem != null) {
+            configItem(equippedItem);
+        }
 		if (Input.GetKeyDown(GameManager.INSTANCE.NO_ITEM))
 			setItem(null);
 		else if (Input.GetKeyDown(GameManager.INSTANCE.BUCKET))
@@ -85,7 +90,7 @@ public class Player : MonoBehaviour {
         }
         gazedObject = reachCast.collider.GetComponent<InteractableObject>();
         if (gazedObject) {
-            gazedObject.onGazeEnter();
+            gazedObject.onGazeEnter(equippedItem);
         }
     }
 
@@ -130,10 +135,14 @@ public class Player : MonoBehaviour {
 	public void addItem(PlayerItem item)
 	{
 		items.Add(item);
-		item.transform.SetParent(transform);
-		item.transform.localScale = Vector3.one * item.itemScale;
-		item.transform.localRotation = Quaternion.identity;
-		item.transform.localPosition = item.itemOffset;
+        configItem(item);
 		setItem(item);
 	}
+
+    void configItem(PlayerItem item) {
+        item.transform.SetParent(cameraTransform);
+        item.transform.localScale = Vector3.one * item.itemScale;
+        item.transform.localRotation = Quaternion.Euler(item.itemRotation);
+        item.transform.localPosition = item.itemOffset;
+    }
 }

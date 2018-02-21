@@ -29,7 +29,7 @@ public class ButtonActivatedDoor : ButtonableObject {
         DoUpdate();
     }
 
-    void TriggerOpen() {
+    public void TriggerOpen() {
         if (doorMovement == null) {
             doorMovement = StartCoroutine(Open());
         }

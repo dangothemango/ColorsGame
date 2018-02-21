@@ -58,9 +58,14 @@ public class EmancipationFilter : MonoBehaviour
 		{
 			if (other.GetComponent<PaintableObject>().color != filterColor)
 			{
-				print("FUCKING DIE " + other);
-				Destroy(other.gameObject);
-				print("TERMINATED");
+                if (other.GetComponent<Platform_Movement_Script>()) {
+                    other.GetComponent<Platform_Movement_Script>().Bounce();
+                }
+                else {
+                    print("FUCKING DIE " + other);
+                    Destroy(other.gameObject);
+                    print("TERMINATED");
+                }
 			}
 		}
 	}

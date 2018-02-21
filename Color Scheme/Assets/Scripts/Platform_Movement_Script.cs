@@ -4,43 +4,28 @@ using UnityEngine;
 
 public class Platform_Movement_Script : MonoBehaviour {
 
-	public enum Direction
-	{
-		Zward,
-		Xward,
-		Yward
-	}
-	public float speed = 0.1f;
-	public Direction dir = Direction.Zward;
-	Transform trans;
+    public Transform[] Waypoints;
+    public float speed;
 
-	// Use this for initialization
-	void Start () 
-	{
-		bool isShimmering = true;
-		trans = GetComponent<Transform>(); 
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () 
-	{
-		switch (dir) 
-		{
-		case Direction.Xward:
-			{
-				trans.Translate (speed, 0.0f, 0.0f);
-				break;
-			}
-		case Direction.Yward:
-			{
-				trans.Translate (0.0f, speed, 0.0f);
-				break;
-			}
-		case Direction.Zward:
-			{
-				trans.Translate (0.0f, 0.0f, speed);
-				break;
-			}
-		}
-	}
+    int waypointIndex = 0;
+
+    int direction = 1;
+
+    private void Update() {
+        if (transform.position != Waypoints[waypointIndex%Waypoints.Length].position) {
+            transform.position = Vector3.MoveTowards(transform.position, Waypoints[waypointIndex%Waypoints.Length].position, speed * Time.deltaTime);
+        }
+        else {
+            waypointIndex+=direction;
+            if (waypointIndex < 0) {
+                waypointIndex = 0;
+                direction = 1;
+            }
+        }
+    }
+
+    public void Bounce() {
+        direction *= -1;
+        waypointIndex += direction;
+    }
 }

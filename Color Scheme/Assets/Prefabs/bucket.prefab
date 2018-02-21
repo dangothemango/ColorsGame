@@ -231,6 +231,7 @@ MonoBehaviour:
   itemOffset: {x: 0, y: 0, z: 0.9}
   itemScale: 3
   paint: {fileID: 114336146442690352}
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114336146442690352
 MonoBehaviour:
   m_ObjectHideFlags: 1

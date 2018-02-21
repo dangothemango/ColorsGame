@@ -49,9 +49,8 @@ public class Bucket : PlayerItem
 			hasPaint = true;
 			paint.gameObject.GetComponent<Renderer>().enabled = true;
 		}
-
-		paint.Paint(c);
-		currentColor = c;
+        currentColor = new Color(Mathf.Min(currentColor.r+c.r,1f), Mathf.Min(currentColor.g + c.g, 1f), Mathf.Min(currentColor.b + c.b, 1f));
+		paint.Paint(currentColor);
 	}
 
 	public override bool CanUseOn(InteractableObject target)
