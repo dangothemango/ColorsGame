@@ -1,17 +1,40 @@
 fileFormatVersion: 2
-
-guid: cf1c536ad77f10f44af0e32cc48fab05
-timeCreated: 1519191852
+guid: 2bcfca05c6b6bba479a00e8e790a2eec
+timeCreated: 1519192027
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: highepolyRoundBirdBat
+    100004: HighPolyNoCenter
+    100006: lowerpolyRoundBirdBat
+    100008: S8sidedbirdbath
+    100010: Squarebirdbath
     400000: //RootNode
-    2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pCube1
+    400002: highepolyRoundBirdBat
+    400004: HighPolyNoCenter
+    400006: lowerpolyRoundBirdBat
+    400008: S8sidedbirdbath
+    400010: Squarebirdbath
+    2100000: unnamed
+    2300000: highepolyRoundBirdBat
+    2300002: HighPolyNoCenter
+    2300004: lowerpolyRoundBirdBat
+    2300006: S8sidedbirdbath
+    2300008: Squarebirdbath
+    3300000: highepolyRoundBirdBat
+    3300002: HighPolyNoCenter
+    3300004: lowerpolyRoundBirdBat
+    3300006: S8sidedbirdbath
+    3300008: Squarebirdbath
+    4300000: HighPolyNoCenter
+    4300002: highepolyRoundBirdBat
+    4300004: lowerpolyRoundBirdBat
+    4300006: S8sidedbirdbath
+    4300008: Squarebirdbath
+    7400000: Default Take
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -86,7 +109,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
