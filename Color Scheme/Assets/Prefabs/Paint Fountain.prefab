@@ -198,7 +198,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 0}
   outlineWidth: 0.2
   interactable: 1
-  col: {r: 0, g: 1, b: 0, a: 0}
+  col: {r: 0, g: 1, b: 0, a: 1}
   paintPool: {fileID: 114767974302637046}
 --- !u!114 &114767974302637046
 MonoBehaviour:
