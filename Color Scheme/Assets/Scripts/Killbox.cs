@@ -16,6 +16,7 @@ public class Killbox : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Die");
         other.gameObject.SendMessage("die", false);
     }
 

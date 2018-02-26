@@ -47,7 +47,7 @@ public class InteractableObject : MonoBehaviour {
 
     protected virtual void DoUpdate() {}
 
-    public virtual void onGazeEnter() {
+    public virtual void onGazeEnter(PlayerItem currentItem) {
         if (outline) {
             outline.SetFloat("_Outline", outlineWidth);
         }
@@ -60,6 +60,6 @@ public class InteractableObject : MonoBehaviour {
     }
 
     public virtual void Interact() {
-        throw new System.NotImplementedException("Function must be overrided");
+        throw new System.NotImplementedException("Function must be overridden");
     }
 }

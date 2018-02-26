@@ -11,6 +11,21 @@ public class EmancipationFilter : MonoBehaviour
 	// Use this for initialization
 	void Awake() 
 	{
+		SetColor();
+	}
+
+	public void ChangeColor(Color c)
+	{
+		if (filterColor == c)
+			return;
+
+		filterColor = c;
+
+		SetColor();
+	}
+
+	void SetColor()
+	{
 		foreach (WaterBase w in GetComponentsInChildren<WaterBase>())
 		{
 			//w.sharedMaterial.SetColor("_BaseColor", new Color(filterColor.r, filterColor.g, filterColor.b, w.sharedMaterial.GetColor("_BaseColor").a));
@@ -24,10 +39,16 @@ public class EmancipationFilter : MonoBehaviour
 				t.GetComponent<Renderer>().material = mat;
 			}
 		}
+		if (filterColor == Color.black)
+			GetComponent<Collider>().isTrigger = false;
+		else
+			GetComponent<Collider>().isTrigger = true;
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
+		if (filterColor == Color.white)
+			return;
 		if (other.GetComponent<Player>())
 		{
 			Player player = other.GetComponent<Player>();
@@ -37,9 +58,14 @@ public class EmancipationFilter : MonoBehaviour
 		{
 			if (other.GetComponent<PaintableObject>().color != filterColor)
 			{
-				print("FUCKING DIE " + other);
-				Destroy(other.gameObject);
-				print("TERMINATED");
+                if (other.GetComponent<Platform_Movement_Script>()) {
+                    other.GetComponent<Platform_Movement_Script>().Bounce();
+                }
+                else {
+                    print("FUCKING DIE " + other);
+                    Destroy(other.gameObject);
+                    print("TERMINATED");
+                }
 			}
 		}
 	}

@@ -5,8 +5,9 @@ using UnityEngine;
 public class Bucket : PlayerItem 
 {
 	[SerializeField] private SimplePaintableObject paint;
+    private AudioSource splish;
 
-	Color currentColor = Color.clear;
+	public Color currentColor = Color.clear;
 	bool hasPaint = false;
 
 	// Use this for initialization
@@ -14,7 +15,7 @@ public class Bucket : PlayerItem
 	{
 		if (!paint)
 			paint = GetComponentInChildren<SimplePaintableObject>();
-		itemKey = GameManager.INSTANCE.BUCKET;
+        splish = GetComponent<AudioSource>();
 	}
 
 	void Start()
@@ -25,7 +26,8 @@ public class Bucket : PlayerItem
 			paint.Paint(currentColor);
 			hasPaint = true;
 		}
-	}
+        itemKey = GameManager.INSTANCE.BUCKET;
+    }
 	
 	// Update is called once per frame
 	void Update() 
@@ -49,9 +51,8 @@ public class Bucket : PlayerItem
 			hasPaint = true;
 			paint.gameObject.GetComponent<Renderer>().enabled = true;
 		}
-
-		paint.Paint(c);
-		currentColor = c;
+        currentColor = new Color(Mathf.Min(currentColor.r+c.r,1f), Mathf.Min(currentColor.g + c.g, 1f), Mathf.Min(currentColor.b + c.b, 1f));
+		paint.Paint(currentColor);
 	}
 
 	public override bool CanUseOn(InteractableObject target)
@@ -65,6 +66,7 @@ public class Bucket : PlayerItem
 		{
 			PaintFountain p = target as PaintFountain;
 			FillBucket(p.col);
+            p.SendMessage("GurgleNoise");
 
 			// TODO: Uncomment this once PaintFountain.Interact() is implemented.
 			//p.Interact();
@@ -72,6 +74,7 @@ public class Bucket : PlayerItem
 		else if (hasPaint)
 		{
 			PaintableObject surface = target.GetComponent<PaintableObject>();
+            splish.Play();
 			if (surface)
 			{
 				UsePaint(surface);
