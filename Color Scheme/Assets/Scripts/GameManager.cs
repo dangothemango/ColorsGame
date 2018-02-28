@@ -18,8 +18,10 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager INSTANCE;
 
+    public int currentDungeon = 0;
+
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		if (INSTANCE != null) {
             Destroy(gameObject);
             return;

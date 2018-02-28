@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class DungeonConfigurator : MonoBehaviour {
 
-    public Transform playerSpawn;
+    public Transform[] playerSpawns;
+    public int dungeonID = 0;
 
 	// Use this for initialization
 	void Start () {
-        Player.INSTANCE.startLocation = playerSpawn;
+        Player.INSTANCE.startLocation = playerSpawns[GameManager.INSTANCE.currentDungeon];
         Player.INSTANCE.resetPosition();
+        GameManager.INSTANCE.currentDungeon = dungeonID;
 	}
 }
