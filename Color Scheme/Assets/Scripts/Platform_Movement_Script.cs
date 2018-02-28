@@ -40,13 +40,13 @@ public class Platform_Movement_Script : MonoBehaviour {
         waypointIndex += direction;
     }
 
-    //private void OnTriggerEnter(Collider other) {
-    //    attachedObjects.Add(other.transform);
-    //    Debug.Log("Attaching: " + other.transform.name);
-    //}
+    private void OnCollisionEnter(Collision collision) {
+        attachedObjects.Add(collision.transform);
+        Debug.Log("Attaching: " + collision.transform.name);
+    }
 
-    //private void OnTriggerExit(Collider other) {
-    //    attachedObjects.Add(other.transform);
-    //    Debug.Log("Attaching: " + other.transform.name);
-    //}
+    private void OnCollisionExit(Collision collision) { 
+        attachedObjects.Remove(collision.transform);
+        Debug.Log("Attaching: " + collision.transform.name);
+    }
 }
