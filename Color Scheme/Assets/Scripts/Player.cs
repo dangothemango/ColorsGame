@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public Player INSTANCE;
+    public static Player INSTANCE;
 
-    public float reachDistance = 5f;
-    public InteractableObject gazedObject;
+    [SerializeField] float DEATHTIME = 2.3f;
+
+    [SerializeField] float reachDistance = 5f;
+    [SerializeField] InteractableObject gazedObject;
 
 	[SerializeField] List<PlayerItem> items = new List<PlayerItem>();
 	PlayerItem equippedItem = null;
 
-    [SerializeField] private Transform startLocation;
-    [SerializeField]
-    private Transform cameraTransform;
+    public Transform startLocation;
+    [SerializeField] AudioSource sound;
+    [SerializeField] AudioClip deathNoise;
 
     Camera view;
     RaycastHit reachCast;
-
-    [SerializeField] private AudioSource sound;
 
     void Awake() {
         if (INSTANCE == null) {
@@ -32,18 +32,7 @@ public class Player : MonoBehaviour {
 
     void Start() {
         view = GetComponentInChildren<Camera>();
-		if (GameManager.INSTANCE.playerInstance == null)
-		{
-			GameManager.INSTANCE.playerInstance = this;
-			resetPosition();
-		}
-		else
-		{
-			GameManager.INSTANCE.playerInstance.startLocation = this.startLocation;
-			GameManager.INSTANCE.playerInstance.resetPosition();
-			Destroy(gameObject);
-		}
-        // sound = gameObject.GetComponent<AudioSource>();
+        sound = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -116,17 +105,17 @@ public class Player : MonoBehaviour {
     }
 
     public void die(bool fallOver) {
-        if(fallOver)
-        {
+        // if(fallOver)
+        // {
             // TODO: Manipulate rotation to make the player fall over
-        }
+        // }
 
-        sound.Play();
-        Invoke("resetPosition", 7.5f);
+        sound.PlayOneShot(deathNoise);
+        Invoke("resetPosition", DEATHTIME);
         
     }
 
-    void resetPosition()
+    public void resetPosition()
     {
         if (startLocation == null) return;
         transform.localPosition = startLocation.position;
@@ -162,7 +151,7 @@ public class Player : MonoBehaviour {
 	}
 
     void configItem(PlayerItem item) {
-        item.transform.SetParent(cameraTransform);
+        item.transform.SetParent(view.gameObject.transform);
         item.transform.localScale = Vector3.one * item.itemScale;
         item.transform.localRotation = Quaternion.Euler(item.itemRotation);
         item.transform.localPosition = item.itemOffset;

@@ -31,8 +31,8 @@ Material:
     - _DistortionScale: 0.15
     - _Glossiness: 0.5
     - _Metallic: 0.069
-    - _RippleScale: 0
-    - _RippleSpeed: 0
+    - _RippleScale: 0.1
+    - _RippleSpeed: 1
     m_Colors:
     - _BaseColor: {r: 0.9862069, g: 1, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
