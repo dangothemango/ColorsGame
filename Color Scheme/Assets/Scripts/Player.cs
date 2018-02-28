@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public Player INSTANCE;
+    public static Player INSTANCE;
 
     [SerializeField] float DEATHTIME = 2.3f;
 
@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
 	[SerializeField] List<PlayerItem> items = new List<PlayerItem>();
 	PlayerItem equippedItem = null;
 
-    [SerializeField] private Transform startLocation;
+    public Transform startLocation;
     [SerializeField]
     private Transform cameraTransform;
     [SerializeField] AudioSource sound;
@@ -35,17 +35,6 @@ public class Player : MonoBehaviour {
     void Start() {
         view = GetComponentInChildren<Camera>();
         sound = gameObject.GetComponent<AudioSource>();
-        if (GameManager.INSTANCE.playerInstance == null)
-		{
-			GameManager.INSTANCE.playerInstance = this;
-			resetPosition();
-		}
-		else
-		{
-			GameManager.INSTANCE.playerInstance.startLocation = this.startLocation;
-			GameManager.INSTANCE.playerInstance.resetPosition();
-			Destroy(gameObject);
-		}
     }
 
     // Update is called once per frame
@@ -128,7 +117,7 @@ public class Player : MonoBehaviour {
         
     }
 
-    void resetPosition()
+    public void resetPosition()
     {
         if (startLocation == null) return;
         transform.localPosition = startLocation.position;
