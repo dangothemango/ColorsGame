@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    public Player INSTANCE;
+
     public float reachDistance = 5f;
     public InteractableObject gazedObject;
 
@@ -20,7 +22,11 @@ public class Player : MonoBehaviour {
     [SerializeField] private AudioSource sound;
 
     void Awake() {
-
+        if (INSTANCE == null) {
+            INSTANCE = this;
+        } else {
+            Destroy(this.gameObject);
+        }
     }
 
 

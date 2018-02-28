@@ -22,7 +22,6 @@ public class LightChain : ButtonableObject {
 	// Update is called once per frame
 	void Update () {
         if (active) {
-            Debug.Log(t);
             t += Time.deltaTime;
             if (t > triggerTime) {
                 t = 0;
@@ -39,7 +38,7 @@ public class LightChain : ButtonableObject {
         if (!active) {
             Debug.Log("Activate Light Chain");
             active = true;
-            t = 0;
+            t = triggerTime;
             batteryIndex = 0;
         }
     }
