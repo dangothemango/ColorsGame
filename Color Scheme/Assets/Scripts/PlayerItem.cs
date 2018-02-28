@@ -27,4 +27,6 @@ public abstract class PlayerItem : MonoBehaviour
 	public abstract void UseOn(InteractableObject target);
 
 	public abstract void Filter(Color c);
+
+	public abstract void SecondaryUsage();
 }

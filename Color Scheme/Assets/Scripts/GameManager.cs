@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
     [Header("Controls")]
     public KeyCode INTERACT = KeyCode.E;
+	public KeyCode ITEM_SECONDARY = KeyCode.Mouse1;
 	public KeyCode NO_ITEM = KeyCode.BackQuote;
 	public KeyCode BUCKET = KeyCode.Alpha1;
 

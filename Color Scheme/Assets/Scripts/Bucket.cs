@@ -38,10 +38,7 @@ public class Bucket : PlayerItem
 	private void UsePaint(PaintableObject target)
 	{
 		target.Paint(currentColor);
-		hasPaint = false;
-		currentColor = Color.clear;
-		paint.Paint(Color.clear);
-		paint.gameObject.GetComponent<Renderer>().enabled = false;
+		EmptyBucket();
 	}
 
 	private void FillBucket(Color c)
@@ -90,8 +87,23 @@ public class Bucket : PlayerItem
 	{
 		if (hasPaint && currentColor != c)
 		{
-			hasPaint = false;
-			paint.gameObject.GetComponent<Renderer>().enabled = false;
+			EmptyBucket();
 		}
+	}
+
+	public override void SecondaryUsage()
+	{
+		if (hasPaint)
+		{
+			EmptyBucket();
+		}
+	}
+
+	private void EmptyBucket()
+	{
+		hasPaint = false;
+		currentColor = Color.clear;
+		paint.Paint(currentColor);
+		paint.gameObject.GetComponent<Renderer>().enabled = false;
 	}
 }
