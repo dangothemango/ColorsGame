@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     public bool debug = false;
 
     public static GameManager INSTANCE;
+	[HideInInspector] public Player playerInstance;
 
 	// Use this for initialization
 	void Start () {

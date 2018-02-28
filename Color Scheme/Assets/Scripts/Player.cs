@@ -26,8 +26,18 @@ public class Player : MonoBehaviour {
 
     void Start() {
         view = GetComponentInChildren<Camera>();
+		if (GameManager.INSTANCE.playerInstance == null)
+		{
+			GameManager.INSTANCE.playerInstance = this;
+			resetPosition();
+		}
+		else
+		{
+			GameManager.INSTANCE.playerInstance.startLocation = this.startLocation;
+			GameManager.INSTANCE.playerInstance.resetPosition();
+			Destroy(gameObject);
+		}
         // sound = gameObject.GetComponent<AudioSource>();
-        resetPosition();
     }
 
     // Update is called once per frame
