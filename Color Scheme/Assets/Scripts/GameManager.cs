@@ -17,10 +17,11 @@ public class GameManager : MonoBehaviour {
     public bool debug = false;
 
     public static GameManager INSTANCE;
-	[HideInInspector] public Player playerInstance;
+
+    public int currentDungeon = 0;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		if (INSTANCE != null) {
             Destroy(gameObject);
             return;

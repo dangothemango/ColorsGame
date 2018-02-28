@@ -23,6 +23,6 @@ public class Killbox : MonoBehaviour {
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, transform.localScale);
+        Gizmos.DrawWireCube(transform.position, 2 * transform.localScale);
     }
 }
