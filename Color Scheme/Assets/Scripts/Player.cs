@@ -15,8 +15,6 @@ public class Player : MonoBehaviour {
 	PlayerItem equippedItem = null;
 
     public Transform startLocation;
-    [SerializeField]
-    private Transform cameraTransform;
     [SerializeField] AudioSource sound;
     [SerializeField] AudioClip deathNoise;
 
@@ -153,7 +151,7 @@ public class Player : MonoBehaviour {
 	}
 
     void configItem(PlayerItem item) {
-        item.transform.SetParent(cameraTransform);
+        item.transform.SetParent(view.gameObject.transform);
         item.transform.localScale = Vector3.one * item.itemScale;
         item.transform.localRotation = Quaternion.Euler(item.itemRotation);
         item.transform.localPosition = item.itemOffset;
