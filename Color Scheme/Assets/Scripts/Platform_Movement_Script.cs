@@ -10,8 +10,15 @@ public class Platform_Movement_Script : MonoBehaviour {
     int waypointIndex = 0;
 
     int direction = 1;
+    
+    List<Transform> attachedObjects;
+
+    private void Awake() {
+        attachedObjects = new List<Transform>();
+    }
 
     private void Update() {
+        Vector3 startP = transform.position;
         if (transform.position != Waypoints[waypointIndex%Waypoints.Length].position) {
             transform.position = Vector3.MoveTowards(transform.position, Waypoints[waypointIndex%Waypoints.Length].position, speed * Time.deltaTime);
         }
@@ -22,10 +29,24 @@ public class Platform_Movement_Script : MonoBehaviour {
                 direction = 1;
             }
         }
+        Vector3 diff = transform.position - startP;
+        foreach (Transform t in attachedObjects) {
+            t.position += diff;
+        }
     }
 
     public void Bounce() {
         direction *= -1;
         waypointIndex += direction;
     }
+
+    //private void OnTriggerEnter(Collider other) {
+    //    attachedObjects.Add(other.transform);
+    //    Debug.Log("Attaching: " + other.transform.name);
+    //}
+
+    //private void OnTriggerExit(Collider other) {
+    //    attachedObjects.Add(other.transform);
+    //    Debug.Log("Attaching: " + other.transform.name);
+    //}
 }
