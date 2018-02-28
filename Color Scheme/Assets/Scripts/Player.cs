@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public Player INSTANCE;
+    public static Player INSTANCE;
 
     public float reachDistance = 5f;
     public InteractableObject gazedObject;
@@ -12,7 +12,7 @@ public class Player : MonoBehaviour {
 	[SerializeField] List<PlayerItem> items = new List<PlayerItem>();
 	PlayerItem equippedItem = null;
 
-    [SerializeField] private Transform startLocation;
+    public Transform startLocation;
     [SerializeField]
     private Transform cameraTransform;
 
@@ -115,7 +115,7 @@ public class Player : MonoBehaviour {
         
     }
 
-    void resetPosition()
+    public void resetPosition()
     {
         if (startLocation == null) return;
         transform.localPosition = startLocation.position;
