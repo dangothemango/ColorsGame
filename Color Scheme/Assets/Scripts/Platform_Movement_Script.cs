@@ -11,10 +11,9 @@ public class Platform_Movement_Script : MonoBehaviour {
 
     int direction = 1;
     
-    List<Transform> attachedObjects;
+    Transform attachedObject;
 
     private void Awake() {
-        attachedObjects = new List<Transform>();
     }
 
     private void Update() {
@@ -30,8 +29,8 @@ public class Platform_Movement_Script : MonoBehaviour {
             }
         }
         Vector3 diff = transform.position - startP;
-        foreach (Transform t in attachedObjects) {
-            t.position += diff;
+        if (attachedObject !=null) {
+            attachedObject.position += diff;
         }
     }
 
@@ -40,13 +39,13 @@ public class Platform_Movement_Script : MonoBehaviour {
         waypointIndex += direction;
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        attachedObjects.Add(collision.transform);
-        Debug.Log("Attaching: " + collision.transform.name);
+    public void Attach(Transform collision) {
+        attachedObject=collision;
+        Debug.Log("Attaching: " + collision.name);
     }
 
-    private void OnCollisionExit(Collision collision) { 
-        attachedObjects.Remove(collision.transform);
-        Debug.Log("Attaching: " + collision.transform.name);
+    public void Detach(Transform collision) { 
+        attachedObject=null;
+        Debug.Log("Detaching: " + collision.name);
     }
 }
