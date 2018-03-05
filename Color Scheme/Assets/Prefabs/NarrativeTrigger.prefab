@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4474359592545860}
   - component: {fileID: 65232849854533616}
   - component: {fileID: 114455220762967078}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

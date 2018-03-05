@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65878987883420522}
   - component: {fileID: 114165331408150432}
   - component: {fileID: 54184757362367620}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Bottomless Pit Killbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
