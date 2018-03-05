@@ -241,7 +241,7 @@ MonoBehaviour:
   decayRate: 0.3
   meltingPoint: 0.9
   chargeLevel: 0
+  freeze: {fileID: 8300000, guid: 474a792a467923b4ebf8955a17116e91, type: 3}
+  melt: {fileID: 8300000, guid: 4a050c9befc6d46479c2e96e4976f08e, type: 3}
   openTime: 1
   mesh: {fileID: 1641333654741604}
-  open: {fileID: 8300000, guid: 474a792a467923b4ebf8955a17116e91, type: 3}
-  close: {fileID: 8300000, guid: 4a050c9befc6d46479c2e96e4976f08e, type: 3}

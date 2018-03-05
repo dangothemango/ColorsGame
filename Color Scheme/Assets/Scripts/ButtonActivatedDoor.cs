@@ -7,9 +7,13 @@ public class ButtonActivatedDoor : ButtonableObject {
     public float openTime = 1f;
     public GameObject mesh;
 
+    [SerializeField] AudioClip open;
+    [SerializeField] AudioClip close;
+
     float startY;
     Coroutine doorMovement;
     Collider collider;
+    AudioSource sound;
 
     private void Awake() {
         DoAwake();
@@ -23,6 +27,7 @@ public class ButtonActivatedDoor : ButtonableObject {
         base.DoStart();
         startY = mesh.transform.localPosition.y;
         collider = GetComponent<Collider>();
+        sound = GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -48,6 +53,8 @@ public class ButtonActivatedDoor : ButtonableObject {
         float t = 0;
         Vector3 o = mesh.transform.localPosition;
         Vector3 d = new Vector3(o.x, -startY, o.z);
+        sound.clip = open;
+        sound.Play();
         while (t < openTime) {
             mesh.transform.localPosition = Vector3.Lerp(o, d, t / openTime); ;
             yield return null;
@@ -63,6 +70,8 @@ public class ButtonActivatedDoor : ButtonableObject {
         float t = 0;
         Vector3 o = mesh.transform.localPosition;
         Vector3 d = new Vector3(o.x, startY, o.z);
+        sound.clip = close;
+        sound.Play();
         while (t < openTime) {
             mesh.transform.localPosition = Vector3.Lerp(o, d, t / openTime); ;
             yield return null;
