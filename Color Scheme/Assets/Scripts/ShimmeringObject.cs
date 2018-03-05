@@ -7,10 +7,16 @@ public class ShimmeringObject : ComplexPaintableObject {
     [Header("Configuration Values")]
     public float decayRate = .3f;
     public float meltingPoint = .4f;
-	Material m;
-
     public float chargeLevel = 0;
+    Material m;
+
+    [Header("Audio Inputs")]
+    [SerializeField] protected AudioClip freeze;
+    [SerializeField] protected AudioClip melt;
+
     bool charging = false;
+
+    protected AudioSource sound;
 
     public float ChargeLevel {
         get {
@@ -49,6 +55,7 @@ public class ShimmeringObject : ComplexPaintableObject {
         base.DoStart();
         Renderer r = GetComponent<Renderer>();
         m = r == null ? null : r.material;
+        sound = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -78,6 +85,8 @@ public class ShimmeringObject : ComplexPaintableObject {
     protected virtual void Solidify() {
         Debug.Log(name + " is becoming solid");
         solid = true;
+        sound.clip = freeze;
+        sound.Play();
         gameObject.layer = LayerMask.NameToLayer("SolidShimmering");
     
     }
@@ -85,6 +94,8 @@ public class ShimmeringObject : ComplexPaintableObject {
     protected virtual void DeSolidify() {
         Debug.Log(name + " is becoming not solid");
         solid = false;
+        sound.clip = melt;
+        sound.Play();
         gameObject.layer = LayerMask.NameToLayer("LiquidShimmering");
     }
 }

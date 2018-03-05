@@ -7,16 +7,11 @@ public class LightActivatedDoor : ShimmeringObject {
     public float openTime = 1f;
     public GameObject mesh;
 
-    [SerializeField] AudioClip open;
-    [SerializeField] AudioClip close;
-
     float startY;
     Coroutine doorMovement;
-    private AudioSource sound;
 
     private void Awake() {
         DoAwake();
-        sound = GetComponent<AudioSource>();
     }
 
     private void Start() {
@@ -38,7 +33,7 @@ public class LightActivatedDoor : ShimmeringObject {
             doorMovement = StartCoroutine(Open());
         }
         gameObject.layer = LayerMask.NameToLayer("LiquidShimmering");
-        sound.clip = open;
+        sound.clip = melt;
         sound.Play();
     }
 
@@ -48,7 +43,7 @@ public class LightActivatedDoor : ShimmeringObject {
             StartCoroutine(Close());
         }
         gameObject.layer = LayerMask.NameToLayer("SolidShimmering");
-        sound.clip = close;
+        sound.clip = freeze;
         sound.Play();
     }
 
