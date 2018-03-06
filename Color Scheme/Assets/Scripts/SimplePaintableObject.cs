@@ -28,5 +28,9 @@ public class SimplePaintableObject : PaintableObject {
     public override void Paint(Color c) {
         base.Paint(c);
         r.material.color = c;
+		if (r.material.IsKeywordEnabled("_EMISSION"))
+		{
+			r.material.SetColor("_EmissionColor", c);
+		}
     }
 }
