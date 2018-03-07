@@ -20,7 +20,6 @@ public class Button : InteractableObject {
             return originalPosition;
         }
         set {
-            Debug.LogWarning("Original Position Changed");
             originalPosition = value;
         }
     }
@@ -71,7 +70,7 @@ public class Button : InteractableObject {
 
     protected virtual void OnPress() {
         foreach (ButtonableObject p in connectedObjects) {
-            p.OnPressed(paint.color);
+            p.OnPressed(paint.Color);
         }
     }
 

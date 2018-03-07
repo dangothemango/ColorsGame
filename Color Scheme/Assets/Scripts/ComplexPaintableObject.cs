@@ -25,7 +25,7 @@ public class ComplexPaintableObject : PaintableObject {
         base.Paint(c);
         foreach (Renderer ren in paintedMeshes) {
             foreach (string s in variableColors) {
-                ren.material.SetColor(s, color);
+                ren.material.SetColor(s, Color);
             }
         }
     }

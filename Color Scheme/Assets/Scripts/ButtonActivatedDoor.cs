@@ -48,8 +48,7 @@ public class ButtonActivatedDoor : ButtonableObject {
         
     }
 
-    IEnumerator Open() {
-        Debug.Log("Opening");
+    IEnumerator Open() { 
         float t = 0;
         Vector3 o = mesh.transform.localPosition;
         Vector3 d = new Vector3(o.x, -startY, o.z);
@@ -65,7 +64,6 @@ public class ButtonActivatedDoor : ButtonableObject {
     }
 
     IEnumerator Close() {
-        Debug.Log("Closing");
         collider.enabled = true;
         float t = 0;
         Vector3 o = mesh.transform.localPosition;

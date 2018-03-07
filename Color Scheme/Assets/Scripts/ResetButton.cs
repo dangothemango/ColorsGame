@@ -23,7 +23,7 @@ public class ResetButton : Button {
         originalColors = new Color[resetObjects.Length];
         for (int i = 0; i< resetObjects.Length; i++) {
             if (resetObjects[i] != null) {
-                originalColors[i] = resetObjects[i].color;
+                originalColors[i] = resetObjects[i].Color;
             }
         }
 	}

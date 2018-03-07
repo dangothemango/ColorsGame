@@ -12,7 +12,7 @@ public class ColorWheel : ButtonableObject {
 
     public override void OnPressed(Color c) {
         base.OnPressed(c);
-        if (redNode.color == Color.red && greenNode.color == Color.green && blueNode.color == Color.blue) {
+        if (redNode.Color == Color.red && greenNode.Color == Color.green && blueNode.Color == Color.blue) {
             filter.ChangeColor(Color.green);
         }
     }
