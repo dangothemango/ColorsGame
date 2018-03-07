@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fuse : InteractableObject 
 {
-	[SerializeField] Color col;
+	public Color col;
 
 	// Use this for initialization
 	void Start () 
