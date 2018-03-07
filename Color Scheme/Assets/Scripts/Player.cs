@@ -9,15 +9,21 @@ public class Player : MonoBehaviour {
 
     [SerializeField] float DEATHTIME = 2.3f;
 
-    [SerializeField] float reachDistance = 5f;
-    [SerializeField] InteractableObject gazedObject;
-
 	[SerializeField] List<PlayerItem> items = new List<PlayerItem>();
 	PlayerItem equippedItem = null;
 
     public Transform startLocation;
     [SerializeField] AudioSource sound;
     [SerializeField] AudioClip deathNoise;
+
+    [Header("Interaction Config")]
+    [SerializeField]
+    float reachDistance = 5f;
+    [SerializeField]
+    float coneRadius = .2f;
+    [SerializeField]
+    float stepSize = Mathf.PI/6;
+    [SerializeField] InteractableObject gazedObject;
 
     Camera view;
     RaycastHit reachCast;
@@ -85,6 +91,20 @@ public class Player : MonoBehaviour {
         if (GameManager.INSTANCE.debug) {
             Debug.DrawLine(view.transform.position, view.transform.position + view.transform.forward * reachDistance, Color.green);
         }
+        if (reachCast.collider == null) {
+            for (float angle = 0; angle < Mathf.PI * 2; angle += stepSize) {
+                Vector3 direction = (view.transform.forward*reachDistance) + (view.transform.right*Mathf.Cos(angle) + view.transform.up * Mathf.Sin(angle)).normalized*coneRadius;
+
+                Physics.Raycast(view.transform.position, direction.normalized, out reachCast, direction.magnitude);
+                if (GameManager.INSTANCE.debug) {
+                    Debug.DrawLine(view.transform.position, view.transform.position + direction, Color.green);
+                }
+                if (reachCast.collider != null) {
+                    break;
+                }
+            }
+        }
+
         if (reachCast.collider == null) {
             if (gazedObject != null) {
                 gazedObject.onGazeExit();

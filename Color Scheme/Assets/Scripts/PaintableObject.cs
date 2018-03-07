@@ -63,9 +63,9 @@ public class PaintableObject : ButtonableObject {
         if (savedColor == null) {
             return false;
         }
-        Color o;
+        Color o = Color.clear;
         ColorUtility.TryParseHtmlString(savedColor, out o);
-        if (o == null) {
+        if (o == Color.clear) {
             return false;
         }
         color = o;

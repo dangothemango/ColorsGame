@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -906,6 +906,16 @@ Prefab:
         type: 2}
       propertyPath: sound
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114014161387678704, guid: 53e416fdb4f39794c81e7db05a054bf2,
+        type: 2}
+      propertyPath: reachDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114014161387678704, guid: 53e416fdb4f39794c81e7db05a054bf2,
+        type: 2}
+      propertyPath: coneRadius
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53e416fdb4f39794c81e7db05a054bf2, type: 2}
