@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4880976312096424}
-  - component: {fileID: 114311030660283022}
+  - component: {fileID: 114478890519040552}
   m_Layer: 0
   m_Name: Shade
   m_TagString: Untagged
@@ -264,9 +264,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1293906168739894}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.82722, y: 7.91, z: 24.081823}
-  m_LocalScale: {x: 0.5684364, y: 0.56843585, z: 0.56843585}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.48754704, y: 2.835, z: -0.25571516}
+  m_LocalScale: {x: 0.56843644, y: 0.56843585, z: 0.5684359}
   m_Children:
   - {fileID: 4992699382717280}
   - {fileID: 4372729266831808}
@@ -688,7 +688,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1433154979731956}
   m_Mesh: {fileID: 4300014, guid: 852bde1c8fbaf8145a3189e73d6daee7, type: 3}
---- !u!114 &114311030660283022
+--- !u!114 &114478890519040552
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -696,19 +696,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1293906168739894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 585c7b36e2e0b834b8ac04ac9b073294, type: 3}
+  m_Script: {fileID: 11500000, guid: d57e7d8e6b66a2845b7cdd7a83b4518b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  maxSpeed: 0
-  highX: 0
-  highY: 0
-  highZ: 0
-  lowX: 0
-  lowY: 0
-  lowZ: 0
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
-  changeArray: []
-  killColor: {r: 0, g: 0, b: 0, a: 0}
+  target: {fileID: 0}
+  maxSpeed: 1
+  shadeColor: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
+  change: {r: 1, g: 0, b: 0, a: 1}
+  killColor: {r: 1, g: 1, b: 1, a: 1}
