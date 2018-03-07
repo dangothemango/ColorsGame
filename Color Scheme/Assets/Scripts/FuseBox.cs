@@ -36,6 +36,8 @@ public class FuseBox : InteractableObject
 		{
 			Player.INSTANCE.carriedFuse.transform.SetParent(transform);
 			Player.INSTANCE.carriedFuse.transform.localPosition = Vector3.zero;
+			Player.INSTANCE.carriedFuse.GetComponent<Renderer>().enabled = true;
+			Destroy(Player.INSTANCE.carriedFuse);
 			Player.INSTANCE.carriedFuse = null;
 			door.gameObject.SetActive(true);
 		}
