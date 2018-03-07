@@ -5,7 +5,8 @@ using UnityEngine;
 public class RaceRoomResetter : MonoBehaviour 
 {
 	[SerializeField] RaceShade shade;
-	[SerializeField] Battery light;
+	[SerializeField] Battery battery;
+	[SerializeField] Platform_Movement_Script platform;
 
 	Vector3 initialShadePosition;
 	Color initialLightColor;
@@ -14,12 +15,13 @@ public class RaceRoomResetter : MonoBehaviour
 	void Start () 
 	{
 		initialShadePosition = shade.transform.position;
-		initialLightColor = light.Color;
+		initialLightColor = battery.Color;
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		shade.transform.position = initialShadePosition;
-		light.Paint(initialLightColor);
+		battery.Paint(initialLightColor);
+		platform.transform.position = platform.Waypoints[0].position;
 	}
 }

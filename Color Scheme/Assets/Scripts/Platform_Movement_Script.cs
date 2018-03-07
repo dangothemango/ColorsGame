@@ -11,12 +11,12 @@ public class Platform_Movement_Script : MonoBehaviour {
 
     int direction = 1;
     
-    Transform attachedObject;
+    protected Transform attachedObject;
 
     private void Awake() {
     }
 
-    private void Update() {
+    protected void Update() {
         Vector3 startP = transform.position;
         if (transform.position != Waypoints[waypointIndex%Waypoints.Length].position) {
             transform.position = Vector3.MoveTowards(transform.position, Waypoints[waypointIndex%Waypoints.Length].position, speed * Time.deltaTime);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class RaceShade : SimplePaintableObject
 {
     Renderer rd;
+	bool changingColor;
     public Transform target;
     public float maxSpeed;
 
@@ -19,7 +20,7 @@ public class RaceShade : SimplePaintableObject
 
     void Update()
     {
-        if (enabled)
+		if (!changingColor)
         {
             float step = maxSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
@@ -30,16 +31,21 @@ public class RaceShade : SimplePaintableObject
     {
         yield return new WaitForSecondsRealtime(3);
 		if (obj.GetComponent<PaintableObject>())
+		{
+			Debug.Log("DOIFJSOIDFJ");
 			obj.GetComponent<PaintableObject>().Paint(change);
+		}
+		enabled = false;
         //obj.GetComponent<Renderer>().material.color = change;
     }
 
     void OnCollisionEnter(Collision col)
     {
         // Shade collided with paintable object
-        if (col.gameObject.name == "PointLight")
+		if (col.gameObject.GetComponent<PaintableObject>() && col.transform == target && !changingColor)
         {
-            enabled = false;
+            //enabled = false;
+			changingColor = true;
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             StartCoroutine(changeColor(col.gameObject));
