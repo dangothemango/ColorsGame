@@ -376,6 +376,9 @@ MonoBehaviour:
   coneRadius: 0.2
   stepSize: 0.5235988
   gazedObject: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2816
 --- !u!114 &114293830433345690
 MonoBehaviour:
   m_ObjectHideFlags: 1
