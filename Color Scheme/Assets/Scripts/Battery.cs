@@ -2,10 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battery : InteractableObject {
+public class Battery : ComplexPaintableObject {
 
-	// Use this for initialization
-	void Start () {
+    [Header("Object References")]
+    public Lightbulb lightbulb;
+
+    private void Awake() {
+        DoAwake();
+    }
+
+    // Use this for initialization
+    void Start () {
         DoStart();
 	}
 	
@@ -14,7 +21,9 @@ public class Battery : InteractableObject {
         DoUpdate();
 	}
 
-    public override void Interact() {
-        base.Interact();
+    public override void Paint(Color c) {
+        base.Paint(c);
+        lightbulb.OnBatteryChange(c);
     }
+
 }

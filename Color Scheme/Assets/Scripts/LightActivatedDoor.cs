@@ -1,0 +1,84 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LightActivatedDoor : ShimmeringObject {
+
+    public float openTime = 1f;
+    public GameObject mesh;
+
+    [SerializeField] AudioClip open;
+    [SerializeField] AudioClip close;
+
+    float startY;
+    Coroutine doorMovement;
+    private AudioSource sound;
+
+    private void Awake() {
+        DoAwake();
+        sound = GetComponent<AudioSource>();
+    }
+
+    private void Start() {
+        DoStart();
+    }
+
+    protected override void DoStart() {
+        base.DoStart();
+        startY = mesh.transform.localPosition.y;
+    }
+
+    private void Update() {
+        DoUpdate();
+    }
+
+    protected override void Solidify() {
+        solid = true;
+        if (doorMovement == null) {
+            doorMovement = StartCoroutine(Open());
+        }
+        gameObject.layer = LayerMask.NameToLayer("LiquidShimmering");
+        sound.clip = open;
+        sound.Play();
+    }
+
+    protected override void DeSolidify() {
+        solid = false;
+        if (doorMovement == null) {
+            StartCoroutine(Close());
+        }
+        gameObject.layer = LayerMask.NameToLayer("SolidShimmering");
+        sound.clip = close;
+        sound.Play();
+    }
+
+    IEnumerator Open() {
+        Debug.Log("Opening");
+        float t = 0;
+        Vector3 o = mesh.transform.localPosition;
+        Vector3 d = new Vector3(o.x, -startY, o.z);
+        while (t<openTime){
+            mesh.transform.localPosition = Vector3.Lerp(o, d, t / openTime); ;
+            yield return null;
+            t += Time.deltaTime;
+        }
+        mesh.SetActive(false);
+        doorMovement = null;
+    }
+
+    IEnumerator Close() {
+        Debug.Log("Closing");
+        mesh.SetActive(true);
+        float t = 0;
+        Vector3 o = mesh.transform.localPosition;
+        Vector3 d = new Vector3(o.x, startY, o.z);
+        while (t < openTime) {
+            mesh.transform.localPosition = Vector3.Lerp(o, d, t / openTime); ;
+            yield return null;
+            t += Time.deltaTime;
+        }
+        mesh.transform.localPosition = d;
+        doorMovement = null;
+    }
+
+}
