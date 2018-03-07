@@ -15,6 +15,16 @@ public class Button : InteractableObject {
     //World references
     Vector3 originalPosition;
 
+    Vector3 OriginalPosition {
+        get {
+            return originalPosition;
+        }
+        set {
+            Debug.LogWarning("Original Position Changed");
+            originalPosition = value;
+        }
+    }
+
     private void Awake() {
         DoAwake();
     }
@@ -22,7 +32,7 @@ public class Button : InteractableObject {
     protected override void DoAwake() {
         base.DoAwake();
         paint = GetComponent<PaintableObject>();
-        originalPosition = transform.position;
+        OriginalPosition = transform.position;
     }
 
     // Use this for initialization
@@ -37,9 +47,6 @@ public class Button : InteractableObject {
 
     protected override void DoUpdate() {
         base.DoUpdate();
-        if (Input.GetKeyDown(KeyCode.R)) {
-            paint.Paint(new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f)));
-        }
     }
 
     public override void Interact() {
@@ -50,11 +57,11 @@ public class Button : InteractableObject {
 
     IEnumerator Depress() {
         interactable = false;
-        Vector3 destination = originalPosition - transform.up * depressionDistance;
+        Vector3 destination = OriginalPosition - transform.up * depressionDistance;
         float t = 0;
         while (t < depressionTime) {
             t += Time.deltaTime;
-            transform.position = Vector3.Lerp(originalPosition, destination, t / depressionTime);
+            transform.position = Vector3.Lerp(OriginalPosition, destination, t / depressionTime);
             yield return null;
         }
         transform.position = destination;
@@ -62,8 +69,7 @@ public class Button : InteractableObject {
         StartCoroutine(Lift());
     }
 
-    void OnPress() {
-        Debug.Log(string.Format("{0} Pressed", gameObject.name));
+    protected virtual void OnPress() {
         foreach (ButtonableObject p in connectedObjects) {
             p.OnPressed(paint.color);
         }
@@ -74,10 +80,10 @@ public class Button : InteractableObject {
         float t = 0;
         while (t < depressionTime) {
             t += Time.deltaTime;
-            transform.position = Vector3.Lerp(start, originalPosition, t / depressionTime);
+            transform.position = Vector3.Lerp(start, OriginalPosition, t / depressionTime);
             yield return null;
         }
-        transform.position = originalPosition;
+        transform.position = OriginalPosition;
         interactable = true;
     }
 

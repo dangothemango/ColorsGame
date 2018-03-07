@@ -19,9 +19,7 @@ public class Lightbulb : MonoBehaviour {
         r = GetComponent<Renderer>();
         lightSource = GetComponentInChildren<Light>();
         foreach (Material m in r.materials) {
-            Debug.Log(m.name);
             if (m.name.ToLower().StartsWith("lightbulbs")) {
-                Debug.Log(m.name);
                 lightMat = m;
             }
         }

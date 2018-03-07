@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0040507847, g: 0.0002213535, b: 0.00000005525985,
+  m_IndirectSpecularColor: {r: 0.0040507917, g: 0.00022135384, b: 0.00000005525985,
     a: 1}
 --- !u!157 &3
 LightmapSettings:
@@ -2755,6 +2755,11 @@ Prefab:
     - target: {fileID: 4787356712213810, guid: 4e736d246a909d84ba1e7bf82773e9c0, type: 2}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 82954203293248174, guid: 4e736d246a909d84ba1e7bf82773e9c0,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e736d246a909d84ba1e7bf82773e9c0, type: 2}
@@ -8154,8 +8159,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 706224130}
-  m_LocalRotation: {x: 0.0009854117, y: 0.9985641, z: 0.04977983, w: -0.01976593}
-  m_LocalPosition: {x: 9.896122, y: 13.60577, z: -45.50088}
+  m_LocalRotation: {x: 0.13535613, y: 0.754802, z: 0.16466863, w: -0.6203523}
+  m_LocalPosition: {x: 36.13262, y: 24.466635, z: -6.3205385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12122,7 +12127,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh358056
+  m_Name: pb_Mesh19080
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -15786,8 +15791,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1206105564}
-  m_LocalRotation: {x: 0.0009854117, y: 0.9985641, z: 0.04977983, w: -0.01976593}
-  m_LocalPosition: {x: 9.896122, y: 13.605758, z: -47.38088}
+  m_LocalRotation: {x: 0.13535613, y: 0.754802, z: 0.16466863, w: -0.6203523}
+  m_LocalPosition: {x: 36.13262, y: 24.46663, z: -7.4005437}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -11,7 +11,9 @@ public class PaintableObject : ButtonableObject {
         DoAwake();
     }
 
-    protected override void DoAwake() {}
+    protected override void DoAwake() {
+        Paint(color);
+    }
 
     // Use this for initialization
     void Start () {
@@ -19,9 +21,7 @@ public class PaintableObject : ButtonableObject {
 	}
 
     protected override void DoStart() {
-        Paint(color);
-		if (!colorChanges)
-			this.enabled = false;
+		
     }
 	
 	// Update is called once per frame
