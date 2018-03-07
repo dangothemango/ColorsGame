@@ -169,7 +169,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 0
+  m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
@@ -366,12 +366,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9952feb3ad6f5834a81539eba9c178f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carriedFuse: {fileID: 0}
+  DEATHTIME: 2.3
   reachDistance: 5
   gazedObject: {fileID: 0}
   items: []
   startLocation: {fileID: 0}
-  cameraTransform: {fileID: 0}
   sound: {fileID: 0}
+  deathNoise: {fileID: 0}
 --- !u!114 &114293830433345690
 MonoBehaviour:
   m_ObjectHideFlags: 1
