@@ -48,7 +48,6 @@ public class LightActivatedDoor : ShimmeringObject {
     }
 
     IEnumerator Open() {
-        Debug.Log("Opening");
         float t = 0;
         Vector3 o = mesh.transform.localPosition;
         Vector3 d = new Vector3(o.x, -startY, o.z);
@@ -62,7 +61,6 @@ public class LightActivatedDoor : ShimmeringObject {
     }
 
     IEnumerator Close() {
-        Debug.Log("Closing");
         mesh.SetActive(true);
         float t = 0;
         Vector3 o = mesh.transform.localPosition;

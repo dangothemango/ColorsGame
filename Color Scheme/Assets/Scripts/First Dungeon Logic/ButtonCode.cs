@@ -77,7 +77,6 @@ public class ButtonCode : ButtonableObject {
                 return;
             }
         }
-        Debug.Log("Success");
         OnSuccessfulCode();
     }
 
