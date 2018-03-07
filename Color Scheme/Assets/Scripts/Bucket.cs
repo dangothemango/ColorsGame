@@ -62,7 +62,7 @@ public class Bucket : PlayerItem
 		if (target is PaintFountain)
 		{
 			PaintFountain p = target as PaintFountain;
-			FillBucket(p.col);
+			FillBucket(p.color);
             p.SendMessage("GurgleNoise");
 
 			// TODO: Uncomment this once PaintFountain.Interact() is implemented.
