@@ -5,7 +5,7 @@ using UnityEngine;
 public class PaintFountain : InteractableObject {
 
 	[Header("Paint Fountain Parameters")]
-	public Color col;   // Change this to SerializeField, please
+	public Color color;   // Change this to SerializeField, please
 	[SerializeField] private SimplePaintableObject paintPool;
     private AudioSource gurgle;
 
@@ -23,8 +23,9 @@ public class PaintFountain : InteractableObject {
 		base.DoStart();
 		if (!paintPool)
 			paintPool = GetComponentInChildren<SimplePaintableObject>();
-		paintPool.Paint(col);
+		paintPool.Paint(color);
 		paintPool.enabled = false;
+        GetComponent<Renderer>().material.color = color;
         gurgle = GetComponent<AudioSource>();
     }
 	
