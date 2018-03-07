@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1943639873756906}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.88, y: 0.46, z: -4.66}
+  m_LocalPosition: {x: -11.614607, y: 0.844, z: -9.793931}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4300726253061522}
@@ -126,6 +126,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 44f3429c97cb3f346bc06387802121f3, type: 2}
+  - {fileID: 2100000, guid: 1954613744eba0c48bea85c56cf14877, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -276,6 +277,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9838582f02607394cac57bee5aebbf3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  botherSaving: 1
+  debugObject: 0
   color: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &114885797079543802
 MonoBehaviour:
@@ -289,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlinedMesh: {fileID: 0}
-  outlineWidth: 0.2
+  outlineWidth: 0.5
   interactable: 1
-  color: {r: 0, g: 0, b: 1, a: 1}
+  color: {r: 0, g: 0, b: 0, a: 0}
   paintPool: {fileID: 114447020541406400}
