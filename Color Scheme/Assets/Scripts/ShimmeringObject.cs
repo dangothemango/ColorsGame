@@ -85,7 +85,6 @@ public class ShimmeringObject : ComplexPaintableObject {
     }
 
     protected virtual void Solidify() {
-        Debug.Log(name + " is becoming solid");
         solid = true;
         sound.clip = freeze;
         sound.Play();
@@ -94,7 +93,6 @@ public class ShimmeringObject : ComplexPaintableObject {
     }
 
     protected virtual void DeSolidify() {
-        Debug.Log(name + " is becoming not solid");
         solid = false;
         sound.clip = melt;
         sound.Play();

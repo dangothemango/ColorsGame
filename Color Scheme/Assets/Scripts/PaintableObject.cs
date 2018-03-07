@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PaintableObject : ButtonableObject {
 
-<<<<<<< HEAD
     public bool botherSaving = true;
     public bool debugObject = false;
 
@@ -24,10 +23,6 @@ public class PaintableObject : ButtonableObject {
     }
 
     string saveString;
-=======
-    public Color color;
-	public bool colorChanges = false;
->>>>>>> ef16703b421ebd687cd4f28d53528015f5451144
     
     private void Awake() {
         DoAwake();
@@ -43,12 +38,8 @@ public class PaintableObject : ButtonableObject {
 	}
 
     protected override void DoStart() {
-<<<<<<< HEAD
         TryLoadColor();
         Paint(Color);
-=======
-		
->>>>>>> ef16703b421ebd687cd4f28d53528015f5451144
     }
 	
 	// Update is called once per frame
