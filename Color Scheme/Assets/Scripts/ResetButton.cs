@@ -22,7 +22,9 @@ public class ResetButton : Button {
         DoStart();
         originalColors = new Color[resetObjects.Length];
         for (int i = 0; i< resetObjects.Length; i++) {
-            originalColors[i] = resetObjects[i].color;
+            if (resetObjects[i] != null) {
+                originalColors[i] = resetObjects[i].color;
+            }
         }
 	}
 	
@@ -33,7 +35,9 @@ public class ResetButton : Button {
 
     protected override void OnPress() {
         for (int i = 0; i< resetObjects.Length; i++) {
-            resetObjects[i].Paint(originalColors[i]);
+            if (resetObjects[i] != null) {
+                resetObjects[i].Paint(originalColors[i]);
+            }
         }
     }
 }
