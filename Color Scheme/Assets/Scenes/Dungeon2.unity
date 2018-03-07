@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00405079, g: 0.00022135375, b: 0.00000005525985,
+  m_IndirectSpecularColor: {r: 0.0040507847, g: 0.0002213535, b: 0.00000005525985,
     a: 1}
 --- !u!157 &3
 LightmapSettings:
@@ -27581,7 +27581,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh71066
+  m_Name: pb_Mesh121934
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -29859,11 +29859,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 731978cf64ecfc645b22ba09c6141d54, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &1482071384 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4754881870962384, guid: 731978cf64ecfc645b22ba09c6141d54,
-    type: 2}
-  m_PrefabInternal: {fileID: 1482071383}
 --- !u!1 &1546901493
 GameObject:
   m_ObjectHideFlags: 0
@@ -30585,6 +30580,26 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 81
       objectReference: {fileID: 0}
+    - target: {fileID: 23267583852369264, guid: 62d662fac1eacae47939d0544731a6e3,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97f3e56c2df08be439933fab4d72d89d, type: 2}
+    - target: {fileID: 23285936986831970, guid: 62d662fac1eacae47939d0544731a6e3,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97f3e56c2df08be439933fab4d72d89d, type: 2}
+    - target: {fileID: 23310294295965888, guid: 62d662fac1eacae47939d0544731a6e3,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97f3e56c2df08be439933fab4d72d89d, type: 2}
+    - target: {fileID: 23454644716129742, guid: 62d662fac1eacae47939d0544731a6e3,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0cdf3e211170a5645bd9e1a3320de84c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62d662fac1eacae47939d0544731a6e3, type: 2}
   m_IsPrefabParent: 0
@@ -30677,6 +30692,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1633434200}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1652169648 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4033410000809914, guid: 731978cf64ecfc645b22ba09c6141d54,
+    type: 2}
+  m_PrefabInternal: {fileID: 1482071383}
 --- !u!1 &1671942345
 GameObject:
   m_ObjectHideFlags: 0
@@ -33056,7 +33076,7 @@ Transform:
   - {fileID: 1024793229}
   - {fileID: 1772832155}
   - {fileID: 613310127}
-  - {fileID: 1482071384}
+  - {fileID: 1652169648}
   - {fileID: 300130125}
   - {fileID: 810872080}
   - {fileID: 157956116}
@@ -35515,7 +35535,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh71382
+  m_Name: pb_Mesh122406
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
