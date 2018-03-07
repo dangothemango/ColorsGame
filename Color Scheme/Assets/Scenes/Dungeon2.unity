@@ -26420,6 +26420,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 57.997
       objectReference: {fileID: 0}
+    - target: {fileID: 114720571421920560, guid: 93a45a27d10fcec4fad23de1f2237dbe,
+        type: 2}
+      propertyPath: movingScript
+      value: 
+      objectReference: {fileID: 985467968}
     m_RemovedComponents:
     - {fileID: 114066363231587094, guid: 93a45a27d10fcec4fad23de1f2237dbe, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 93a45a27d10fcec4fad23de1f2237dbe, type: 2}
