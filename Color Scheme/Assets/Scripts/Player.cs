@@ -58,16 +58,15 @@ public class Player : MonoBehaviour {
 			setItem(items[0]);
 		}
 
-		if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT))
-		{
-			if (gazedObject != null)
-			{
-				if (equippedItem != null && equippedItem.CanUseOn(gazedObject))
-					equippedItem.UseOn(gazedObject);
-				else
-					gazedObject.Interact();
+		if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) { 
+		
+            if (equippedItem != null && equippedItem.CanUseOn(gazedObject)) {
+                equippedItem.UseOn(gazedObject);
+            } else if (gazedObject != null) {
+			    gazedObject.Interact();
 			}
 		}
+
 		else if (Input.GetKeyDown(GameManager.INSTANCE.ITEM_SECONDARY) && equippedItem != null)
 			equippedItem.SecondaryUsage();
 		
