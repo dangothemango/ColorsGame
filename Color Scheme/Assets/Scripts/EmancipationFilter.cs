@@ -56,7 +56,7 @@ public class EmancipationFilter : MonoBehaviour
 		}
 		else if (other.GetComponent<PaintableObject>())
 		{
-			if (other.GetComponent<PaintableObject>().color != filterColor)
+			if (other.GetComponent<PaintableObject>().Color != filterColor)
 			{
                 if (other.GetComponent<Platform_Movement_Script>()) {
                     other.GetComponent<Platform_Movement_Script>().Bounce();
