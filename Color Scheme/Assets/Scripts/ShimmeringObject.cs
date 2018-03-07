@@ -25,7 +25,9 @@ public class ShimmeringObject : ComplexPaintableObject {
         set {
             chargeLevel = value;
             if (m != null) {
-                m.SetFloat("_Controller", ChargeLevel);
+                m.SetFloat("_Controller", chargeLevel);
+                m.SetFloat("_RippleScale", (1 - chargeLevel) * .1f);
+                m.SetFloat("_RippleSpeed", (1 - chargeLevel));
             }
             if (solid && chargeLevel < meltingPoint) {
                 DeSolidify();
