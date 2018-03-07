@@ -13,6 +13,7 @@ public class Flashlight : PlayerItem {
 
     int colorIndex = 0;
     Color currentColor;
+    AudioSource sound;
     bool on = false;
 
     bool IsOn {
@@ -53,6 +54,7 @@ public class Flashlight : PlayerItem {
 
     public override void UseOn(InteractableObject target) {
         IsOn = !IsOn;
+        sound.Play();
     }
 
     private void Awake() {
@@ -61,8 +63,8 @@ public class Flashlight : PlayerItem {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        sound = GetComponent<AudioSource>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
