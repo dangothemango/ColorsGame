@@ -14,8 +14,7 @@ public class PaintableObject : ButtonableObject {
     public Color Color {
         get {
             return color;
-        }
-        set {
+        } private set {
             color = value;
             if (botherSaving)
                 SaveColor(color);
