@@ -61,7 +61,7 @@ public class EmancipationFilter : MonoBehaviour
                 if (other.GetComponent<Platform_Movement_Script>()) {
                     other.GetComponent<Platform_Movement_Script>().Bounce();
                 }
-                else {
+                else if (other.GetComponent<LightActivatedDoor>()!=null && other.GetComponent<ButtonActivatedDoor>() != null){
                     print("FUCKING DIE " + other);
                     Destroy(other.gameObject);
                     print("TERMINATED");
