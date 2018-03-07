@@ -6,6 +6,7 @@ public class Lightbulb : MonoBehaviour {
 
     [Header("Object References")]
     public Battery battery;
+    new public ParticleSystem particleSystem;
 
     [Header("Configuration Values")]
     public float chargeRate = .5f;
@@ -13,6 +14,7 @@ public class Lightbulb : MonoBehaviour {
     Light lightSource;
     Renderer r;
     Material lightMat;
+    
 
 	// Use this for initialization
 	void Awake () {
@@ -27,7 +29,7 @@ public class Lightbulb : MonoBehaviour {
 
     private void Start() {
         if (battery != null) {
-            OnBatteryChange(battery.color);
+            OnBatteryChange(battery.Color);
         }
     }
 
@@ -39,6 +41,17 @@ public class Lightbulb : MonoBehaviour {
     public void OnBatteryChange(Color c) {
         lightMat.SetColor("_EmissionColor", c);
         lightSource.color = c;
+        if (c == Color.black) {
+            particleSystem.Stop();
+        } else {
+            try {
+                var main = particleSystem.main;
+                main.startColor = c;
+                particleSystem.Play();
+            } catch (System.Exception e) {
+                Debug.LogWarning(e.StackTrace);
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other) {
@@ -47,7 +60,7 @@ public class Lightbulb : MonoBehaviour {
             ShimmeringObject s = other.GetComponent<ShimmeringObject>();
             if (s == null) return;
             //Debug.Log("Charging");
-            if (battery.color == s.color) {
+            if (battery.Color == s.Color) {
                 s.Charge(chargeRate * Time.deltaTime);
             }
         }

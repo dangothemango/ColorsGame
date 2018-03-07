@@ -54,11 +54,13 @@ public class Bucket : PlayerItem
 
 	public override bool CanUseOn(InteractableObject target)
 	{
+        if (target == null) { return false; }
 		return (target is PaintFountain) || (hasPaint && target.GetComponent<PaintableObject>());
 	}
 
 	public override void UseOn(InteractableObject target)
 	{
+        if (target == null) { return; }
 		if (target is PaintFountain)
 		{
 			PaintFountain p = target as PaintFountain;

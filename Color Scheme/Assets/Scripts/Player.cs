@@ -9,15 +9,22 @@ public class Player : MonoBehaviour {
 
     [SerializeField] float DEATHTIME = 2.3f;
 
-    [SerializeField] float reachDistance = 5f;
-    [SerializeField] InteractableObject gazedObject;
-
 	[SerializeField] List<PlayerItem> items = new List<PlayerItem>();
 	PlayerItem equippedItem = null;
 
     public Transform startLocation;
-    [SerializeField] AudioSource sound;
+     AudioSource sound;
     [SerializeField] AudioClip deathNoise;
+
+    [Header("Interaction Config")]
+    [SerializeField]
+    float reachDistance = 5f;
+    [SerializeField]
+    float coneRadius = .2f;
+    [SerializeField]
+    float stepSize = Mathf.PI/6;
+    [SerializeField] InteractableObject gazedObject;
+    [SerializeField] LayerMask layerMask;
 
     Camera view;
     RaycastHit reachCast;
@@ -58,16 +65,15 @@ public class Player : MonoBehaviour {
 			setItem(items[0]);
 		}
 
-		if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT))
-		{
-			if (gazedObject != null)
-			{
-				if (equippedItem != null && equippedItem.CanUseOn(gazedObject))
-					equippedItem.UseOn(gazedObject);
-				else
-					gazedObject.Interact();
+		if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) { 
+		
+            if (equippedItem != null && equippedItem.CanUseOn(gazedObject)) {
+                equippedItem.UseOn(gazedObject);
+            } else if (gazedObject != null) {
+			    gazedObject.Interact();
 			}
 		}
+
 		else if (Input.GetKeyDown(GameManager.INSTANCE.ITEM_SECONDARY) && equippedItem != null)
 			equippedItem.SecondaryUsage();
 		
@@ -82,11 +88,25 @@ public class Player : MonoBehaviour {
 	}
 
     void calcView() {
-        Physics.Raycast(view.transform.position, view.transform.forward, out reachCast, reachDistance);
+        Physics.Raycast(view.transform.position, view.transform.forward, out reachCast, reachDistance, layerMask);
         if (GameManager.INSTANCE.debug) {
             Debug.DrawLine(view.transform.position, view.transform.position + view.transform.forward * reachDistance, Color.green);
         }
         if (reachCast.collider == null) {
+            for (float angle = 0; angle < Mathf.PI * 2; angle += stepSize) {
+                Vector3 direction = (view.transform.forward*reachDistance) + (view.transform.right*Mathf.Cos(angle) + view.transform.up * Mathf.Sin(angle)).normalized*coneRadius;
+
+                Physics.Raycast(view.transform.position, direction.normalized, out reachCast, direction.magnitude,layerMask);
+                if (GameManager.INSTANCE.debug) {
+                    Debug.DrawLine(view.transform.position, view.transform.position + direction, Color.green);
+                }
+                if (reachCast.collider != null) {
+                    break;
+                }
+            }
+        }
+
+        if (reachCast.collider == null ||  reachCast.collider.GetComponent<InteractableObject>()==null) {
             if (gazedObject != null) {
                 gazedObject.onGazeExit();
                 gazedObject = null;
@@ -110,7 +130,6 @@ public class Player : MonoBehaviour {
         // {
             // TODO: Manipulate rotation to make the player fall over
         // }
-
         sound.PlayOneShot(deathNoise);
         Invoke("resetPosition", DEATHTIME);
         

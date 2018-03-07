@@ -36,7 +36,6 @@ public class LightChain : ButtonableObject {
     public override void OnPressed(Color c) {
         base.OnPressed(c);
         if (!active) {
-            Debug.Log("Activate Light Chain");
             active = true;
             t = triggerTime;
             batteryIndex = 0;
@@ -45,7 +44,6 @@ public class LightChain : ButtonableObject {
 
     IEnumerator LightandUnlight(Battery b) {
         b.Paint(lightColor);
-        Debug.Log("Light " + b.name);
         yield return new WaitForSeconds(activeTime);
         b.Paint(Color.black);
     }

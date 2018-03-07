@@ -26,8 +26,8 @@ public class ShimmeringObject : ComplexPaintableObject {
             chargeLevel = value;
             if (m != null) {
                 m.SetFloat("_Controller", chargeLevel);
-                m.SetFloat("_RippleScale", (1 - chargeLevel) * .1f);
-                m.SetFloat("_RippleSpeed", (1 - chargeLevel));
+                //m.SetFloat("_RippleScale", (1 - chargeLevel) * .1f);
+                //m.SetFloat("_RippleSpeed", (1 - chargeLevel));
             }
             if (solid && chargeLevel < meltingPoint) {
                 DeSolidify();
@@ -85,7 +85,6 @@ public class ShimmeringObject : ComplexPaintableObject {
     }
 
     protected virtual void Solidify() {
-        Debug.Log(name + " is becoming solid");
         solid = true;
         sound.clip = freeze;
         sound.Play();
@@ -94,7 +93,6 @@ public class ShimmeringObject : ComplexPaintableObject {
     }
 
     protected virtual void DeSolidify() {
-        Debug.Log(name + " is becoming not solid");
         solid = false;
         sound.clip = melt;
         sound.Play();

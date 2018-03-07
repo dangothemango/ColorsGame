@@ -368,12 +368,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carriedFuse: {fileID: 0}
   DEATHTIME: 2.3
-  reachDistance: 5
-  gazedObject: {fileID: 0}
   items: []
   startLocation: {fileID: 0}
   sound: {fileID: 0}
   deathNoise: {fileID: 0}
+  reachDistance: 3
+  coneRadius: 0.2
+  stepSize: 0.5235988
+  gazedObject: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294964479
 --- !u!114 &114293830433345690
 MonoBehaviour:
   m_ObjectHideFlags: 1
