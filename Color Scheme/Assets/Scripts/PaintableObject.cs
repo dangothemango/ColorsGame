@@ -5,6 +5,7 @@ using UnityEngine;
 public class PaintableObject : ButtonableObject {
 
     public Color color;
+	public bool colorChanges = false;
     
     private void Awake() {
         DoAwake();
@@ -20,7 +21,7 @@ public class PaintableObject : ButtonableObject {
 	}
 
     protected override void DoStart() {
-     
+		
     }
 	
 	// Update is called once per frame

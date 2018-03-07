@@ -72,7 +72,9 @@ GameObject:
   - component: {fileID: 114927932646870026}
   - component: {fileID: 114638406876941696}
   - component: {fileID: 65015625239474320}
-  - component: {fileID: 54761569508722664}
+  - component: {fileID: 54622473163059020}
+  - component: {fileID: 65429888151374100}
+  - component: {fileID: 114857569697287494}
   m_Layer: 0
   m_Name: Battery
   m_TagString: Untagged
@@ -139,7 +141,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1811130454337604}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -3.55, z: 1.4133213}
+  m_LocalPosition: {x: 3.27, y: 0.03, z: -1.9}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4153438145155744}
@@ -167,14 +169,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1947865433414890}
-  m_LocalRotation: {x: 0.9454498, y: -0, z: -0, w: -0.32576787}
-  m_LocalPosition: {x: -0.19, y: 6.89, z: 1.13}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: -0.5}
+  m_LocalPosition: {x: -4.76, y: 3.59, z: -11.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4836073373651164}
   m_Father: {fileID: 4727672424020696}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 218.024, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 270, y: -90, z: 0}
 --- !u!4 &4415509954294848
 Transform:
   m_ObjectHideFlags: 1
@@ -208,8 +210,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033689797086886}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.2774725, y: 20.296135, z: 2.6815977}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 4.6156845, y: 0, z: -0.011683226}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4181498348810450}
   - {fileID: 4077512619035646}
@@ -395,7 +397,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1882934836230900}
   m_Mesh: {fileID: 4300004, guid: 8fa00fdf5ba28024fb4ea9fd2d27b0f0, type: 3}
---- !u!54 &54761569508722664
+--- !u!54 &54622473163059020
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -422,6 +424,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9571838, y: 4.51832, z: 1}
   m_Center: {x: -0.0004119873, y: 1.9795084, z: 0}
+--- !u!65 &65429888151374100
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1811130454337604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8718414, y: 4.827972, z: 2.4903584}
+  m_Center: {x: 0.04033661, y: 1.913986, z: -0.007706642}
 --- !u!65 &65814200924297348
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -432,8 +446,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.131311, y: 10.67739, z: 8.386753}
-  m_Center: {x: 0.14694977, y: 5.3403363, z: 0.108443774}
+  m_Size: {x: 9.131311, y: 8.972381, z: 6.745658}
+  m_Center: {x: 0.14694977, y: 4.4878316, z: -0.05212438}
 --- !u!95 &95804165572881342
 Animator:
   serializedVersion: 3
@@ -462,7 +476,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_Intensity: 10
-  m_Range: 10
+  m_Range: 4
   m_SpotAngle: 45
   m_CookieSize: 10
   m_Shadows:
@@ -474,7 +488,7 @@ Light:
     m_NormalBias: 0.4
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
+  m_DrawHalo: 1
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
@@ -514,6 +528,20 @@ MonoBehaviour:
   outlinedMesh: {fileID: 1882934836230900}
   outlineWidth: 0.2
   interactable: 1
+--- !u!114 &114857569697287494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1811130454337604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae145ee136647884ca1724a5c542f265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlinedMesh: {fileID: 1882934836230900}
+  outlineWidth: 0.2
+  interactable: 1
 --- !u!114 &114927932646870026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -525,7 +553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c560fc4f150735047b65d2d1ee132257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0, b: 0, a: 1}
+  color: {r: 0, g: 0, b: 0, a: 1}
+  colorChanges: 1
   paintedMeshes:
   - {fileID: 23553617570150604}
   variableColors:
