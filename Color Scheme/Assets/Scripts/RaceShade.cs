@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RaceShade : SimplePaintableObject
 {
-    Renderer r;
+    Renderer rd;
     public Transform target;
     public float maxSpeed;
 
@@ -29,7 +29,9 @@ public class RaceShade : SimplePaintableObject
     IEnumerator changeColor(GameObject obj)
     {
         yield return new WaitForSecondsRealtime(3);
-        obj.GetComponent<Renderer>().material.color = change;
+		if (obj.GetComponent<PaintableObject>())
+			obj.GetComponent<PaintableObject>().Paint(change);
+        //obj.GetComponent<Renderer>().material.color = change;
     }
 
     void OnCollisionEnter(Collision col)

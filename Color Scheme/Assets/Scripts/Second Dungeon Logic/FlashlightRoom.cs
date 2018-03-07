@@ -18,6 +18,8 @@ public class FlashlightRoom : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
+		if (other.tag != "Player")
+			return;
 		entrance.GetComponent<LightActivatedDoor>().enabled = false;
 		entrance.enabled = true;
 		entrance.TriggerClose();
