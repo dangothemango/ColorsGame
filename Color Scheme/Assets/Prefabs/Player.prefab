@@ -366,12 +366,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9952feb3ad6f5834a81539eba9c178f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reachDistance: 5
-  gazedObject: {fileID: 0}
+  carriedFuse: {fileID: 0}
+  DEATHTIME: 2.3
   items: []
   startLocation: {fileID: 0}
-  cameraTransform: {fileID: 0}
   sound: {fileID: 0}
+  deathNoise: {fileID: 0}
+  reachDistance: 3
+  coneRadius: 0.2
+  stepSize: 0.5235988
+  gazedObject: {fileID: 0}
 --- !u!114 &114293830433345690
 MonoBehaviour:
   m_ObjectHideFlags: 1
