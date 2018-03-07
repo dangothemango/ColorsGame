@@ -3,8 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Throwable
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -14,14 +13,14 @@ TagManager:
   - UI
   - 
   - 
-  - MapUI
-  - Player
-  - SolidShimmering
-  - LiquidShimmering
-  - Lightbulb
-  - NOTUSEDPLEASEREPLACE
-  - PlayerAttacher
-  - PlayerTriggers
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
