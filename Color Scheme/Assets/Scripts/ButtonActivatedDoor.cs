@@ -41,7 +41,7 @@ public class ButtonActivatedDoor : ButtonableObject {
         
     }
 
-    void TriggerClose() {
+    public void TriggerClose() {
         if (doorMovement == null) {
             StartCoroutine(Close());
         }
