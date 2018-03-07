@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PaintableObject : ButtonableObject {
 
+    public bool botherSaving = true;
+    public bool debugObject = false;
+
     [SerializeField]
     Color color;
 
@@ -14,7 +17,8 @@ public class PaintableObject : ButtonableObject {
         }
         set {
             color = value;
-            SaveColor(color);
+            if (botherSaving)
+                SaveColor(color);
         }
     }
 
@@ -34,7 +38,7 @@ public class PaintableObject : ButtonableObject {
 	}
 
     protected override void DoStart() {
-        TryLoadColor(ref color);
+        TryLoadColor();
         Paint(Color);
     }
 	
@@ -54,21 +58,21 @@ public class PaintableObject : ButtonableObject {
         this.Paint(c);
     }
 
-    bool TryLoadColor(ref Color c) {
+    bool TryLoadColor() {
         string savedColor = GameManager.INSTANCE.LoadSomething(saveString);
         if (savedColor == null) {
             return false;
         }
         Color o;
         ColorUtility.TryParseHtmlString(savedColor, out o);
-        if (o != null) {
+        if (o == null) {
             return false;
         }
-        c = o;
+        color = o;
         return true;
     }
 
     void SaveColor(Color c) {
-        GameManager.INSTANCE.SaveSomething(saveString, ColorUtility.ToHtmlStringRGBA(c));
+        GameManager.INSTANCE.SaveSomething(saveString, "#"+ColorUtility.ToHtmlStringRGBA(c));
     }
 }

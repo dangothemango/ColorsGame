@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-    public void SaveSomething(string key, string data) {
+    public void SaveSomething(string key, string data) { 
         savedGameState[key] = data;
     }
 
