@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 	PlayerItem equippedItem = null;
 
     public Transform startLocation;
-    [SerializeField] AudioSource sound;
+     AudioSource sound;
     [SerializeField] AudioClip deathNoise;
 
     [Header("Interaction Config")]

@@ -378,7 +378,7 @@ MonoBehaviour:
   gazedObject: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 2816
+    m_Bits: 4294964479
 --- !u!114 &114293830433345690
 MonoBehaviour:
   m_ObjectHideFlags: 1
