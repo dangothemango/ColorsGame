@@ -12,7 +12,7 @@ public class ButtonActivatedDoor : ButtonableObject {
 
     float startY;
     Coroutine doorMovement;
-    Collider collider;
+    new Collider collider;
     AudioSource sound;
 
     private void Awake() {
