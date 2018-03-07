@@ -130,7 +130,6 @@ public class Player : MonoBehaviour {
         // {
             // TODO: Manipulate rotation to make the player fall over
         // }
-
         sound.PlayOneShot(deathNoise);
         Invoke("resetPosition", DEATHTIME);
         
