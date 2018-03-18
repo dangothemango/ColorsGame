@@ -110,25 +110,34 @@ public class MountedLaserMain : InteractableObject {
 			}
 		case Aim.NORTH:
 			{
-				aimAngles = Quaternion (0.0f, 90.0, 0.0f);
+				aimAngles = currentAim;
+				aimAngles.x += 90.0f;
 				break;
 			}
 		case Aim.SOUTH:
 			{
-
+				aimAngles = currentAim;
+				aimAngles.x += -90.0f;
 				break;
 			}
 		case Aim.EAST:
 			{
-
+				aimAngles = currentAim;
+				aimAngles.z += -90.0f;
 				break;
 			}
 		case Aim.WEST:
 			{
-
+				aimAngles = currentAim;
+				aimAngles.z += 90.0f;
 				break;
 			}
 		}
+
+		do {
+			transform.position = Vector3.Lerp(OriginalPosition, destination, t / depressionTime);
+
+		} while (t.localRotation != aimAngles);
 
 		interactable = true;
 	}
