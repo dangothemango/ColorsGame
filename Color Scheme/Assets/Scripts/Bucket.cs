@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -108,4 +109,12 @@ public class Bucket : PlayerItem
 		paint.Paint(currentColor);
 		paint.gameObject.GetComponent<Renderer>().enabled = false;
 	}
+
+    public override Sprite GetTooltipIcon() {
+        if (hasPaint) {
+            return primaryTooltip;
+        } else {
+            return secondaryTooltip;
+        }
+    }
 }

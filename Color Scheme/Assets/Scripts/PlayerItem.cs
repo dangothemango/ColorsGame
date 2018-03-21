@@ -8,6 +8,8 @@ public abstract class PlayerItem : MonoBehaviour
 	public Vector3 itemOffset = Vector3.zero;
     public Vector3 itemRotation = Vector3.zero;
     public float itemScale = 1f;
+    public Sprite primaryTooltip;
+    public Sprite secondaryTooltip;
 
 	// Use this for initialization
 	void Start() 
@@ -29,4 +31,6 @@ public abstract class PlayerItem : MonoBehaviour
 	public abstract void Filter(Color c);
 
 	public abstract void SecondaryUsage();
+
+    public abstract Sprite GetTooltipIcon();
 }

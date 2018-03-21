@@ -70,4 +70,8 @@ public class Flashlight : PlayerItem {
 	void Update () {
 		
 	}
+
+    public override Sprite GetTooltipIcon() {
+        throw new NotImplementedException();
+    }
 }

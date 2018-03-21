@@ -11,7 +11,11 @@ public class InteractableObject : MonoBehaviour {
     public GameObject outlinedMesh;
     public float outlineWidth = .2f;
 
+    
+
+    [Header("Interaction Stuff")]
     public bool interactable = true;
+    public Sprite tooltipIcon;
 
     private void Awake() {
         DoAwake();

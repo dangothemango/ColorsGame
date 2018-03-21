@@ -590,8 +590,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52778983}
-  m_LocalRotation: {x: -0.09809394, y: 0.42276543, z: 0.04610242, w: 0.8997342}
-  m_LocalPosition: {x: 0.25109482, y: 3.2648354, z: 8.846078}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 4.5404997, y: 6.3044996, z: -12.25}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 913612244}
@@ -883,6 +883,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 665125903}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!1 &65524688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,7 +1638,7 @@ Prefab:
         type: 2}
       propertyPath: connectedObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 913612245}
+      objectReference: {fileID: 0}
     - target: {fileID: 4856084787349068, guid: 5766e0c6de6adfc43afcbcb9d7617790, type: 2}
       propertyPath: m_LocalScale.x
       value: 0.375
@@ -3533,6 +3534,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 1504563251}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!1001 &296051240
 Prefab:
   m_ObjectHideFlags: 0
@@ -4016,6 +4018,16 @@ Prefab:
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114686768776606880, guid: e04843df01056134291a603c630d326e,
+        type: 2}
+      propertyPath: Waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1068238682}
+    - target: {fileID: 114686768776606880, guid: e04843df01056134291a603c630d326e,
+        type: 2}
+      propertyPath: Waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1177896732}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: e04843df01056134291a603c630d326e, type: 2}
@@ -5236,6 +5248,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 1365190265}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!1 &450625749
 GameObject:
   m_ObjectHideFlags: 0
@@ -5899,8 +5912,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 509948337}
-  m_LocalRotation: {x: -0.09809394, y: 0.42276543, z: 0.04610242, w: 0.8997342}
-  m_LocalPosition: {x: 0.25109482, y: 3.264841, z: 8.306077}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 4.5404997, y: 6.3044996, z: -13.19}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 913612244}
@@ -9203,6 +9216,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 0}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!114 &713973903 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114702257754060570, guid: 5766e0c6de6adfc43afcbcb9d7617790,
@@ -9628,6 +9642,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 0}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!1 &750038099
 GameObject:
   m_ObjectHideFlags: 0
@@ -9873,6 +9888,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 1816556426}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!54 &766166239
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10313,6 +10329,12 @@ Prefab:
       propertyPath: m_ClearFlags
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 212525842082772928, guid: 53e416fdb4f39794c81e7db05a054bf2,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 951472eb96eabc44d9eac5e043b72476,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53e416fdb4f39794c81e7db05a054bf2, type: 2}
   m_IsPrefabParent: 0
@@ -13903,6 +13925,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 519515738}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!1 &974777091
 GameObject:
   m_ObjectHideFlags: 0
@@ -15417,6 +15440,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 0}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!1 &1068238681
 GameObject:
   m_ObjectHideFlags: 0
@@ -17232,8 +17256,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1206105564}
-  m_LocalRotation: {x: 0.014198857, y: -0.9644291, z: 0.053002644, w: 0.25858402}
-  m_LocalPosition: {x: 34.17383, y: 14.71396, z: -27.132488}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: -0.7071068}
+  m_LocalPosition: {x: 32.43, y: 23.48, z: -19.359999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -19163,6 +19187,12 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114138543530626358, guid: 2d7f5a278a3b07a4fa991e8eec00fc9c,
+        type: 2}
+      propertyPath: interactionTooltip
+      value: 
+      objectReference: {fileID: 21300000, guid: 74e2a587a94a0f04684220d8d9734a71,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d7f5a278a3b07a4fa991e8eec00fc9c, type: 2}
   m_IsPrefabParent: 0
@@ -19621,6 +19651,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 1403381008}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!114 &1403381011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19654,6 +19685,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 0}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!4 &1410958872 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4856084787349068, guid: 5766e0c6de6adfc43afcbcb9d7617790,
@@ -23636,6 +23668,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 0}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!1001 &1716582924
 Prefab:
   m_ObjectHideFlags: 0
@@ -24901,6 +24934,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 657285917}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!1 &1816556426 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1882934836230900, guid: 17338e5b803ef0d44ae39864c34934a6,
@@ -24952,6 +24986,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 459796755}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!1 &1834309191
 GameObject:
   m_ObjectHideFlags: 0
@@ -26130,6 +26165,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 1878303094}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!1001 &1904546883
 Prefab:
   m_ObjectHideFlags: 0
