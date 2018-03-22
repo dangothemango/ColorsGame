@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class Bucket : PlayerItem 
 {
-	[SerializeField] private SimplePaintableObject paint;
+    private static Func<Color, Color, Color> addColors = delegate (Color a, Color b) {
+        return new Color(Mathf.Min(a.r + b.r, 1f), Mathf.Min(a.g + b.g, 1f), Mathf.Min(a.b + b.b, 1f));
+    };
+
+    [SerializeField] private SimplePaintableObject paint;
     private AudioSource splish;
 
 	public Color currentColor = Color.clear;
@@ -42,16 +46,14 @@ public class Bucket : PlayerItem
 		EmptyBucket();
 	}
 
-	private void FillBucket(Color c)
-	{
-		if (!hasPaint)
-		{
-			hasPaint = true;
-			paint.gameObject.GetComponent<Renderer>().enabled = true;
-		}
-        currentColor = new Color(Mathf.Min(currentColor.r+c.r,1f), Mathf.Min(currentColor.g + c.g, 1f), Mathf.Min(currentColor.b + c.b, 1f));
-		paint.Paint(currentColor);
-	}
+    private void FillBucket(Color c) {
+        if (!hasPaint) {
+            hasPaint = true;
+            paint.gameObject.GetComponent<Renderer>().enabled = true;
+        }
+        currentColor = addColors(currentColor,c);
+        paint.Paint(currentColor);
+    }
 
 	public override bool CanUseOn(InteractableObject target)
 	{
@@ -110,11 +112,12 @@ public class Bucket : PlayerItem
 		paint.gameObject.GetComponent<Renderer>().enabled = false;
 	}
 
-    public override Sprite GetTooltipIcon() {
-        if (hasPaint) {
-            return primaryTooltip;
-        } else {
+    public override Sprite GetTooltipIcon(InteractableObject io, out Color c) {
+        if (io is PaintFountain) {
+            c = addColors((io as PaintFountain).color,currentColor);
             return secondaryTooltip;
         }
+        c = currentColor;
+        return primaryTooltip;
     }
 }

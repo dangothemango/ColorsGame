@@ -32,5 +32,5 @@ public abstract class PlayerItem : MonoBehaviour
 
 	public abstract void SecondaryUsage();
 
-    public abstract Sprite GetTooltipIcon();
+    public abstract Sprite GetTooltipIcon(InteractableObject io, out Color c);
 }

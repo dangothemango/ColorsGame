@@ -134,10 +134,12 @@ public class Player : MonoBehaviour {
             tooltipRenderer.sprite = null;
             return;
         }
-        tooltipRenderer.sprite = equippedItem == null || !equippedItem.CanUseOn(gazedObject) ?  gazedObject.tooltipIcon : equippedItem.GetTooltipIcon();
+        Color c = Color.white;
+        tooltipRenderer.sprite = equippedItem == null || !equippedItem.CanUseOn(gazedObject) ?  gazedObject.tooltipIcon : equippedItem.GetTooltipIcon(gazedObject, out c);
         Vector3 p = tooltipRenderer.transform.localPosition;
         p.z = (reachCast.point - view.transform.position).magnitude-tooltipOffset;
         tooltipRenderer.transform.localPosition = p;
+        tooltipRenderer.color = c;
     }
 
     public void die(bool fallOver) {
