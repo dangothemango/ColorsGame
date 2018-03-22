@@ -314,7 +314,7 @@ MonoBehaviour:
   itemRotation: {x: -16.13, y: 0, z: 0}
   itemScale: 3
   primaryTooltip: {fileID: 21300000, guid: 74e2a587a94a0f04684220d8d9734a71, type: 3}
-  secondaryTooltip: {fileID: 21300000, guid: 951472eb96eabc44d9eac5e043b72476, type: 3}
+  secondaryTooltip: {fileID: 21300000, guid: 8ef676c1adcf9e64a9d25766c723eea0, type: 3}
   paint: {fileID: 114336146442690352}
   currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114336146442690352
