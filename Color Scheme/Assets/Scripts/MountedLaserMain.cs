@@ -24,6 +24,9 @@ public class MountedLaserMain : InteractableObject {
 	public float amplitude = 0.1f;
 	Aim aim;
 	Quaternion currentAim;
+	public float aimTime = .5f;
+	public float aimDuration = 1.0f;
+
 
 	enum Aim{ // all local rotations i.e. w.r.t parent orientation
 		REST,
@@ -64,31 +67,12 @@ public class MountedLaserMain : InteractableObject {
 	}
 
 	void FixedUpdate() {
-		if (equiped) {
-			isReset = false;
-			crystal.transform.localPosition = crystalPosRestore;
-			crystal.transform.localRotation = crystalRotRestore;
-			laserRing.transform.localPosition = laserRingPosRestore;
-			laserRing.transform.localRotation = laserRingRotRestore;
-			laserRingSmall.transform.localPosition = laserRingSmallPosRestore;
-			laserRingSmall.transform.localRotation = laserRingSmallRotRestore;
-
-			rig.constraints = RigidbodyConstraints.FreezePosition;
-
-			//t.localRotation = cam.transform.localRotation;
-
-		} else {
-			if (!isReset) {
-				t.localPosition = tPosRestore;
-				t.localRotation = tRotRestore;
-				rig.constraints = RigidbodyConstraints.None;
-				isReset = true;
-			}
+		if (transform.rotation == tRotRestore) {
 			t.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate) * amplitude, 0.0f);
-			crystal.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * 1.5f *floatRate) * amplitude * 0.9f, 0.0f);
-			laserRing.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate * 0.25f) * amplitude * 0.2f, 0.0f);
-			laserRingSmall.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate * 0.5f) * amplitude * 0.2f, 0.0f);
 		}
+		crystal.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * 1.5f *floatRate) * amplitude * 0.9f, 0.0f);
+		laserRing.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate * 0.25f) * amplitude * 0.2f, 0.0f);
+		laserRingSmall.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate * 0.5f) * amplitude * 0.2f, 0.0f);
 	}
 
 	void Interact() {
@@ -99,46 +83,43 @@ public class MountedLaserMain : InteractableObject {
 
 	IEnumerator Reaim() {
 		interactable = false;
-		Quaternion aimAngles;
+		Quaternion newAimAngles = tRotRestore;
 		aim++;
+		float elapsedTime = 0.0f;
 
 		switch (aim) {
-		case Aim.REST: 
-			{
-				aimAngles = tRotRestore;
-				break;
-			}
 		case Aim.NORTH:
 			{
-				aimAngles = currentAim;
-				aimAngles.x += 90.0f;
+				newAimAngles = currentAim;
+				newAimAngles.x += 90.0f;
 				break;
 			}
 		case Aim.SOUTH:
 			{
-				aimAngles = currentAim;
-				aimAngles.x += -90.0f;
+				newAimAngles = currentAim;
+				newAimAngles.x += -90.0f;
 				break;
 			}
 		case Aim.EAST:
 			{
-				aimAngles = currentAim;
-				aimAngles.z += -90.0f;
+				newAimAngles = currentAim;
+				newAimAngles.z += -90.0f;
 				break;
 			}
 		case Aim.WEST:
 			{
-				aimAngles = currentAim;
-				aimAngles.z += 90.0f;
+				newAimAngles = currentAim;
+				newAimAngles.z += 90.0f;
 				break;
 			}
 		}
 
-		do {
-			transform.position = Vector3.Lerp(OriginalPosition, destination, t / depressionTime);
-
-		} while (t.localRotation != aimAngles);
-
+		while (elapsedTime < aimDuration){
+			elapsedTime += Time.deltaTime;
+			transform.rotation = Quaternion.Lerp(currentAim, newAimAngles, elapsedTime / aimDuration);
+			yield return null;
+		}
+		currentAim = newAimAngles;
 		interactable = true;
 	}
 }
