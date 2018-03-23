@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorWheel : ButtonableObject {
+public class ColorWheel : MonoBehaviour {
 
     public PaintableObject redNode;
     public PaintableObject greenNode;
@@ -10,10 +10,14 @@ public class ColorWheel : ButtonableObject {
 
     public EmancipationFilter filter;
 
-    public override void OnPressed(Color c) {
-        base.OnPressed(c);
+    private void Start() {
+        InvokeRepeating("CheckSolution", 1f, 1f);
+    }
+
+    public void CheckSolution () {
         if (redNode.Color == Color.red && greenNode.Color == Color.green && blueNode.Color == Color.blue) {
             filter.ChangeColor(Color.green);
+            CancelInvoke();
         }
     }
 }
