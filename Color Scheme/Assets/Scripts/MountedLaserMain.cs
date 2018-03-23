@@ -24,6 +24,9 @@ public class MountedLaserMain : InteractableObject {
 	public float amplitude = 0.1f;
 	Aim aim;
 	Quaternion currentAim;
+	public float aimTime = .5f;
+	public float aimDuration = 1.0f;
+
 
 	enum Aim{ // all local rotations i.e. w.r.t parent orientation
 		REST,
@@ -41,14 +44,16 @@ public class MountedLaserMain : InteractableObject {
 		laserRing = this.gameObject.transform.GetChild(1).gameObject;
 		laserRingSmall = this.gameObject.transform.GetChild(2).gameObject;
 
+		//restore variables for each child of the laser gun object
+		//some can be ignored due to implementation changes i.e...
 		tPosRestore = t.localPosition;
 		tRotRestore = t.localRotation;
-		crystalPosRestore = crystal.transform.localPosition;
-		crystalRotRestore = crystal.transform.localRotation;
-		laserRingPosRestore = laserRing.transform.localPosition;
-		laserRingRotRestore = laserRing.transform.localRotation;
-		laserRingSmallPosRestore = laserRingSmall.transform.localPosition;
-		laserRingSmallRotRestore = laserRingSmall.transform.localRotation;
+		crystalPosRestore = crystal.transform.localPosition; //ignore
+		crystalRotRestore = crystal.transform.localRotation; //ignore
+		laserRingPosRestore = laserRing.transform.localPosition; //ignore
+		laserRingRotRestore = laserRing.transform.localRotation; //ignore
+		laserRingSmallPosRestore = laserRingSmall.transform.localPosition; //ignore
+		laserRingSmallRotRestore = laserRingSmall.transform.localRotation; //ignore
 
 		cam = Player.INSTANCE.GetComponent<Camera> ();
 
@@ -64,31 +69,14 @@ public class MountedLaserMain : InteractableObject {
 	}
 
 	void FixedUpdate() {
-		if (equiped) {
-			isReset = false;
-			crystal.transform.localPosition = crystalPosRestore;
-			crystal.transform.localRotation = crystalRotRestore;
-			laserRing.transform.localPosition = laserRingPosRestore;
-			laserRing.transform.localRotation = laserRingRotRestore;
-			laserRingSmall.transform.localPosition = laserRingSmallPosRestore;
-			laserRingSmall.transform.localRotation = laserRingSmallRotRestore;
-
-			rig.constraints = RigidbodyConstraints.FreezePosition;
-
-			//t.localRotation = cam.transform.localRotation;
-
-		} else {
-			if (!isReset) {
-				t.localPosition = tPosRestore;
-				t.localRotation = tRotRestore;
-				rig.constraints = RigidbodyConstraints.None;
-				isReset = true;
-			}
+		if (transform.rotation == tRotRestore) {
+			//main body floats only when in its neutral 
 			t.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate) * amplitude, 0.0f);
-			crystal.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * 1.5f *floatRate) * amplitude * 0.9f, 0.0f);
-			laserRing.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate * 0.25f) * amplitude * 0.2f, 0.0f);
-			laserRingSmall.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate * 0.5f) * amplitude * 0.2f, 0.0f);
 		}
+		//float children parts of the laser (outer rings and inner crystal)
+		crystal.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * 1.5f *floatRate) * amplitude * 0.9f, 0.0f);
+		laserRing.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate * 0.25f) * amplitude * 0.2f, 0.0f);
+		laserRingSmall.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate * 0.5f) * amplitude * 0.2f, 0.0f);
 	}
 
 	void Interact() {
@@ -97,39 +85,52 @@ public class MountedLaserMain : InteractableObject {
 		}
 	}
 
+
+	/// <summary>
+	/// Reaim this instance.
+	/// I am trying to create a class that changes the orientation of the gun each time the player interacts with it.
+	/// It would have its rotation lerped with each interaction locking further interaction till the movement was done.
+	/// </summary>
 	IEnumerator Reaim() {
 		interactable = false;
-		Quaternion aimAngles;
+		Quaternion newAimAngles = tRotRestore;
 		aim++;
+		float elapsedTime = 0.0f;
 
-		switch (aim) {
-		case Aim.REST: 
-			{
-				aimAngles = tRotRestore;
-				break;
-			}
+		switch (aim) { //enumerate between all the possible directions toggle by player interactions
 		case Aim.NORTH:
-			{
-				aimAngles = Quaternion (0.0f, 90.0, 0.0f);
+			 {
+				newAimAngles = currentAim;
+				newAimAngles.x += 90.0f;
 				break;
 			}
 		case Aim.SOUTH:
 			{
-
+				newAimAngles = currentAim;
+				newAimAngles.x += -90.0f;
 				break;
 			}
 		case Aim.EAST:
 			{
-
+				newAimAngles = currentAim;
+				newAimAngles.z += -90.0f;
 				break;
 			}
 		case Aim.WEST:
 			{
-
+				newAimAngles = currentAim;
+				newAimAngles.z += 90.0f;
 				break;
 			}
 		}
 
+		//lerp the movement of the laser main body
+		while (elapsedTime < aimDuration){
+			elapsedTime += Time.deltaTime;
+			transform.rotation = Quaternion.Lerp(currentAim, newAimAngles, elapsedTime / aimDuration);
+			yield return null;
+		}
+		currentAim = newAimAngles;
 		interactable = true;
 	}
 }
