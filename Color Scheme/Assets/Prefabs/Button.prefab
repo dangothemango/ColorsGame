@@ -100,6 +100,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 0}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 21300000, guid: 951472eb96eabc44d9eac5e043b72476, type: 3}
   depressionTime: 0.25
   depressionDistance: 0.175
   connectedObjects:
@@ -116,6 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9838582f02607394cac57bee5aebbf3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  botherSaving: 1
+  debugObject: 0
   color: {r: 0, g: 1, b: 0, a: 1}
 --- !u!136 &136159221578233538
 CapsuleCollider:
