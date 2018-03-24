@@ -29,6 +29,9 @@ public class Player : MonoBehaviour {
     Camera view;
     RaycastHit reachCast;
 
+    public SpriteRenderer tooltipRenderer;
+    public float tooltipOffset = .5f;
+
     void Awake() {
         if (INSTANCE == null) {
             INSTANCE = this;
@@ -46,6 +49,7 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         calcView();
+        ConfigureTooltip();
 
         if (equippedItem != null) {
             configItem(equippedItem);
@@ -123,6 +127,19 @@ public class Player : MonoBehaviour {
         if (gazedObject) {
             gazedObject.onGazeEnter(equippedItem);
         }
+    }
+
+    void ConfigureTooltip() {
+        if (gazedObject == null) {
+            tooltipRenderer.sprite = null;
+            return;
+        }
+        Color c = Color.white;
+        tooltipRenderer.sprite = equippedItem == null || !equippedItem.CanUseOn(gazedObject) ?  gazedObject.tooltipIcon : equippedItem.GetTooltipIcon(gazedObject, out c);
+        Vector3 p = tooltipRenderer.transform.localPosition;
+        p.z = (reachCast.point - view.transform.position).magnitude-tooltipOffset;
+        tooltipRenderer.transform.localPosition = p;
+        tooltipRenderer.color = c;
     }
 
     public void die(bool fallOver) {
