@@ -54,18 +54,29 @@ public class ButtonCode : ButtonableObject {
         t += Time.deltaTime;
         if (t > flashTime) {
             t = 0;
-            if (currentCode == 1) {
-                battery.Paint(code1[(++codeIndex)%codeLength]);
-            }
-            else {
-                battery.Paint(code2[(++codeIndex)%codeLength]);
+            switch (currentCode) {
+                case 1:
+                    battery.Paint(code1[(++codeIndex)%codeLength]);
+                    break;
+                case 2:
+                    battery.Paint(code2[(++codeIndex)%codeLength]);
+                    break;
             }
         }
     }
 
     public override void OnPressed(Color c) {
         base.OnPressed(c);
+        switch (currentCode) {
+            case 1:
+                code1Lights[pressIndex % codeLength].Paint(c);
+                break;
+            case 2:
+                code2Lights[pressIndex % codeLength].Paint(c);
+                break;
+        }
         currentPresses[(pressIndex++)%codeLength] = c;
+
         if (pressIndex >= codeLength) {
             checkCode();
         }
@@ -83,7 +94,7 @@ public class ButtonCode : ButtonableObject {
                 return;
             }
         }
-        OnSuccessfulCode()
+        OnSuccessfulCode();
     }
 
     int FindInArray(Color[] arr, Color c) {
@@ -96,12 +107,23 @@ public class ButtonCode : ButtonableObject {
     }
 
     void OnSuccessfulCode() {
-        if (currentCode == 1) {
-            code1Door.TriggerOpen();
-            currentCode++;
-        } else if (currentCode == 2) {
-            code2Door.TriggerOpen();
+        switch (currentCode) {
+            case 1:
+                code1Door.TriggerOpen();
+                foreach (Battery b in code1Lights) {
+                    b.Paint(Color.green);
+                }
+                currentCode++;
+                break;
+            case 2:
+                code2Door.TriggerOpen();
+                foreach (Battery b in code2Lights) {
+                    b.Paint(Color.green);
+                }
+                break;
         }
+        pressIndex = 0;
+        currentPresses = new Color[codeLength];
     }
 
 }
