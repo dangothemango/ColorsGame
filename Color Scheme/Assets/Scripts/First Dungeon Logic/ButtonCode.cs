@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class ButtonCode : ButtonableObject {
 
-    public Color[] code1;
-    public Color[] code2;
-
-    public float flashTime = 1f;
     public int codeLength = 5;
-    public ButtonActivatedDoor door;
-    public ButtonActivatedDoor[] code2Doors;
+    public float flashTime = 1f;
+    public Battery battery;
+    
+
+    [Header("Code 1")]
+    public Color[] code1;
+    public Battery[] code1Lights;
+    public ButtonActivatedDoor code1Door;
+
+    [Header("Code 2")]
+    public Color[] code2;
+    public Battery[] code2Lights;
+    public ButtonActivatedDoor code2Door;
 
     int currentCode = 1;
     int codeIndex = 0;
+    Color[] currentPresses;
     int pressIndex = 0;
     float t = 0;
-    public Battery battery;
-    public Color[] currentPresses;
 
     private void Awake() {
         DoAwake();
@@ -77,7 +83,7 @@ public class ButtonCode : ButtonableObject {
                 return;
             }
         }
-        OnSuccessfulCode();
+        OnSuccessfulCode()
     }
 
     int FindInArray(Color[] arr, Color c) {
@@ -91,13 +97,10 @@ public class ButtonCode : ButtonableObject {
 
     void OnSuccessfulCode() {
         if (currentCode == 1) {
-            door.TriggerOpen();
+            code1Door.TriggerOpen();
             currentCode++;
         } else if (currentCode == 2) {
-            foreach(ButtonActivatedDoor b in code2Doors) {
-                b.TriggerOpen();
-                currentCode++;
-            }
+            code2Door.TriggerOpen();
         }
     }
 
