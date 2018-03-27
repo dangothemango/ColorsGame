@@ -12,15 +12,17 @@ public class RaceRoomResetter : MonoBehaviour
 	Color initialLightColor;
 
 	// Use this for initialization
-	void Start () 
+	void Start() 
 	{
 		initialShadePosition = shade.transform.position;
 		initialLightColor = battery.Color;
+		shade.enabled = false;
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		shade.transform.position = initialShadePosition;
+		shade.enabled = true;
 		battery.Paint(initialLightColor);
 		platform.transform.position = platform.Waypoints[0].position;
 	}
