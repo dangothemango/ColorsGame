@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour {
     public enum PUZZLE_ID {
         NONE,
         DEBUG,
+        PUZZLE_LISTENER,
         BUTTON_CODE,
-        LIGHT_CHAIN,
         COLOR_WHEEL
     }
 

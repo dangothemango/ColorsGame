@@ -17,6 +17,7 @@ public class ColorWheel : MonoBehaviour {
     public void CheckSolution () {
         if (redNode.Color == Color.red && greenNode.Color == Color.green && blueNode.Color == Color.blue) {
             filter.ChangeColor(Color.green);
+            GameManager.INSTANCE.OnPuzzleCompleted(GameManager.PUZZLE_ID.COLOR_WHEEL);
             CancelInvoke();
         }
     }
