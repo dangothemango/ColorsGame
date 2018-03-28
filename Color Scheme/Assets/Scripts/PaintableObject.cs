@@ -54,7 +54,7 @@ public class PaintableObject : ButtonableObject {
     public virtual void Paint(Color c) {
         Color = c;
         if (paintCallback != null) {
-            paintCallback(c);
+            paintCallback.Invoke(c);
         }
     }
 
