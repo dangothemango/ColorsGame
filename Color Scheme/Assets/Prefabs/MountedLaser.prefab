@@ -84,7 +84,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4953412198822746}
   - component: {fileID: 33002924941785216}
-  - component: {fileID: 136615899747624088}
   - component: {fileID: 23236064599996096}
   m_Layer: 0
   m_Name: mounted_laser_base_emitter
@@ -154,6 +153,7 @@ GameObject:
   - component: {fileID: 23354948264099502}
   - component: {fileID: 114568699178854282}
   - component: {fileID: 54541219282349002}
+  - component: {fileID: 136131098271334240}
   m_Layer: 0
   m_Name: mounted_laser_outer_case
   m_TagString: Untagged
@@ -722,22 +722,25 @@ MonoBehaviour:
   outlinedMesh: {fileID: 0}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 21300000, guid: 951472eb96eabc44d9eac5e043b72476, type: 3}
   equiped: 0
   floatRate: 1
   amplitude: 0.005
---- !u!136 &136615899747624088
+  aimTime: 0.5
+  aimDuration: 1
+--- !u!136 &136131098271334240
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1413879689720566}
+  m_GameObject: {fileID: 1701100269939710}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 1
+  m_Height: 3.8889925
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.551296, z: 0}
 --- !u!198 &198656848287459480
 ParticleSystem:
   m_ObjectHideFlags: 1

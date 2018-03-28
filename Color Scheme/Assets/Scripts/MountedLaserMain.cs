@@ -79,7 +79,7 @@ public class MountedLaserMain : InteractableObject {
 		laserRingSmall.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate * 0.5f) * amplitude * 0.2f, 0.0f);
 	}
 
-	void Interact() {
+	public override void Interact() {
 		if (interactable) {
 			StartCoroutine(Reaim());
 		}
