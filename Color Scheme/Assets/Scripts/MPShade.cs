@@ -31,7 +31,7 @@ public class MPShade : SimplePaintableObject, ShadeInterface
         called = false;
         yield return new WaitForSecondsRealtime(0);
         int index = Random.Range(0, changeArray.Length);
-        obj.GetComponent<Renderer>().material.color = changeArray[index];
+		obj.GetComponent<ShimmeringObject>().Paint(changeArray[index]);
         called = false;
     }
 

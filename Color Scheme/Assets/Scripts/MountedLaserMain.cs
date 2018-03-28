@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MountedLaserMain : InteractableObject {
+public class MountedLaserMain : ButtonableObject {
 	Camera cam;
 	Rigidbody rig;
 	Transform t;
@@ -23,10 +23,9 @@ public class MountedLaserMain : InteractableObject {
 	public float floatRate = 0.1f;
 	public float amplitude = 0.1f;
 	Aim aim;
-	Quaternion currentAim;
 	public float aimTime = .5f;
 	public float aimDuration = 1.0f;
-
+	bool interactable = true;
 
 	enum Aim{ // all local rotations i.e. w.r.t parent orientation
 		REST,
@@ -60,7 +59,7 @@ public class MountedLaserMain : InteractableObject {
 		equiped = false;
 		isReset = true;
 		aim = Aim.REST;
-		currentAim = t.localRotation;
+		// currentAim = t.localRotation;
 	}
 	
 	// Update is called once per frame
@@ -79,7 +78,7 @@ public class MountedLaserMain : InteractableObject {
 		laserRingSmall.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate * 0.5f) * amplitude * 0.2f, 0.0f);
 	}
 
-	public override void Interact() {
+	public override void OnPressed(Color c) {
 		if (interactable) {
 			StartCoroutine(Reaim());
 		}
@@ -93,44 +92,48 @@ public class MountedLaserMain : InteractableObject {
 	/// </summary>
 	IEnumerator Reaim() {
 		interactable = false;
-		Quaternion newAimAngles = tRotRestore;
-		aim++;
+		Quaternion newAim = tRotRestore;
+		Quaternion currentAim = transform.rotation;
+		if (aim == Aim.WEST){
+			aim = Aim.REST;
+		}
+		else{
+			aim++;
+		}
 		float elapsedTime = 0.0f;
+		Debug.Log (aim);
 
 		switch (aim) { //enumerate between all the possible directions toggle by player interactions
 		case Aim.NORTH:
 			 {
-				newAimAngles = currentAim;
-				newAimAngles.x += 90.0f;
+				newAim = Quaternion.Euler (90.0f, 0.0f, 0.0f);
 				break;
 			}
 		case Aim.SOUTH:
 			{
-				newAimAngles = currentAim;
-				newAimAngles.x += -90.0f;
+				newAim = Quaternion.Euler (-90.0f, 0.0f, 0.0f);
 				break;
 			}
 		case Aim.EAST:
 			{
-				newAimAngles = currentAim;
-				newAimAngles.z += -90.0f;
+				newAim = Quaternion.Euler (0.0f, 0.0f, 90.0f);
 				break;
 			}
 		case Aim.WEST:
 			{
-				newAimAngles = currentAim;
-				newAimAngles.z += 90.0f;
+				newAim = Quaternion.Euler (0.0f, 0.0f, -90.0f);
 				break;
 			}
 		}
+		Debug.Log (newAim);
 
-		//lerp the movement of the laser main body
+		// lerp the movement of the laser main body
 		while (elapsedTime < aimDuration){
 			elapsedTime += Time.deltaTime;
-			transform.rotation = Quaternion.Lerp(currentAim, newAimAngles, elapsedTime / aimDuration);
+			transform.localRotation = Quaternion.Lerp(currentAim, newAim, elapsedTime / aimDuration);
 			yield return null;
 		}
-		currentAim = newAimAngles;
+		// currentAim = newAim;
 		interactable = true;
 	}
 }

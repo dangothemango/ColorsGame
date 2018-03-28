@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MPShadeManager : MonoBehaviour
 {
-
+	[SerializeField] float changeFrequency = 3.0f;
     public MPShade[] shades;
 
     void Start()
     {
-        InvokeRepeating("changeColor", 0.0f, 3.0f);
+		InvokeRepeating("changeColor", 0.0f, changeFrequency);
     }
 
     void changeColor()
