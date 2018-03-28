@@ -17,15 +17,17 @@ public class ColorListener : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+		if (source != null) {
+            source.paintCallback += UpdateTarget;
+        }
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (source != null && target != null) {
+	void UpdateTarget (Color c) {
+        if (target != null) {
             if (source.Color != target.Color) {
                 target.Paint(source.Color);
             }
         }
-	}
+    }
 }
