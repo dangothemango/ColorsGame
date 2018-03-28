@@ -15,7 +15,10 @@ public class LaserProjectile : MonoBehaviour {
 		Destroy (this.gameObject, decay);
 	}
 
-	void onCollision(Collision col){
-
+	void onCollisionEnter(Collision other){
+		if (other.gameObject.name == "Player") {
+			Debug.Log ("hit");
+			//other.gameObject.SendMessage("die", false);
+		}
 	}
 }
