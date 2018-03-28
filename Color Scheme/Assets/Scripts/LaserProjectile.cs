@@ -15,10 +15,12 @@ public class LaserProjectile : MonoBehaviour {
 		Destroy (this.gameObject, decay);
 	}
 
-	void onCollisionEnter(Collision other){
+	void OnCollisionEnter(Collision other){
 		if (other.gameObject.name == "Player") {
-			Debug.Log ("hit");
-			//other.gameObject.SendMessage("die", false);
+			//send color of laser projectile to user screen overlay
+			other.gameObject.SendMessage("hitByLaserTrigger", this.GetComponent<Renderer> ().material.color); 
+			//trigger player respawn
+			other.gameObject.SendMessage("die", false);
 		}
 	}
 }
