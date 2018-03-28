@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShadeAI : SimplePaintableObject
+public class Shade : SimplePaintableObject, ShadeInterface
 {
     Renderer r;
 
@@ -25,7 +25,7 @@ public class ShadeAI : SimplePaintableObject
     public Color[] changeArray;
     public Color killColor;
 
-    void Start()
+    public void Start()
     {
         x = Random.Range(-maxSpeed, maxSpeed);
         y = Random.Range(-maxSpeed, maxSpeed);
@@ -35,7 +35,7 @@ public class ShadeAI : SimplePaintableObject
         enabled = true;
     }
 
-    void Update()
+    public void Update()
     {
         if (enabled)
         {
@@ -54,7 +54,7 @@ public class ShadeAI : SimplePaintableObject
         }
     }
 
-    void deflect()
+    public void deflect()
     {
         if (transform.localPosition.x > highX)
         {
@@ -102,7 +102,7 @@ public class ShadeAI : SimplePaintableObject
         transform.localPosition = new Vector3(transform.localPosition.x + x, transform.localPosition.y + y, transform.localPosition.z + z);
     }
 
-    IEnumerator changeColor(GameObject obj)
+    public IEnumerator changeColor(GameObject obj)
     {
         yield return new WaitForSecondsRealtime(3);
         int index = Random.Range(0, changeArray.Length);
@@ -110,7 +110,7 @@ public class ShadeAI : SimplePaintableObject
         enabled = true;
     }
 
-    void OnCollisionEnter(Collision col)
+    public void OnCollisionEnter(Collision col)
     {
         // Shade collided with paintable object
         if (col.gameObject.name == "Cube")
