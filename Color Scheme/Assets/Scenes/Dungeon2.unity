@@ -22232,7 +22232,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh40396
+  m_Name: pb_Mesh98340
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -28122,6 +28122,11 @@ Prefab:
         type: 2}
       propertyPath: m_Range
       value: 6.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 114927932646870026, guid: 17338e5b803ef0d44ae39864c34934a6,
+        type: 2}
+      propertyPath: color.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17338e5b803ef0d44ae39864c34934a6, type: 2}
