@@ -74,12 +74,21 @@ public class Lightbulb : MonoBehaviour {
         Vector3 oPos = other.transform.position;
 		if (isFlorescent || lightSource.type == LightType.Point || (useRaycast && RayCastLight(other)) || ObjectInCone(oPos)) {
             ShimmeringObject s = other.GetComponent<ShimmeringObject>();
-            if (s == null) return;
-            //Debug.Log("Charging");
-            if (battery.Color == s.Color) {
-                s.Charge(chargeRate * Time.deltaTime);
-                if (particleAttractor != null && !particleAttractor.targets.Contains(s.transform)) {
-                    particleAttractor.targets.Add(s.transform);
+            Flashlight f = other.GetComponent<Flashlight>();
+            Debug.Log("f");
+            if (s != null) {
+                //Debug.Log("Charging");
+                if (battery.Color == s.Color) {
+                    s.Charge(chargeRate * Time.deltaTime);
+                    if (particleAttractor != null && !particleAttractor.targets.Contains(s.transform)) {
+                        particleAttractor.targets.Add(s.transform);
+                        particleAttractor.enabled = true;
+                    }
+                }
+            } else if (f != null) {
+                f.Charge(chargeRate * Time.deltaTime);
+                if (particleAttractor != null && !particleAttractor.targets.Contains(f.transform)) {
+                    particleAttractor.targets.Add(f.transform);
                     particleAttractor.enabled = true;
                 }
             }

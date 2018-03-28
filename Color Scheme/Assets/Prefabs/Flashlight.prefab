@@ -1161,7 +1161,9 @@ MonoBehaviour:
   battery: {fileID: 114582997607445056}
   particleSystem: {fileID: 0}
   chargeRate: 0.5
+  externalRenderer: {fileID: 0}
   useRaycast: 0
+  isFlorescent: 0
 --- !u!114 &114458633342573384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1196,6 +1198,7 @@ MonoBehaviour:
   secondaryTooltip: {fileID: 0}
   battery: {fileID: 114582997607445056}
   colorableSurface: {fileID: 23681529679176574}
+  decayRate: 0
 --- !u!114 &114572383036843824
 MonoBehaviour:
   m_ObjectHideFlags: 1
