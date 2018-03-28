@@ -150,6 +150,8 @@ MonoBehaviour:
   NO_ITEM: 96
   BUCKET: 49
   narrator: {fileID: 114899685468508216}
+  mainAudioSource: {fileID: 82635857538319786}
+  puzzleCompleted: {fileID: 8300000, guid: 391661d43594c084385d18acb4c6b2bf, type: 3}
   debug: 1
   currentDungeon: 0
 --- !u!114 &114899685468508216

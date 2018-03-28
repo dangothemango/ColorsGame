@@ -9,14 +9,19 @@ public class PuzzleListener : MonoBehaviour {
     [SerializeField]
     Color solution = Color.clear;
 	
-	// Update is called once per frame
-	void Update () {
+
+    void CheckSolution(Color c) {
         if (source != null) {
             if (source.Color == solution) {
                 GameManager.INSTANCE.OnPuzzleCompleted(GameManager.PUZZLE_ID.PUZZLE_LISTENER);
+                source.paintCallback -= CheckSolution;
                 this.enabled = false;
             }
         }
     }
-    
+
+    private void Start() {
+        source.paintCallback += CheckSolution;
+    }
+
 }

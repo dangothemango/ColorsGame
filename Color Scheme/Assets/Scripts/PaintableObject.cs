@@ -11,6 +11,9 @@ public class PaintableObject : ButtonableObject {
     [SerializeField]
     Color color;
 
+    public delegate void OnPaint(Color c);
+    public OnPaint paintCallback;
+
     public Color Color {
         get {
             return color;
@@ -28,7 +31,7 @@ public class PaintableObject : ButtonableObject {
     }
 
     protected override void DoAwake() {
-        saveString = SceneManager.GetActiveScene().name + transform.position.ToString() + transform.rotation.ToString() + Color.ToString();     
+        saveString = SceneManager.GetActiveScene().name + transform.position.ToString() + transform.rotation.ToString() + Color.ToString();
     }
 
     // Use this for initialization
@@ -50,6 +53,9 @@ public class PaintableObject : ButtonableObject {
 
     public virtual void Paint(Color c) {
         Color = c;
+        if (paintCallback != null) {
+            paintCallback(c);
+        }
     }
 
     public override void OnPressed(Color c) {

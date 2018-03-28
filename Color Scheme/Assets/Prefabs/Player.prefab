@@ -444,7 +444,7 @@ MonoBehaviour:
   gazedObject: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294964479
+    m_Bits: 4294915327
   tooltipRenderer: {fileID: 212525842082772928}
   tooltipOffset: 0.5
 --- !u!114 &114293830433345690
