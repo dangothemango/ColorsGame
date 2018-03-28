@@ -29,7 +29,7 @@ public class MPShade : SimplePaintableObject, ShadeInterface
     public IEnumerator changeColor(GameObject obj)
     {
         called = false;
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(0);
         int index = Random.Range(0, changeArray.Length);
         obj.GetComponent<Renderer>().material.color = changeArray[index];
         called = false;

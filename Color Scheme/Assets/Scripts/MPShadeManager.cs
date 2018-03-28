@@ -9,13 +9,19 @@ public class MPShadeManager : MonoBehaviour
 
     void Start()
     {
+        InvokeRepeating("changeColor", 0.0f, 3.0f);
+    }
 
+    void changeColor()
+    {
+        int index = Random.Range(0, shades.Length);
+        shades[index].called = true;
+        shades[index].Update();
     }
 
     void Update()
     {
-        int index = Random.Range(0, shades.Length);
-        shades[index].called = true;
+
     }
 
 }
