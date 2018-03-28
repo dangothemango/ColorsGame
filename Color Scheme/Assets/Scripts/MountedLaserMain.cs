@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MountedLaserMain : InteractableObject {
+public class MountedLaserMain : ButtonableObject {
 	Camera cam;
 	Rigidbody rig;
 	Transform t;
@@ -25,7 +25,7 @@ public class MountedLaserMain : InteractableObject {
 	Aim aim;
 	public float aimTime = .5f;
 	public float aimDuration = 1.0f;
-
+	bool interactable = true;
 
 	enum Aim{ // all local rotations i.e. w.r.t parent orientation
 		REST,
@@ -78,7 +78,7 @@ public class MountedLaserMain : InteractableObject {
 		laserRingSmall.transform.Translate (0.0f, Mathf.Sin (Time.fixedTime * Mathf.PI * floatRate * 0.5f) * amplitude * 0.2f, 0.0f);
 	}
 
-	public override void Interact() {
+	public override void OnPressed(Color c) {
 		if (interactable) {
 			StartCoroutine(Reaim());
 		}
