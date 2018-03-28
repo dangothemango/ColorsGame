@@ -2,43 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MPShadeManager : SimplePaintableObject
+public class MPShadeManager : MonoBehaviour
 {
-    Renderer r;
-    public Transform platform;
-    public float maxSpeed;
-
-    public Color shadeColor;
-    public Color[] changeArray;
-    public Color killColor;
+	[SerializeField] float changeFrequency = 3.0f;
+    public MPShade[] shades;
 
     void Start()
     {
-        enabled = true;
+		InvokeRepeating("changeColor", 0.0f, changeFrequency);
+    }
+
+    void changeColor()
+    {
+        int index = Random.Range(0, shades.Length);
+        shades[index].called = true;
+        shades[index].Update();
     }
 
     void Update()
     {
-        while (enabled)
-        {
-            StartCoroutine(changeColor(platform.gameObject));
-        }
+
     }
 
-    IEnumerator changeColor(GameObject obj)
-    {
-        enabled = false;
-        yield return new WaitForSecondsRealtime(6);
-        int index = Random.Range(0, changeArray.Length);
-        obj.GetComponent<Renderer>().material.color = changeArray[index];
-        enabled = true;
-    }
-
-    public override void Paint(Color c)
-    {
-        if (c == killColor)
-        {
-            Destroy(this.gameObject);
-        }
-    }
 }

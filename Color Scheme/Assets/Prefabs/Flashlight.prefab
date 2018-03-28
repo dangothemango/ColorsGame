@@ -1081,7 +1081,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1159,7 +1159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battery: {fileID: 114582997607445056}
+  particleSystem: {fileID: 0}
   chargeRate: 0.5
+  useRaycast: 0
 --- !u!114 &114458633342573384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1174,6 +1176,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 0}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!114 &114541419393651928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1189,6 +1192,8 @@ MonoBehaviour:
   itemOffset: {x: 1.17, y: -0.58, z: 0}
   itemRotation: {x: 90, y: 0, z: 0}
   itemScale: 1
+  primaryTooltip: {fileID: 0}
+  secondaryTooltip: {fileID: 0}
   battery: {fileID: 114582997607445056}
   colorableSurface: {fileID: 23681529679176574}
 --- !u!114 &114572383036843824
@@ -1205,6 +1210,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 1926541332228690}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!114 &114582997607445056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1238,3 +1244,4 @@ MonoBehaviour:
   outlinedMesh: {fileID: 1926541332228690}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Flashlight : PlayerItem {
 
-    static Color[] colorList = { Color.red, Color.green, Color.blue, Color.yellow, Color.magenta, Color.cyan, Color.white };
+	static Color[] colorList = { Color.red, Color.green, Color.blue, new Color(1, 1, 0, 1), Color.magenta, Color.cyan, Color.white };
 
     [Header("Object References")]
     public Battery battery;
@@ -72,6 +72,7 @@ public class Flashlight : PlayerItem {
 	}
 
     public override Sprite GetTooltipIcon(InteractableObject io, out Color c) {
-        throw new NotImplementedException();
+		c = Color.white;
+		return primaryTooltip;
     }
 }
