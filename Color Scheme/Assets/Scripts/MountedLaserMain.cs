@@ -23,7 +23,6 @@ public class MountedLaserMain : InteractableObject {
 	public float floatRate = 0.1f;
 	public float amplitude = 0.1f;
 	Aim aim;
-	Quaternion currentAim;
 	public float aimTime = .5f;
 	public float aimDuration = 1.0f;
 
@@ -60,7 +59,7 @@ public class MountedLaserMain : InteractableObject {
 		equiped = false;
 		isReset = true;
 		aim = Aim.REST;
-		currentAim = t.localRotation;
+		// currentAim = t.localRotation;
 	}
 	
 	// Update is called once per frame
@@ -93,44 +92,48 @@ public class MountedLaserMain : InteractableObject {
 	/// </summary>
 	IEnumerator Reaim() {
 		interactable = false;
-		Quaternion newAimAngles = tRotRestore;
-		aim++;
+		Quaternion newAim = tRotRestore;
+		Quaternion currentAim = transform.rotation;
+		if (aim == Aim.WEST){
+			aim = Aim.REST;
+		}
+		else{
+			aim++;
+		}
 		float elapsedTime = 0.0f;
+		Debug.Log (aim);
 
 		switch (aim) { //enumerate between all the possible directions toggle by player interactions
 		case Aim.NORTH:
 			 {
-				newAimAngles = currentAim;
-				newAimAngles.x += 90.0f;
+				newAim = Quaternion.Euler (90.0f, 0.0f, 0.0f);
 				break;
 			}
 		case Aim.SOUTH:
 			{
-				newAimAngles = currentAim;
-				newAimAngles.x += -90.0f;
+				newAim = Quaternion.Euler (-90.0f, 0.0f, 0.0f);
 				break;
 			}
 		case Aim.EAST:
 			{
-				newAimAngles = currentAim;
-				newAimAngles.z += -90.0f;
+				newAim = Quaternion.Euler (0.0f, 0.0f, 90.0f);
 				break;
 			}
 		case Aim.WEST:
 			{
-				newAimAngles = currentAim;
-				newAimAngles.z += 90.0f;
+				newAim = Quaternion.Euler (0.0f, 0.0f, -90.0f);
 				break;
 			}
 		}
+		Debug.Log (newAim);
 
-		//lerp the movement of the laser main body
+		// lerp the movement of the laser main body
 		while (elapsedTime < aimDuration){
 			elapsedTime += Time.deltaTime;
-			transform.rotation = Quaternion.Lerp(currentAim, newAimAngles, elapsedTime / aimDuration);
+			transform.localRotation = Quaternion.Lerp(currentAim, newAim, elapsedTime / aimDuration);
 			yield return null;
 		}
-		currentAim = newAimAngles;
+		// currentAim = newAim;
 		interactable = true;
 	}
 }
