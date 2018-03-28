@@ -21,8 +21,11 @@ public class RaceRoomResetter : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		shade.transform.position = initialShadePosition;
-		shade.enabled = true;
+		if (shade)
+		{
+			shade.transform.position = initialShadePosition;
+			shade.enabled = true;
+		}
 		battery.Paint(initialLightColor);
 		platform.transform.position = platform.Waypoints[0].position;
 	}

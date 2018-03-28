@@ -72,6 +72,7 @@ public class Flashlight : PlayerItem {
 	}
 
     public override Sprite GetTooltipIcon(InteractableObject io, out Color c) {
-        throw new NotImplementedException();
+		c = Color.white;
+		return primaryTooltip;
     }
 }
