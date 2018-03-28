@@ -37,7 +37,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4880976312096424}
-  - component: {fileID: 114478890519040552}
   - component: {fileID: 136209131629269258}
   - component: {fileID: 137615267538180130}
   - component: {fileID: 64213775943883282}
@@ -45,6 +44,7 @@ GameObject:
   - component: {fileID: 54882624053592216}
   - component: {fileID: 136082583130417362}
   - component: {fileID: 114858140225027274}
+  - component: {fileID: 114716741544064132}
   m_Layer: 0
   m_Name: Shade
   m_TagString: Untagged
@@ -118,8 +118,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1293906168739894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.48754704, y: 0.8, z: -0.25571516}
-  m_LocalScale: {x: 0.56843644, y: 0.56843585, z: 0.5684359}
+  m_LocalPosition: {x: 4.821, y: 0.409, z: 2.912}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4903271503797698}
   m_Father: {fileID: 0}
@@ -234,7 +234,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114478890519040552
+--- !u!114 &114716741544064132
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -242,17 +242,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1293906168739894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d57e7d8e6b66a2845b7cdd7a83b4518b, type: 3}
+  m_Script: {fileID: 11500000, guid: 362df028ebf8f6241af7d85635f8a945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  target: {fileID: 0}
   maxSpeed: 1
-  shadeColor: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
-  change: {r: 1, g: 0, b: 0, a: 1}
-  killColor: {r: 1, g: 1, b: 1, a: 1}
+  highX: 5
+  highY: 1
+  highZ: 5
+  lowX: -5
+  lowY: -0.15
+  lowZ: -5
+  shadeColor: {r: 0, g: 0, b: 0, a: 0}
+  changeArray:
+  - {r: 1, g: 0, b: 0, a: 1}
+  killColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114858140225027274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -350,8 +356,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.0000009536743, y: -0.29999042, z: 0}
-    m_Extent: {x: 1.0854099, y: 0.30000952, z: 1.0854107}
+    m_Center: {x: 0, y: -0.29999065, z: 0}
+    m_Extent: {x: 0.6000004, y: 0.30000973, z: 0.5999985}
   m_DirtyAABB: 0
 --- !u!137 &137615267538180130
 SkinnedMeshRenderer:

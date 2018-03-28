@@ -23,7 +23,7 @@ public class PlayerItemPickup : InteractableObject
 		Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		GetComponent<PlayerItem>().enabled = true;
 		player.addItem(GetComponent<PlayerItem>());
-		Destroy(GetComponent<Collider>());
+        GetComponent<Collider>().isTrigger = true;
 		Destroy(this);
 	}
 }
