@@ -68,6 +68,8 @@ public class Player : MonoBehaviour {
 //			}
 			setItem(items[0]);
 		}
+		else if (Input.GetKeyDown(GameManager.INSTANCE.FLASHLIGHT))
+			setItem(items[1]);
 
 		if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) { 
 		

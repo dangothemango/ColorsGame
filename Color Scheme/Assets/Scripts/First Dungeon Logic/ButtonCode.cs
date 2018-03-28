@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class ButtonCode : ButtonableObject {
 
-    public Color[] code1;
-    public Color[] code2;
-
-    public float flashTime = 1f;
     public int codeLength = 5;
-    public ButtonActivatedDoor door;
-    public ButtonActivatedDoor[] code2Doors;
+    public float flashTime = 1f;
+    public Battery battery;
+    
+
+    [Header("Code 1")]
+    public Color[] code1;
+    public Battery[] code1Lights;
+    public ButtonActivatedDoor code1Door;
+
+    [Header("Code 2")]
+    public Color[] code2;
+    public Battery[] code2Lights;
+    public ButtonActivatedDoor code2Door;
 
     int currentCode = 1;
     int codeIndex = 0;
+    Color[] currentPresses;
     int pressIndex = 0;
     float t = 0;
-    public Battery battery;
-    public Color[] currentPresses;
 
     private void Awake() {
         DoAwake();
@@ -48,18 +54,29 @@ public class ButtonCode : ButtonableObject {
         t += Time.deltaTime;
         if (t > flashTime) {
             t = 0;
-            if (currentCode == 1) {
-                battery.Paint(code1[(++codeIndex)%codeLength]);
-            }
-            else {
-                battery.Paint(code2[(++codeIndex)%codeLength]);
+            switch (currentCode) {
+                case 1:
+                    battery.Paint(code1[(++codeIndex)%codeLength]);
+                    break;
+                case 2:
+                    battery.Paint(code2[(++codeIndex)%codeLength]);
+                    break;
             }
         }
     }
 
     public override void OnPressed(Color c) {
         base.OnPressed(c);
+        switch (currentCode) {
+            case 1:
+                code1Lights[pressIndex % codeLength].Paint(c);
+                break;
+            case 2:
+                code2Lights[pressIndex % codeLength].Paint(c);
+                break;
+        }
         currentPresses[(pressIndex++)%codeLength] = c;
+
         if (pressIndex >= codeLength) {
             checkCode();
         }
@@ -90,15 +107,24 @@ public class ButtonCode : ButtonableObject {
     }
 
     void OnSuccessfulCode() {
-        if (currentCode == 1) {
-            door.TriggerOpen();
-            currentCode++;
-        } else if (currentCode == 2) {
-            foreach(ButtonActivatedDoor b in code2Doors) {
-                b.TriggerOpen();
+        switch (currentCode) {
+            case 1:
+                code1Door.TriggerOpen();
+                foreach (Battery b in code1Lights) {
+                    b.Paint(Color.green);
+                }
                 currentCode++;
-            }
+                break;
+            case 2:
+                code2Door.TriggerOpen();
+                foreach (Battery b in code2Lights) {
+                    b.Paint(Color.green);
+                }
+                break;
         }
+        pressIndex = 0;
+        currentPresses = new Color[codeLength];
+        GameManager.INSTANCE.OnPuzzleCompleted(GameManager.PUZZLE_ID.BUTTON_CODE);
     }
 
 }

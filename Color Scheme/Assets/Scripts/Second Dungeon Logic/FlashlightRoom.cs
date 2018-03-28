@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashlightRoom : MonoBehaviour 
+public class FlashlightRoom : ButtonableObject 
 {
-	[SerializeField] ButtonActivatedDoor entrance;
+	[SerializeField] ButtonActivatedDoor buttonDoor;
+	[SerializeField] LightActivatedDoor lightDoor;
+	[SerializeField] Lightbulb lightooooooooooooooo;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start() 
+	{
+		buttonDoor.gameObject.SetActive(false);
+		lightDoor.gameObject.SetActive(true);
 	}
 	
 	// Update is called once per frame
@@ -20,9 +24,16 @@ public class FlashlightRoom : MonoBehaviour
 	{
 		if (other.tag != "Player")
 			return;
-		entrance.GetComponent<LightActivatedDoor>().enabled = false;
-		entrance.enabled = true;
-		entrance.TriggerClose();
+
+		lightooooooooooooooo.enabled = false;
+		buttonDoor.gameObject.SetActive(true);
+	}
+
+	public override void OnPressed(Color c)
+	{
+		lightooooooooooooooo.enabled = true;
+		buttonDoor.gameObject.SetActive(false);
+		Destroy(buttonDoor.gameObject);
 		Destroy(gameObject);
 	}
 }
