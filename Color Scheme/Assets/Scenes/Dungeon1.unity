@@ -2234,6 +2234,7 @@ MonoBehaviour:
   battery: {fileID: 1871088158}
   particleSystem: {fileID: 0}
   chargeRate: 0.5
+  useRaycast: 0
 --- !u!4 &158445158
 Transform:
   m_ObjectHideFlags: 0
@@ -2416,6 +2417,7 @@ MonoBehaviour:
   battery: {fileID: 326056896}
   particleSystem: {fileID: 0}
   chargeRate: 0.5
+  useRaycast: 0
 --- !u!4 &180597137
 Transform:
   m_ObjectHideFlags: 0
@@ -12305,6 +12307,7 @@ MonoBehaviour:
   battery: {fileID: 766560526}
   particleSystem: {fileID: 0}
   chargeRate: 0.5
+  useRaycast: 0
 --- !u!4 &811375673
 Transform:
   m_ObjectHideFlags: 0
@@ -16602,6 +16605,7 @@ MonoBehaviour:
   battery: {fileID: 2011672870}
   particleSystem: {fileID: 0}
   chargeRate: 0.5
+  useRaycast: 0
 --- !u!4 &978787899
 Transform:
   m_ObjectHideFlags: 0
@@ -22690,6 +22694,7 @@ MonoBehaviour:
   battery: {fileID: 1677723558}
   particleSystem: {fileID: 0}
   chargeRate: 0.5
+  useRaycast: 0
 --- !u!4 &1354986555
 Transform:
   m_ObjectHideFlags: 0
@@ -28610,6 +28615,7 @@ MonoBehaviour:
   battery: {fileID: 1699155844}
   particleSystem: {fileID: 0}
   chargeRate: 0.5
+  useRaycast: 0
 --- !u!4 &1737520819
 Transform:
   m_ObjectHideFlags: 0
@@ -28974,6 +28980,7 @@ MonoBehaviour:
   battery: {fileID: 1944140950}
   particleSystem: {fileID: 0}
   chargeRate: 0.5
+  useRaycast: 0
 --- !u!4 &1752494468
 Transform:
   m_ObjectHideFlags: 0
@@ -29473,6 +29480,7 @@ MonoBehaviour:
   battery: {fileID: 448178113}
   particleSystem: {fileID: 0}
   chargeRate: 0.5
+  useRaycast: 0
 --- !u!4 &1777772591
 Transform:
   m_ObjectHideFlags: 0
@@ -32257,6 +32265,7 @@ MonoBehaviour:
   battery: {fileID: 871251193}
   particleSystem: {fileID: 0}
   chargeRate: 0.5
+  useRaycast: 0
 --- !u!4 &1969081925
 Transform:
   m_ObjectHideFlags: 0
@@ -32551,6 +32560,7 @@ MonoBehaviour:
   battery: {fileID: 215145388}
   particleSystem: {fileID: 0}
   chargeRate: 0.5
+  useRaycast: 0
 --- !u!4 &1991853433
 Transform:
   m_ObjectHideFlags: 0

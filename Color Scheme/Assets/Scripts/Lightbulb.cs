@@ -12,8 +12,11 @@ public class Lightbulb : MonoBehaviour {
 
     [Header("Configuration Values")]
     public float chargeRate = .5f;
+    public Renderer externalRenderer;
 
 	[SerializeField] bool useRaycast = false;
+    [SerializeField]
+    bool isFlorescent = false;
 
     Light lightSource;
     Renderer r;
@@ -22,7 +25,7 @@ public class Lightbulb : MonoBehaviour {
 
     // Use this for initialization
     void Awake() {
-        r = GetComponent<Renderer>();
+        r = externalRenderer != null ? externalRenderer : GetComponent<Renderer>();
         particleAttractor = GetComponentInChildren<particleAttractorLinear>();
         if (particleAttractor != null) { 
         particleAttractor.targets.Clear();
@@ -69,7 +72,7 @@ public class Lightbulb : MonoBehaviour {
 
     private void OnTriggerStay(Collider other) {
         Vector3 oPos = other.transform.position;
-		if (lightSource.type == LightType.Point || (useRaycast && RayCastLight(other)) || ObjectInCone(oPos)) {
+		if (isFlorescent || lightSource.type == LightType.Point || (useRaycast && RayCastLight(other)) || ObjectInCone(oPos)) {
             ShimmeringObject s = other.GetComponent<ShimmeringObject>();
             if (s == null) return;
             //Debug.Log("Charging");
