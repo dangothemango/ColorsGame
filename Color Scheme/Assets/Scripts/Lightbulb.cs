@@ -12,6 +12,8 @@ public class Lightbulb : MonoBehaviour {
     [Header("Configuration Values")]
     public float chargeRate = .5f;
 
+	[SerializeField] bool useRaycast = false;
+
     Light lightSource;
     Renderer r;
     Material lightMat;
@@ -61,7 +63,7 @@ public class Lightbulb : MonoBehaviour {
 
     private void OnTriggerStay(Collider other) {
         Vector3 oPos = other.transform.position;
-        if (lightSource.type == LightType.Point || ObjectInCone(oPos)) {
+		if (lightSource.type == LightType.Point || (useRaycast && RayCastLight(other)) || ObjectInCone(oPos)) {
             ShimmeringObject s = other.GetComponent<ShimmeringObject>();
             if (s == null) return;
             //Debug.Log("Charging");
@@ -70,6 +72,11 @@ public class Lightbulb : MonoBehaviour {
             }
         }
     }
+
+	private bool RayCastLight(Collider other)
+	{
+		return (Physics.Raycast(transform.position, transform.up, lightSource.range));
+	}
 
     private bool ObjectInCone(Vector3 oPos) {
         if (lightSource.type != LightType.Spot) {
