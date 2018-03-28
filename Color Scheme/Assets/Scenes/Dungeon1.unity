@@ -518,7 +518,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh15708
+  m_Name: pb_Mesh26864
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -665,8 +665,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52778983}
-  m_LocalRotation: {x: 0.060227882, y: -0.0306968, z: 0.0023242182, w: 0.9977098}
-  m_LocalPosition: {x: 0.047818184, y: 3.2801437, z: 15.792582}
+  m_LocalRotation: {x: 0.026755651, y: 0.9534358, z: 0.08704936, w: -0.2875184}
+  m_LocalPosition: {x: -3.1486206, y: 5.432128, z: -23.37416}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 913612244}
@@ -6901,7 +6901,7 @@ Prefab:
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
       propertyPath: m_DrawHalo
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
@@ -7064,8 +7064,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 509948337}
-  m_LocalRotation: {x: 0.060227882, y: -0.0306968, z: 0.0023242182, w: 0.9977098}
-  m_LocalPosition: {x: 0.047818184, y: 3.2801533, z: 15.252581}
+  m_LocalRotation: {x: 0.026755651, y: 0.9534358, z: 0.08704936, w: -0.2875184}
+  m_LocalPosition: {x: -3.1486206, y: 5.432123, z: -24.314161}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 913612244}
@@ -10344,7 +10344,7 @@ Prefab:
     - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
         type: 2}
       propertyPath: color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4864693474288130, guid: d90c23e7de7eeb145aab6ab0ad2dda36, type: 2}
       propertyPath: m_LocalPosition.x
@@ -10376,7 +10376,12 @@ Prefab:
     - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
         type: 2}
       propertyPath: color.b
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
+        type: 2}
+      propertyPath: color.g
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d90c23e7de7eeb145aab6ab0ad2dda36, type: 2}
@@ -17845,7 +17850,7 @@ Prefab:
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
       propertyPath: m_DrawHalo
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
@@ -18493,7 +18498,7 @@ Prefab:
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
       propertyPath: m_DrawHalo
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17338e5b803ef0d44ae39864c34934a6, type: 2}
@@ -20240,7 +20245,7 @@ Prefab:
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
       propertyPath: m_DrawHalo
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
@@ -25382,7 +25387,7 @@ Prefab:
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
       propertyPath: m_DrawHalo
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
@@ -26620,7 +26625,7 @@ Prefab:
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
       propertyPath: m_DrawHalo
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
@@ -30970,7 +30975,7 @@ Prefab:
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
       propertyPath: m_DrawHalo
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 108834128783830072, guid: 17338e5b803ef0d44ae39864c34934a6,
         type: 2}
