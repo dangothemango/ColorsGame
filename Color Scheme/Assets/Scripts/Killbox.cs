@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(ReverseNormals))]
 public class Killbox : MonoBehaviour {
+
+    ReverseNormals rv;
 
 	// Use this for initialization
 	void Start () {
-		
+        rv = GetComponent<ReverseNormals>();
 	}
 	
 	// Update is called once per frame
@@ -18,6 +20,11 @@ public class Killbox : MonoBehaviour {
     {
         Debug.Log("Die");
         other.gameObject.SendMessage("die", false);
+        rv.InvertNormals();
+    }
+
+    private void OnTriggerExit(Collider other) {
+        rv.InvertNormals();
     }
 
     private void OnDrawGizmos()

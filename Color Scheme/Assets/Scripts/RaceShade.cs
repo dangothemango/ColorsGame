@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaceShade : SimplePaintableObject
+public class RaceShade : SimplePaintableObject, ShadeInterface
 {
     Renderer rd;
 	bool changingColor;
@@ -13,12 +13,12 @@ public class RaceShade : SimplePaintableObject
     public Color change;
     public Color killColor;
 
-    void Start()
+    public void Start()
     {
         enabled = true;
     }
 
-    void Update()
+    public void Update()
     {
 		if (!changingColor)
         {
@@ -27,7 +27,7 @@ public class RaceShade : SimplePaintableObject
         }
     }
 
-    IEnumerator changeColor(GameObject obj)
+    public IEnumerator changeColor(GameObject obj)
     {
         yield return new WaitForSecondsRealtime(3);
 		if (obj.GetComponent<PaintableObject>())
@@ -39,7 +39,7 @@ public class RaceShade : SimplePaintableObject
         //obj.GetComponent<Renderer>().material.color = change;
     }
 
-    void OnCollisionEnter(Collision col)
+    public void OnCollisionEnter(Collision col)
     {
         // Shade collided with paintable object
 		if (col.gameObject.GetComponent<PaintableObject>() && col.transform == target && !changingColor)
@@ -54,6 +54,11 @@ public class RaceShade : SimplePaintableObject
         {
             Physics.IgnoreCollision(col.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
         }
+    }
+
+    public void deflect()
+    {
+
     }
 
     public override void Paint(Color c)

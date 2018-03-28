@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
     public static Player INSTANCE;
 	[HideInInspector] public Fuse carriedFuse;
+	[HideInInspector] public Graphic hitCameraOverlay;
+	[HideInInspector] bool hitByLaser = false;
+	[HideInInspector] Color hitColor;
 
     [SerializeField] float DEATHTIME = 2.3f;
 
@@ -44,6 +48,10 @@ public class Player : MonoBehaviour {
     void Start() {
         view = GetComponentInChildren<Camera>();
         sound = gameObject.GetComponent<AudioSource>();
+		hitCameraOverlay = GetComponentInChildren<Image> ().GetComponent<Graphic> ();
+		Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
+		temp.a = 0.0f;
+		hitCameraOverlay.color = temp;
     }
 
     // Update is called once per frame
@@ -68,6 +76,8 @@ public class Player : MonoBehaviour {
 //			}
 			setItem(items[0]);
 		}
+		else if (Input.GetKeyDown(GameManager.INSTANCE.FLASHLIGHT))
+			setItem(items[1]);
 
 		if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) { 
 		
@@ -80,6 +90,15 @@ public class Player : MonoBehaviour {
 
 		else if (Input.GetKeyDown(GameManager.INSTANCE.ITEM_SECONDARY) && equippedItem != null)
 			equippedItem.SecondaryUsage();
+
+		if (hitByLaser) {
+			float currTime = Time.time;
+			hitCameraOverlay.color = hitColor;
+			//hitCameraOverlay.color.a = 0.0f;
+			Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
+			temp.a = Mathf.Lerp (0.0f, 1.0f, Time.time / (currTime + 10));
+			hitCameraOverlay.color = temp;
+		}
 		
     }
 
@@ -158,6 +177,9 @@ public class Player : MonoBehaviour {
         transform.localPosition = startLocation.position;
         transform.localRotation = startLocation.rotation;
         transform.localScale = startLocation.localScale;    // Just covering all bases
+		Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
+		temp.a = 0.0f;
+		hitCameraOverlay.color = temp;
     }
 
 	// Change currently equipped item.
@@ -193,4 +215,9 @@ public class Player : MonoBehaviour {
         item.transform.localRotation = Quaternion.Euler(item.itemRotation);
         item.transform.localPosition = item.itemOffset;
     }
+
+	public void hitByLaserTrigger(Color c){
+		hitByLaser = true;
+		hitColor = c;
+	}
 }
