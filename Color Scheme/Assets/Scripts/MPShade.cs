@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MPShade : SimplePaintableObject, ShadeInterface
 {
-    public Transform platform;
+	public PaintableObject target;
     public float maxSpeed;
 
     public Color shadeColor;
@@ -22,7 +22,7 @@ public class MPShade : SimplePaintableObject, ShadeInterface
     {
         while (called)
         {
-            StartCoroutine(changeColor(platform.gameObject));
+            StartCoroutine(changeColor(target.gameObject));
         }
     }
 
@@ -31,7 +31,7 @@ public class MPShade : SimplePaintableObject, ShadeInterface
         called = false;
         yield return new WaitForSecondsRealtime(0);
         int index = Random.Range(0, changeArray.Length);
-		obj.GetComponent<ShimmeringObject>().Paint(changeArray[index]);
+		obj.GetComponent<PaintableObject>().Paint(changeArray[index]);
         called = false;
     }
 
