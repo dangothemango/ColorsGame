@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 82307768293428328}
   m_Layer: 11
   m_Name: Shim_cube_white
-  m_TagString: Untagged
+  m_TagString: Shimmering
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,6 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817e07482f5ec464c8e7929b08f551a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  botherSaving: 1
+  debugObject: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   paintedMeshes: []
   variableColors: []

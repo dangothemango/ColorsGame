@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 114418679233718808}
   m_Layer: 0
   m_Name: shimmer_top
-  m_TagString: Untagged
+  m_TagString: Shimmering
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

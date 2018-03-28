@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4201428183494810}
   m_Layer: 0
   m_Name: MovingPlatform
-  m_TagString: Untagged
+  m_TagString: Shimmering
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -587,6 +587,7 @@ MonoBehaviour:
   outlinedMesh: {fileID: 1179419466222972}
   outlineWidth: 0.2
   interactable: 1
+  tooltipIcon: {fileID: 0}
 --- !u!114 &114708183700917848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -598,8 +599,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9838582f02607394cac57bee5aebbf3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  botherSaving: 1
+  debugObject: 0
   color: {r: 0, g: 1, b: 0, a: 1}
-  colorChanges: 1
 --- !u!114 &114720571421920560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -623,5 +625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9838582f02607394cac57bee5aebbf3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  botherSaving: 1
+  debugObject: 0
   color: {r: 0, g: 0, b: 1, a: 1}
-  colorChanges: 0
