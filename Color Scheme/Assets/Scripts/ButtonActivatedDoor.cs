@@ -15,13 +15,18 @@ public class ButtonActivatedDoor : ButtonableObject {
     new Collider collider;
     AudioSource sound;
 
+	public override void OnPressed(Color c)
+	{
+		TriggerOpen();
+	}
+
     private void Awake() {
         DoAwake();
     }
 
     private void Start() {
         DoStart();
-    }
+    } 
 
     protected override void DoStart() {
         base.DoStart();

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	public KeyCode ITEM_SECONDARY = KeyCode.Mouse1;
 	public KeyCode NO_ITEM = KeyCode.BackQuote;
 	public KeyCode BUCKET = KeyCode.Alpha1;
+	public KeyCode FLASHLIGHT = KeyCode.Alpha2;
 
     [Header("Game System References")]
     public Narrator narrator;

@@ -7,19 +7,30 @@ public class Lightbulb : MonoBehaviour {
     [Header("Object References")]
     public Battery battery;
     new public ParticleSystem particleSystem;
+    particleAttractorLinear particleAttractor;
 
 
     [Header("Configuration Values")]
     public float chargeRate = .5f;
+    public Renderer externalRenderer;
+
+	[SerializeField] bool useRaycast = false;
+    [SerializeField]
+    bool isFlorescent = false;
 
     Light lightSource;
     Renderer r;
     Material lightMat;
-    
 
-	// Use this for initialization
-	void Awake () {
-        r = GetComponent<Renderer>();
+
+    // Use this for initialization
+    void Awake() {
+        r = externalRenderer != null ? externalRenderer : GetComponent<Renderer>();
+        particleAttractor = GetComponentInChildren<particleAttractorLinear>();
+        if (particleAttractor != null) { 
+        particleAttractor.targets.Clear();
+        particleAttractor.enabled = false;
+        }
         lightSource = GetComponentInChildren<Light>();
         foreach (Material m in r.materials) {
             if (m.name.ToLower().StartsWith("lightbulbs")) {
@@ -61,15 +72,39 @@ public class Lightbulb : MonoBehaviour {
 
     private void OnTriggerStay(Collider other) {
         Vector3 oPos = other.transform.position;
-        if (lightSource.type == LightType.Point || ObjectInCone(oPos)) {
+		if (isFlorescent || lightSource.type == LightType.Point || (useRaycast && RayCastLight(other)) || ObjectInCone(oPos)) {
             ShimmeringObject s = other.GetComponent<ShimmeringObject>();
             if (s == null) return;
             //Debug.Log("Charging");
             if (battery.Color == s.Color) {
                 s.Charge(chargeRate * Time.deltaTime);
+                if (particleAttractor != null && !particleAttractor.targets.Contains(s.transform)) {
+                    particleAttractor.targets.Add(s.transform);
+                    particleAttractor.enabled = true;
+                }
+            }
+        }
+        else if (particleAttractor != null && particleAttractor.targets.Contains(other.transform)) {
+            particleAttractor.targets.Remove(other.transform);
+            if (particleAttractor.targets.Count == 0) {
+                particleAttractor.enabled = false;
             }
         }
     }
+
+    private void OnTriggerExit(Collider other) {
+        if (particleAttractor != null && particleAttractor.targets.Contains(other.transform)) {
+            particleAttractor.targets.Remove(other.transform);
+            if (particleAttractor.targets.Count == 0) {
+                particleAttractor.enabled = false;
+            }
+        }
+    }
+
+	private bool RayCastLight(Collider other)
+	{
+		return (Physics.Raycast(transform.position, transform.up, lightSource.range));
+	}
 
     private bool ObjectInCone(Vector3 oPos) {
         if (lightSource.type != LightType.Spot) {
