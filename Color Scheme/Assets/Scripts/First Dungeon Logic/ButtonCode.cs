@@ -124,6 +124,7 @@ public class ButtonCode : ButtonableObject {
         }
         pressIndex = 0;
         currentPresses = new Color[codeLength];
+        GameManager.INSTANCE.OnPuzzleCompleted(GameManager.PUZZLE_ID.BUTTON_CODE);
     }
 
 }

@@ -25,6 +25,14 @@ public class GameManager : MonoBehaviour {
     public int currentDungeon = 0;
 
     Dictionary<string,string> savedGameState;
+    
+    public enum PUZZLE_ID {
+        NONE,
+        DEBUG,
+        BUTTON_CODE,
+        LIGHT_CHAIN,
+        COLOR_WHEEL
+    }
 
 	// Use this for initialization
 	void Awake () {
@@ -39,7 +47,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (debug && Input.GetKeyDown(KeyCode.Slash)) {
-            OnPuzzleCompleted("Debug");
+            OnPuzzleCompleted(PUZZLE_ID.DEBUG);
         }
 	}
 
@@ -54,7 +62,7 @@ public class GameManager : MonoBehaviour {
         return null;
     }
 
-    public void OnPuzzleCompleted(string id = null) {
+    public void OnPuzzleCompleted(PUZZLE_ID p = PUZZLE_ID.NONE) {
         mainAudioSource.PlayOneShot(puzzleCompleted);
     } 
 
