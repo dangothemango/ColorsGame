@@ -8,6 +8,7 @@ public class Lightbulb : MonoBehaviour {
     public Battery battery;
     new public ParticleSystem particleSystem;
 
+
     [Header("Configuration Values")]
     public float chargeRate = .5f;
 
@@ -41,15 +42,19 @@ public class Lightbulb : MonoBehaviour {
     public void OnBatteryChange(Color c) {
         lightMat.SetColor("_EmissionColor", c);
         lightSource.color = c;
-        if (c == Color.black) {
-            particleSystem.Stop();
-        } else {
-            try {
-                var main = particleSystem.main;
-                main.startColor = c;
-                particleSystem.Play();
-            } catch (System.Exception e) {
-                Debug.LogWarning(e.StackTrace);
+        if (particleSystem != null) {
+            if (c == Color.black) {
+                particleSystem.Stop();
+            }
+            else {
+                try {
+                    var main = particleSystem.main;
+                    main.startColor = c;
+                    particleSystem.Play();
+                }
+                catch (System.Exception e) {
+                    Debug.LogWarning(e.StackTrace);
+                }
             }
         }
     }
