@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour {
     [Header("Game System References")]
     public Narrator narrator;
 
+    [Header("Audio")]
+    public AudioSource mainAudioSource;
+    public AudioClip puzzleCompleted;
+
     [Header("Debug")]
     public bool debug = false;
 
@@ -46,7 +50,10 @@ public class GameManager : MonoBehaviour {
             return savedGameState[key];
         }
         return null;
-    }  
+    }
 
+    public void OnPuzzleCompleted(string id = null) {
+        mainAudioSource.PlayOneShot(puzzleCompleted);
+    } 
 
 }
