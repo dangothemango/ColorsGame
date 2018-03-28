@@ -7,6 +7,7 @@ public class Lightbulb : MonoBehaviour {
     [Header("Object References")]
     public Battery battery;
     new public ParticleSystem particleSystem;
+    particleAttractorLinear particleAttractor;
 
 
     [Header("Configuration Values")]
@@ -17,11 +18,16 @@ public class Lightbulb : MonoBehaviour {
     Light lightSource;
     Renderer r;
     Material lightMat;
-    
 
-	// Use this for initialization
-	void Awake () {
+
+    // Use this for initialization
+    void Awake() {
         r = GetComponent<Renderer>();
+        particleAttractor = GetComponentInChildren<particleAttractorLinear>();
+        if (particleAttractor != null) { 
+        particleAttractor.targets.Clear();
+        particleAttractor.enabled = false;
+        }
         lightSource = GetComponentInChildren<Light>();
         foreach (Material m in r.materials) {
             if (m.name.ToLower().StartsWith("lightbulbs")) {
@@ -69,6 +75,25 @@ public class Lightbulb : MonoBehaviour {
             //Debug.Log("Charging");
             if (battery.Color == s.Color) {
                 s.Charge(chargeRate * Time.deltaTime);
+                if (particleAttractor != null && !particleAttractor.targets.Contains(s.transform)) {
+                    particleAttractor.targets.Add(s.transform);
+                    particleAttractor.enabled = true;
+                }
+            }
+        }
+        else if (particleAttractor != null && particleAttractor.targets.Contains(other.transform)) {
+            particleAttractor.targets.Remove(other.transform);
+            if (particleAttractor.targets.Count == 0) {
+                particleAttractor.enabled = false;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (particleAttractor != null && particleAttractor.targets.Contains(other.transform)) {
+            particleAttractor.targets.Remove(other.transform);
+            if (particleAttractor.targets.Count == 0) {
+                particleAttractor.enabled = false;
             }
         }
     }
