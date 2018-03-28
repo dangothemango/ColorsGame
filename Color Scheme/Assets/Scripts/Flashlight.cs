@@ -18,7 +18,7 @@ public class Flashlight : PlayerItem {
     Color currentColor;
     AudioSource sound;
     bool on = false;
-    float chargeLevel = 0;
+    float chargeLevel = 1f;
 
     float ChargeLevel {
         get {
