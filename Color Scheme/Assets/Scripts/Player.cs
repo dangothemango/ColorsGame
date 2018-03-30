@@ -35,6 +35,7 @@ public class Player : MonoBehaviour {
 
     public SpriteRenderer tooltipRenderer;
     public float tooltipOffset = .5f;
+	float currTime;
 
     void Awake() {
         if (INSTANCE == null) {
@@ -92,11 +93,9 @@ public class Player : MonoBehaviour {
 			equippedItem.SecondaryUsage();
 
 		if (hitByLaser) {
-			float currTime = Time.time;
 			hitCameraOverlay.color = hitColor;
-			//hitCameraOverlay.color.a = 0.0f;
 			Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
-			temp.a = Mathf.Lerp (0.0f, 1.0f, Time.time / (currTime + 10));
+			temp.a = Mathf.Lerp (0.0f, 1.0f, Time.time / (currTime + 3.0f));
 			hitCameraOverlay.color = temp;
 		}
 		
@@ -129,7 +128,7 @@ public class Player : MonoBehaviour {
             }
         }
 
-        if (reachCast.collider == null ||  reachCast.collider.GetComponent<InteractableObject>()==null) {
+        if (reachCast.collider == null || reachCast.collider.GetComponent<InteractableObject>()==null) {
             if (gazedObject != null) {
                 gazedObject.onGazeExit();
                 gazedObject = null;
@@ -219,5 +218,6 @@ public class Player : MonoBehaviour {
 	public void hitByLaserTrigger(Color c){
 		hitByLaser = true;
 		hitColor = c;
+		currTime = Time.time;
 	}
 }
