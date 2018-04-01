@@ -75,7 +75,6 @@ public class Lightbulb : MonoBehaviour {
 		if (isFlorescent || lightSource.type == LightType.Point || (useRaycast && RayCastLight(other)) || ObjectInCone(oPos)) {
             ShimmeringObject s = other.GetComponent<ShimmeringObject>();
             Flashlight f = other.GetComponent<Flashlight>();
-            Debug.Log("f");
             if (s != null) {
                 //Debug.Log("Charging");
                 if (battery.Color == s.Color) {
