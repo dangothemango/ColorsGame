@@ -14,6 +14,9 @@ public class ButtonCode : ButtonableObject {
     public Battery[] code1Lights;
     public ButtonActivatedDoor code1Door;
 
+    [Header("Transition")]
+    public Color newColor;
+
     [Header("Code 2")]
     public Color[] code2;
     public Battery[] code2Lights;
@@ -24,6 +27,7 @@ public class ButtonCode : ButtonableObject {
     Color[] currentPresses;
     int pressIndex = 0;
     float t = 0;
+    bool updateCode = true;
 
     private void Awake() {
         DoAwake();
@@ -52,7 +56,7 @@ public class ButtonCode : ButtonableObject {
     protected override void DoUpdate() {
         base.DoUpdate();
         t += Time.deltaTime;
-        if (t > flashTime) {
+        if (updateCode && t > flashTime) {
             t = 0;
             switch (currentCode) {
                 case 1:
@@ -66,6 +70,7 @@ public class ButtonCode : ButtonableObject {
     }
 
     public override void OnPressed(Color c) {
+        if (!updateCode) return;
         base.OnPressed(c);
         switch (currentCode) {
             case 1:
@@ -106,6 +111,19 @@ public class ButtonCode : ButtonableObject {
         return -1;
     }
 
+    IEnumerator FlashNewColor() {
+        updateCode = false;
+        int count = 0;
+        while (count < 6) {
+            battery.Paint(newColor);
+            yield return new WaitForSeconds(.3f);
+            battery.Paint(Color.black);
+            yield return new WaitForSeconds(.3f);
+            count++;
+        }
+        updateCode = true;
+    }
+
     void OnSuccessfulCode() {
         switch (currentCode) {
             case 1:
@@ -114,12 +132,14 @@ public class ButtonCode : ButtonableObject {
                     b.Paint(Color.green);
                 }
                 currentCode++;
+                StartCoroutine(FlashNewColor());
                 break;
             case 2:
                 code2Door.TriggerOpen();
                 foreach (Battery b in code2Lights) {
                     b.Paint(Color.green);
                 }
+                this.enabled = false;
                 break;
         }
         pressIndex = 0;

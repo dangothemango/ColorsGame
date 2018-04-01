@@ -434,6 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carriedFuse: {fileID: 0}
+  hitCameraOverlay: {fileID: 0}
   DEATHTIME: 2.3
   items: []
   startLocation: {fileID: 0}
@@ -444,7 +445,7 @@ MonoBehaviour:
   gazedObject: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294960383
+    m_Bits: 4294911231
   tooltipRenderer: {fileID: 212525842082772928}
   tooltipOffset: 0.5
 --- !u!114 &114293830433345690
