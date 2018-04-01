@@ -94,7 +94,7 @@ public class Player : MonoBehaviour {
 
 		if (hitByLaser) {
 			hitCameraOverlay.color = hitColor;
-			Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
+			Color temp = hitCameraOverlay.color; // apparently one cannot do this directly, temp is the workaround
 			temp.a = Mathf.Lerp (0.0f, 1.0f, Time.time / (currTime + 3.0f));
 			hitCameraOverlay.color = temp;
 		}
@@ -176,7 +176,7 @@ public class Player : MonoBehaviour {
         transform.localPosition = startLocation.position;
         transform.localRotation = startLocation.rotation;
         transform.localScale = startLocation.localScale;    // Just covering all bases
-		Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
+		Color temp = hitCameraOverlay.color;
 		temp.a = 0.0f;
 		hitCameraOverlay.color = temp;
     }

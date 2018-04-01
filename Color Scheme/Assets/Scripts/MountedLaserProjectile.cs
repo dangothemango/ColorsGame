@@ -10,7 +10,6 @@ public class MountedLaserProjectile : InteractableObject {
 	// Use this for initialization
 	void Start () {
 		projectileSpawnPoint = this.gameObject.transform.Find ("ProjectileSpawnPoint").gameObject;
-
 	}
 	
 	// Update is called once per frame
@@ -19,13 +18,10 @@ public class MountedLaserProjectile : InteractableObject {
 	}
 
 	public override void Interact() {
-		Debug.Log (projectileSpawnPoint.transform.position);
 		GameObject clone;
 		clone = Instantiate (projectile,
 			projectileSpawnPoint.transform.position,
 			projectileSpawnPoint.transform.rotation);
 		clone.GetComponent<Rigidbody>().velocity = projectileSpawnPoint.transform.TransformDirection (Vector3.forward * speed);
-
 	}
-		
 }
