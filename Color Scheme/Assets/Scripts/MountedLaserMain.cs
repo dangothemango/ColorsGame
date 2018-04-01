@@ -12,12 +12,6 @@ public class MountedLaserMain : ButtonableObject {
 
 	Vector3 tPosRestore;
 	Quaternion tRotRestore;
-	Vector3 crystalPosRestore;
-	Quaternion crystalRotRestore;
-	Vector3 laserRingPosRestore;
-	Quaternion laserRingRotRestore;
-	Vector3 laserRingSmallPosRestore;
-	Quaternion laserRingSmallRotRestore;
 	[HideInInspector] public bool equiped;
 	bool isReset;
 	public float floatRate = 0.1f;
@@ -44,7 +38,6 @@ public class MountedLaserMain : ButtonableObject {
 		laserRingSmall = this.gameObject.transform.GetChild(2).gameObject;
 
 		//restore variables for each child of the laser gun object
-		//some can be ignored due to implementation changes i.e...
 		tPosRestore = t.localPosition;
 		tRotRestore = t.localRotation;
 
@@ -56,7 +49,6 @@ public class MountedLaserMain : ButtonableObject {
 		if (aim != Aim.REST) {
 			StartCoroutine(AimInitialisation());
 		}
-		// currentAim = t.localRotation;
 	}
 	
 	// Update is called once per frame
@@ -167,20 +159,6 @@ public class MountedLaserMain : ButtonableObject {
 			transform.localRotation = Quaternion.Lerp(currentAim, newAim, elapsedTime / aimDuration);
 			yield return null;
 		}
-		// currentAim = newAim;
 		interactable = true;
 	}
 }
-
-
-//firing objects
-/*public class ExampleClass : MonoBehaviour {
-	public Rigidbody projectile;
-	void Update() {
-		if (Input.GetButtonDown("Fire1")) {
-			Rigidbody clone;
-			clone = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody;
-			clone.velocity = transform.TransformDirection(Vector3.forward * 10);
-		}
-	}
-}*/

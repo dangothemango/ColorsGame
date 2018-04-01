@@ -27,6 +27,8 @@ public class LaserProjectile : MonoBehaviour {
 		} else if (other.gameObject.tag == "Shimmering") {
 			if (other.gameObject.GetComponent<ShimmeringObject> ().chargeLevel > reflectOnChargeLevel) {
 				Destroy (this.gameObject);
+			} else {
+				//find away to ignore rigidbody of cube
 			}
 		}
 	}

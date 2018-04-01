@@ -540,6 +540,11 @@ Prefab:
       propertyPath: aim
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114346075080605392, guid: ce55dc05f8f390542ac6166baaf69f35,
+        type: 2}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce55dc05f8f390542ac6166baaf69f35, type: 2}
   m_IsPrefabParent: 0
