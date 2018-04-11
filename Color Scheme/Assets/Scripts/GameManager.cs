@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager INSTANCE;
 
-    public int currentDungeon = 0;
+    public DungeonConfigurator currentDungeon;
 
     Dictionary<string,string> savedGameState;
     
