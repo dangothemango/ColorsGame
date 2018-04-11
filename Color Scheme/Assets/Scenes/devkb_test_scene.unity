@@ -386,6 +386,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce55dc05f8f390542ac6166baaf69f35, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1130680572 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114781410785595748, guid: 53e416fdb4f39794c81e7db05a054bf2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1736171734}
+  m_Script: {fileID: 11500000, guid: a8616c92e3e8e4445841cd42a61f6de8, type: 3}
 --- !u!1 &1187996248
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,6 +598,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114236293320394216, guid: 53e416fdb4f39794c81e7db05a054bf2,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4382330002851156, guid: 53e416fdb4f39794c81e7db05a054bf2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 4.78
@@ -623,6 +634,31 @@ Prefab:
     - target: {fileID: 4382330002851156, guid: 53e416fdb4f39794c81e7db05a054bf2, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114236293320394216, guid: 53e416fdb4f39794c81e7db05a054bf2,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114236293320394216, guid: 53e416fdb4f39794c81e7db05a054bf2,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114236293320394216, guid: 53e416fdb4f39794c81e7db05a054bf2,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1130680572}
+    - target: {fileID: 114236293320394216, guid: 53e416fdb4f39794c81e7db05a054bf2,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 114236293320394216, guid: 53e416fdb4f39794c81e7db05a054bf2,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53e416fdb4f39794c81e7db05a054bf2, type: 2}
