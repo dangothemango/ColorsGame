@@ -40,7 +40,10 @@ public class GameManager : MonoBehaviour {
             return;
         }
         INSTANCE = this;
-	}
+#if UNITY_EDITOR
+        PlayerPrefs.DeleteAll();
+#endif
+    }
 	
 	// Update is called once per frame
 	void Update () {
