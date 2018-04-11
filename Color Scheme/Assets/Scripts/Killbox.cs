@@ -9,6 +9,7 @@ public class Killbox : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rv = GetComponent<ReverseNormals>();
+        rv.InvertNormals();
 	}
 	
 	// Update is called once per frame

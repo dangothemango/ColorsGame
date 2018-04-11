@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 114014161387678704}
   - component: {fileID: 114293830433345690}
   - component: {fileID: 54449440629943774}
+  - component: {fileID: 114270340622275086}
   - component: {fileID: 82104131231609028}
   - component: {fileID: 114598693876902530}
   - component: {fileID: 108491200338494008}
@@ -448,6 +449,19 @@ MonoBehaviour:
     m_Bits: 4294911231
   tooltipRenderer: {fileID: 212525842082772928}
   tooltipOffset: 0.5
+--- !u!114 &114270340622275086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1975361700810292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91478c3bbbb6f7442ad97d1720140765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bucket: {fileID: 1133858258101836, guid: 2d7f5a278a3b07a4fa991e8eec00fc9c, type: 2}
+  flashlight: {fileID: 1756662611065076, guid: 5304e361651d6f04db65644e7b0b1d8a, type: 2}
 --- !u!114 &114293830433345690
 MonoBehaviour:
   m_ObjectHideFlags: 1
