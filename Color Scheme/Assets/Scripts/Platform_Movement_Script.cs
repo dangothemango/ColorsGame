@@ -7,7 +7,7 @@ public class Platform_Movement_Script : MonoBehaviour {
     public Transform[] Waypoints;
     public float speed;
 
-    int waypointIndex = 0;
+    protected int waypointIndex = 0;
 
     int direction = 1;
     
