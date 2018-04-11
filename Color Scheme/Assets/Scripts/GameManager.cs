@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	public KeyCode NO_ITEM = KeyCode.BackQuote;
 	public KeyCode BUCKET = KeyCode.Alpha1;
 	public KeyCode FLASHLIGHT = KeyCode.Alpha2;
+	public KeyCode PAUSE_GAME = KeyCode.Escape;
 
     [Header("Game System References")]
     public Narrator narrator;
