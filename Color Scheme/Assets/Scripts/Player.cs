@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Player : MonoBehaviour {
 
     public static Player INSTANCE;
+	GameObject PauseMenuBGPanel;
 	[HideInInspector] public Fuse carriedFuse;
 	[HideInInspector] public Graphic hitCameraOverlay;
 	[HideInInspector] bool hitByLaser = false;
@@ -50,10 +52,14 @@ public class Player : MonoBehaviour {
 
 
     void Start() {
-		//hitCameraOverlay = GetComponentInChildren<Image> ().GetComponent<Graphic> ();
-		//Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
-		//temp.a = 0.0f;
-		//hitCameraOverlay.color = temp;
+        view = GetComponentInChildren<Camera>();
+        sound = gameObject.GetComponent<AudioSource>();
+		//GetComponentInChildren<Image> ().GetComponent<Graphic> ();
+		hitCameraOverlay = GameObject.Find ("Player/FirstPersonCharacter/PlayerUITransitionCanvas/HitImage").GetComponent<Image> ().GetComponent<Image> (); 
+		Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
+		temp.a = 0.0f;
+		hitCameraOverlay.color = temp;
+		PauseMenuBGPanel = GameObject.Find ("Player/FirstPersonCharacter/PlayerUITransitionCanvas/PauseMenuBGPanel");
     }
 
     // Update is called once per frame
@@ -98,6 +104,11 @@ public class Player : MonoBehaviour {
 			Color temp = hitCameraOverlay.color; // apparently one cannot do this directly, temp is the workaround
 			temp.a = Mathf.Lerp (0.0f, 1.0f, Time.time / (currTime + 3.0f));
 			hitCameraOverlay.color = temp;
+		}
+
+		//Pause Game code
+		if (Input.GetKeyDown (GameManager.INSTANCE.PAUSE_GAME)) {
+			PauseGame ();
 		}
 		
     }
@@ -221,5 +232,18 @@ public class Player : MonoBehaviour {
 		hitByLaser = true;
 		hitColor = c;
 		currTime = Time.time;
+	}
+
+	public void PauseGame(){
+		Debug.Log ("Pause");
+		if (PauseMenuBGPanel.activeInHierarchy == false) {
+			PauseMenuBGPanel.SetActive(true);
+			Time.timeScale = 0;
+			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = false;
+		} else {
+			PauseMenuBGPanel.SetActive(false);
+			Time.timeScale = 1;
+			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = true;
+		}
 	}
 }
