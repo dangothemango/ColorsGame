@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
         }
         INSTANCE = this;
 #if UNITY_EDITOR
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 #endif
     }
 	
@@ -66,5 +66,9 @@ public class GameManager : MonoBehaviour {
     public void OnPuzzleCompleted(PUZZLE_ID p = PUZZLE_ID.NONE) {
         mainAudioSource.PlayOneShot(puzzleCompleted);
     } 
+
+    public string GetItemSaveString(KeyCode item) {
+        return item.ToString() + "PlayerItem";
+    }
 
 }
