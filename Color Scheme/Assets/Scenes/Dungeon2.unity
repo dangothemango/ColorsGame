@@ -25377,7 +25377,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: fb2394da95123544488da923bfbbbdc3, type: 2}
+  - {fileID: 2100000, guid: 83199f5f2c444a94a87fa8ff802ff07d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37777,7 +37777,7 @@ MonoBehaviour:
   - {fileID: 810872081}
   - {fileID: 157956117}
   - {fileID: 954086477}
-  correctColor: {r: 0, g: 1, b: 0, a: 1}
+  correctColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2015111070
 GameObject:
   m_ObjectHideFlags: 0
