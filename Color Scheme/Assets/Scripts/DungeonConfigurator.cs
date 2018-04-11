@@ -9,7 +9,7 @@ public class DungeonConfigurator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Player.INSTANCE.startLocation = playerSpawns[GameManager.INSTANCE.currentDungeon.dungeonID];
+        Player.INSTANCE.startLocation = playerSpawns[GameManager.INSTANCE.currentDungeon == null ? 0 : GameManager.INSTANCE.currentDungeon.dungeonID];
         Player.INSTANCE.resetPosition();
         GameManager.INSTANCE.currentDungeon = this;
 	}

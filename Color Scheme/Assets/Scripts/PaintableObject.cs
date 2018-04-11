@@ -19,8 +19,6 @@ public class PaintableObject : ButtonableObject {
             return color;
         } private set {
             color = value;
-            if (botherSaving)
-                SaveColor(color);
         }
     }
 
@@ -79,5 +77,11 @@ public class PaintableObject : ButtonableObject {
 
     void SaveColor(Color c) {
         GameManager.INSTANCE.SaveSomething(saveString, "#"+ColorUtility.ToHtmlStringRGBA(c));
+    }
+
+    private void OnDestroy() {
+        if (botherSaving) {
+            SaveColor(color);
+        }
     }
 }
