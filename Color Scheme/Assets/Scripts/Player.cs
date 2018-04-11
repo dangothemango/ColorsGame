@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Player : MonoBehaviour {
 
@@ -232,11 +233,13 @@ public class Player : MonoBehaviour {
 	public void PauseGame(){
 		Debug.Log ("Pause");
 		if (PauseMenuBGPanel.activeInHierarchy == false) {
+			PauseMenuBGPanel.SetActive(true);
 			Time.timeScale = 0;
-			INSTANCE.GetComponent<CharacterController> ().enabled = false;
+			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = false;
 		} else {
+			PauseMenuBGPanel.SetActive(false);
 			Time.timeScale = 1;
-			INSTANCE.GetComponent<CharacterController> ().enabled = true;
+			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = true;
 		}
 	}
 }
