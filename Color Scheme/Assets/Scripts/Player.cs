@@ -45,6 +45,9 @@ public class Player : MonoBehaviour {
         } else {
             Destroy(this.gameObject);
         }
+
+        view = GetComponentInChildren<Camera>();
+        sound = gameObject.GetComponent<AudioSource>();
     }
 
 
@@ -185,9 +188,9 @@ public class Player : MonoBehaviour {
         transform.localPosition = startLocation.position;
         transform.localRotation = startLocation.rotation;
         transform.localScale = startLocation.localScale;    // Just covering all bases
-		Color temp = hitCameraOverlay.color;
-		temp.a = 0.0f;
-		hitCameraOverlay.color = temp;
+		//Color temp = hitCameraOverlay.color;
+		//temp.a = 0.0f;
+		//hitCameraOverlay.color = temp;
     }
 
 	// Change currently equipped item.
@@ -212,6 +215,7 @@ public class Player : MonoBehaviour {
 
 	public void addItem(PlayerItem item)
 	{
+        GameManager.INSTANCE.SaveSomething(GameManager.INSTANCE.GetItemSaveString(item.itemKey),true.ToString());
 		items.Add(item);
         configItem(item);
 		setItem(item);
