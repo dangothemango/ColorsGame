@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonActivatedDoor : ButtonableObject {
 
@@ -14,6 +15,8 @@ public class ButtonActivatedDoor : ButtonableObject {
     Coroutine doorMovement;
     new Collider collider;
     AudioSource sound;
+
+    string saveString;
 
 	public override void OnPressed(Color c)
 	{
@@ -30,9 +33,14 @@ public class ButtonActivatedDoor : ButtonableObject {
 
     protected override void DoStart() {
         base.DoStart();
+        saveString = SceneManager.GetActiveScene().name + transform.position.ToString() + transform.rotation.ToString() + "ButtonActivatedDoor";
         startY = mesh.transform.localPosition.y;
         collider = GetComponent<Collider>();
         sound = GetComponent<AudioSource>();
+        string state = GameManager.INSTANCE.LoadSomething(saveString);
+        if (state == "open") {
+            TriggerOpen();
+        }
     }
 
     private void Update() {
@@ -40,6 +48,7 @@ public class ButtonActivatedDoor : ButtonableObject {
     }
 
     public void TriggerOpen() {
+        GameManager.INSTANCE.SaveSomething(saveString, "open");
         if (doorMovement == null) {
             doorMovement = StartCoroutine(Open());
         }
@@ -47,8 +56,9 @@ public class ButtonActivatedDoor : ButtonableObject {
     }
 
     public void TriggerClose() {
+        GameManager.INSTANCE.SaveSomething(saveString, "closed");
         if (doorMovement == null) {
-            StartCoroutine(Close());
+            doorMovement = StartCoroutine(Close());
         }
         
     }

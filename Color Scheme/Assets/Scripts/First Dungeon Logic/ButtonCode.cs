@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonCode : ButtonableObject {
 
@@ -28,6 +29,7 @@ public class ButtonCode : ButtonableObject {
     int pressIndex = 0;
     float t = 0;
     bool updateCode = true;
+    string saveString;
 
     private void Awake() {
         DoAwake();
@@ -35,6 +37,7 @@ public class ButtonCode : ButtonableObject {
 
     protected override void DoAwake() {
         base.DoAwake();
+        saveString = SceneManager.GetActiveScene().name + gameObject.name + "Code";
         currentPresses = new Color[codeLength];
     }
 
@@ -46,6 +49,10 @@ public class ButtonCode : ButtonableObject {
     protected override void DoStart() {
         base.DoStart();
         battery.Paint(code1[codeIndex]);
+        string loadedCode = GameManager.INSTANCE.LoadSomething(saveString);
+        if (loadedCode != null) {
+            currentCode = int.Parse(loadedCode);
+        }
     }
 
     // Update is called once per frame
@@ -78,6 +85,9 @@ public class ButtonCode : ButtonableObject {
                 break;
             case 2:
                 code2Lights[pressIndex % codeLength].Paint(c);
+                break;
+            case 3:
+                this.enabled = false;
                 break;
         }
         currentPresses[(pressIndex++)%codeLength] = c;
@@ -131,7 +141,6 @@ public class ButtonCode : ButtonableObject {
                 foreach (Battery b in code1Lights) {
                     b.Paint(Color.green);
                 }
-                currentCode++;
                 StartCoroutine(FlashNewColor());
                 break;
             case 2:
@@ -139,9 +148,10 @@ public class ButtonCode : ButtonableObject {
                 foreach (Battery b in code2Lights) {
                     b.Paint(Color.green);
                 }
-                this.enabled = false;
                 break;
         }
+        currentCode++;
+        GameManager.INSTANCE.SaveSomething(saveString, currentCode.ToString());
         pressIndex = 0;
         currentPresses = new Color[codeLength];
         GameManager.INSTANCE.OnPuzzleCompleted(GameManager.PUZZLE_ID.BUTTON_CODE);
