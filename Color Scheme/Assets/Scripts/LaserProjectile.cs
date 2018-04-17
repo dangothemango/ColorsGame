@@ -6,6 +6,7 @@ public class LaserProjectile : MonoBehaviour {
 	public float decay;
 	float creationTime;
 	public float reflectOnChargeLevel = 0.3f;
+	public LayerMask layerMask;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,7 @@ public class LaserProjectile : MonoBehaviour {
 				Destroy (this.gameObject);
 			} else {
 				//find away to ignore rigidbody of cube
+				//try to ignore object based on layer 
 			}
 		}
 	}
