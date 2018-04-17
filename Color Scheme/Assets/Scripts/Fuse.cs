@@ -9,7 +9,10 @@ public class Fuse : InteractableObject
 	// Use this for initialization
 	void Start () 
 	{
-		GetComponent<Renderer>().material.SetColor("_EmissionColor", col);
+        setColor();
+        if (GetComponentInParent<FuseBox>() ==null && GameManager.INSTANCE.LoadSomething(col.ToString() + "FuseBox") != null) {
+            Destroy(this.gameObject);
+        }
 	}
 
 	public override void Interact()
@@ -18,4 +21,8 @@ public class Fuse : InteractableObject
 		transform.SetParent(Player.INSTANCE.transform);
 		GetComponent<Renderer>().enabled = false;
 	}
+
+    public void setColor() {
+        GetComponent<Renderer>().material.SetColor("_EmissionColor", col);
+    }
 }
