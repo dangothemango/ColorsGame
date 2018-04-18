@@ -24,6 +24,7 @@ public class ButtonCode : ButtonableObject {
 
     [Header("Other Attributes")]
     public Texture[] cookies;
+    public Renderer[] codeLabels;
     public Light codeLight;
 
     int currentCode = 1;
@@ -57,6 +58,11 @@ public class ButtonCode : ButtonableObject {
             currentCode = int.Parse(loadedCode);
         }
         codeLight.cookie = currentCode <= cookies.Length ? cookies[currentCode-1] : null; 
+        for (int i =0; i < currentCode-1; i++) {
+            Renderer r = codeLabels[i];
+            r.material.SetColor("_MainColor", Color.green);
+            r.material.SetColor("_EmissionColor", Color.green);
+        }
     }
 
     // Update is called once per frame
@@ -140,6 +146,11 @@ public class ButtonCode : ButtonableObject {
     }
 
     void OnSuccessfulCode() {
+        if (currentCode <= codeLabels.Length) {
+            Renderer r = codeLabels[currentCode-1];
+            r.material.SetColor("_MainColor", Color.green);
+            r.material.SetColor("_EmissionColor", Color.green);
+        }
         switch (currentCode) {
             case 1:
                 code1Door.TriggerOpen();
@@ -156,7 +167,7 @@ public class ButtonCode : ButtonableObject {
                 break;
         }
         currentCode++;
-        codeLight.cookie = currentCode <= cookies.Length ? cookies[currentCode-1] : null;
+        codeLight.cookie = currentCode <= cookies.Length ? cookies[currentCode - 1] : null;
         GameManager.INSTANCE.SaveSomething(saveString, currentCode.ToString());
         pressIndex = 0;
         currentPresses = new Color[codeLength];
