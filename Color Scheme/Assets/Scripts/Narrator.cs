@@ -10,7 +10,7 @@ public class Narrator : MonoBehaviour {
         OnEnterFirstDungeon,
         OnDeath,
         OnRespawn,
-        OnDebugTrigger
+        OnEnteringMainRoomD1
     }
 
     [System.Serializable]
@@ -19,7 +19,7 @@ public class Narrator : MonoBehaviour {
         public string[] enteringFirstDungeon;
         public string[] deathMessages;
         public string[] respawnMessages;
-        public string[] debugMessages;
+        public string[] enteringMainRoomD1;
     }
 
     [Header("External References")]
@@ -44,10 +44,15 @@ public class Narrator : MonoBehaviour {
         narrative = JsonUtility.FromJson<Narrative>(narrativeText.text);
 	}
 	
-	public void TriggerNarrative(NarrativeID id, bool sequential = false, int index = 0) {
+	public void TriggerNarrative(NarrativeID id, bool sequential = false) { 
         if (!narrationActive) return;
+        if (sequential) {
+            TriggerSequentialNarrative(id);
+            return;
+        }
+        StopAllCoroutines();
         string[] activeNarrative = GetNarrativeById(id);
-        StartCoroutine(ShowMessage(activeNarrative, sequential, index));
+        StartCoroutine(ShowMessage(activeNarrative, sequential, 0));
     }
 
     public string[] GetNarrativeById(NarrativeID id) {
@@ -60,8 +65,8 @@ public class Narrator : MonoBehaviour {
                 return narrative.deathMessages;
             case NarrativeID.OnRespawn:
                 return narrative.respawnMessages;
-            case NarrativeID.OnDebugTrigger:
-                return narrative.debugMessages;
+            case NarrativeID.OnEnteringMainRoomD1:
+                return narrative.enteringMainRoomD1;
             default:
                 return null;
         }
@@ -81,7 +86,6 @@ public class Narrator : MonoBehaviour {
         }
         string message = phrases[index];
         phrases[index] = null;
-        Debug.Log("Displaying subtitle: " + message);
         yield return StartCoroutine(ShowAndHideSubtitle(message,index));
     }
 
@@ -95,12 +99,12 @@ public class Narrator : MonoBehaviour {
             yield return null;
         }
         subtitleGameObject.SetActive(false);
-        if (narratorCallback != null) {
-            narratorCallback.Invoke();
-        }
+
     }
 
-    public void TriggerSequentialNarrative(NarrativeID id) {
+    void TriggerSequentialNarrative(NarrativeID id) {
+        if (!narrationActive) return;
+        StopAllCoroutines();
         StartCoroutine(SequentialNarrative(id));
     }
 
@@ -108,6 +112,10 @@ public class Narrator : MonoBehaviour {
         string[] sequence = GetNarrativeById(id);
         for (int i =0; i <sequence.Length; i++) {
             yield return ShowMessage(sequence, true, i);
+        }
+        if (narratorCallback != null) {
+            narratorCallback.Invoke();
+            narratorCallback = null;
         }
     }
 }

@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour {
         return item.ToString() + "PlayerItem";
     }
 
-    public void LoadScene(int scene) {
+    public static void LoadScene(int scene) {
         Initiate.Fade(scene, Random.ColorHSV(), 1f);
     }
     

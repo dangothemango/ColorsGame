@@ -9,13 +9,16 @@ public class DungeonConfigurator : MonoBehaviour {
 
     public Narrator.NarrativeID narrativeID;
 
+    public GameObject narrationDelayedObject;
+
     string saveString;
+    float narrativeDelay = 1f;
 
 	// Use this for initialization
 	void Start () {
         saveString = "NarrativeComplete" + narrativeID.ToString();
         if (GameManager.INSTANCE.LoadSomething(saveString) == null) {
-            GameManager.INSTANCE.narrator.TriggerSequentialNarrative(narrativeID);
+            StartCoroutine(WaitAndStartNarrative());
         }
         GameManager.INSTANCE.SaveSomething(saveString, "true");
         DontDestroyOnLoad(this.gameObject);
@@ -27,4 +30,16 @@ public class DungeonConfigurator : MonoBehaviour {
         }
         GameManager.INSTANCE.currentDungeon = this;
 	}
+
+    IEnumerator WaitAndStartNarrative() {
+        yield return new WaitForSeconds(narrativeDelay);
+        GameManager.INSTANCE.narrator.narratorCallback += ActivateDelayedObject;
+        GameManager.INSTANCE.narrator.TriggerNarrative(narrativeID, sequential: true);
+    }
+
+    void ActivateDelayedObject() {
+        if (narrationDelayedObject == null) return;
+        narrationDelayedObject.SetActive(true);
+    }
+
 }

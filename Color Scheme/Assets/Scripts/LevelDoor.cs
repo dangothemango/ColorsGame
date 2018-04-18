@@ -9,6 +9,6 @@ public class LevelDoor : MonoBehaviour {
     int sceneNumber;
 
     private void OnTriggerEnter(Collider other) {
-        GameManager.INSTANCE.LoadScene(sceneNumber+1);
+        GameManager.LoadScene(sceneNumber+1);
     }
 }
