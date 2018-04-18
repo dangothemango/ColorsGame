@@ -37,7 +37,7 @@ public class FuseBox : InteractableObject
         if (GameManager.INSTANCE.LoadSomething(col.ToString() + "FuseBox") != null) {
             EnableFuse();
         }
-        else {
+        else if (door!=null){
             door.gameObject.SetActive(false);
         }
 	}
@@ -57,7 +57,9 @@ public class FuseBox : InteractableObject
         fuse.gameObject.SetActive(true);
         fuse.setColor();
         Destroy(fuse);
-        door.gameObject.SetActive(true);
+        if (door != null) {
+            door.gameObject.SetActive(true);
+        }
         battery.Paint(col);
     }
 }

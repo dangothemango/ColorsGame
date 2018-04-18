@@ -1903,6 +1903,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &917672740 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1993416975622030, guid: 643dcd6620084db40882d87c58cd2151,
+    type: 2}
+  m_PrefabInternal: {fileID: 2031561793}
+--- !u!114 &917672745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 917672740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac16d3585e5941842a7694eecb826472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1035897313
 GameObject:
   m_ObjectHideFlags: 0
@@ -4742,8 +4758,8 @@ MonoBehaviour:
   outlineWidth: 0.2
   interactable: 1
   tooltipIcon: {fileID: 0}
-  col: {r: 0, g: 1, b: 0, a: 1}
-  door: {fileID: 1658769963}
+  col: {r: 0, g: 0, b: 1, a: 1}
+  door: {fileID: 0}
   battery: {fileID: 1984729426}
 --- !u!65 &1255712824
 BoxCollider:
@@ -6006,6 +6022,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4481354583991108, guid: 33e787432088f4449a77a11b82636633, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114899685468508216, guid: 33e787432088f4449a77a11b82636633,
+        type: 2}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

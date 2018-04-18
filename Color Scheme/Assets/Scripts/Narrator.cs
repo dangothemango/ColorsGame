@@ -30,11 +30,13 @@ public class Narrator : MonoBehaviour {
     [Header("Configuration Values")]
     public float showTimePerCharacter = .2f;
 
-    Narrative narrative;
+    static Narrative narrative;
     bool narrationActive = true;
+    public delegate void NarratorCallback();
+    public NarratorCallback narratorCallback;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		if (narrativeText == null) {
             Debug.LogError("No Narrative Present");
             narrationActive = false;
@@ -42,48 +44,70 @@ public class Narrator : MonoBehaviour {
         narrative = JsonUtility.FromJson<Narrative>(narrativeText.text);
 	}
 	
-	public void TriggerNarrative(NarrativeID id) {
+	public void TriggerNarrative(NarrativeID id, bool sequential = false, int index = 0) {
         if (!narrationActive) return;
+        string[] activeNarrative = GetNarrativeById(id);
+        StartCoroutine(ShowMessage(activeNarrative, sequential, index));
+    }
+
+    public string[] GetNarrativeById(NarrativeID id) {
         switch (id) {
             case NarrativeID.OnGameStart:
-                ShowMessage(narrative.gameStart);
-                break;
+                return narrative.gameStart;
             case NarrativeID.OnEnterFirstDungeon:
-                ShowMessage(narrative.enteringFirstDungeon);
-                break;
+                return narrative.enteringFirstDungeon;
             case NarrativeID.OnDeath:
-                ShowMessage(narrative.deathMessages);
-                break;
+                return narrative.deathMessages;
             case NarrativeID.OnRespawn:
-                ShowMessage(narrative.respawnMessages);
-                break;
+                return narrative.respawnMessages;
             case NarrativeID.OnDebugTrigger:
-                ShowMessage(narrative.debugMessages);
-                break;
+                return narrative.debugMessages;
             default:
-                break;
+                return null;
         }
     }
 
-    void ShowMessage(string[] phrases) {
-        if (phrases.Length == 0) return;
-        int index = Random.Range(0, phrases.Length);
+    IEnumerator ShowMessage(string[] phrases,bool sequential, int i) {
+        if (phrases.Length == 0) yield break;
+        int index = i;
+        if (sequential) {
+            while (index < phrases.Length && phrases[index] == null) {
+                index++;
+            }
+        }
+        else {
+            index = Random.Range(0, phrases.Length);
+            if (phrases[index] == null) yield break;
+        }
         string message = phrases[index];
-        if (message == null) return;
         phrases[index] = null;
         Debug.Log("Displaying subtitle: " + message);
-        StartCoroutine(ShowAndHideSubtitle(message));
+        yield return StartCoroutine(ShowAndHideSubtitle(message,index));
     }
 
-    IEnumerator ShowAndHideSubtitle(string message) {
+    IEnumerator ShowAndHideSubtitle(string message,int index) {
         subtitleGameObject.SetActive(true);
         subtitleText.text = message;
         float t = 0;
-        float duration = showTimePerCharacter * message.Length;
+        float duration = Mathf.Min(Mathf.Max(1f,showTimePerCharacter * message.Length),4f);
         while (t < duration) {
             t += Time.deltaTime;
             yield return null;
         }
         subtitleGameObject.SetActive(false);
+        if (narratorCallback != null) {
+            narratorCallback.Invoke();
+        }
+    }
+
+    public void TriggerSequentialNarrative(NarrativeID id) {
+        StartCoroutine(SequentialNarrative(id));
+    }
+
+    IEnumerator SequentialNarrative(NarrativeID id) {
+        string[] sequence = GetNarrativeById(id);
+        for (int i =0; i <sequence.Length; i++) {
+            yield return ShowMessage(sequence, true, i);
+        }
     }
 }

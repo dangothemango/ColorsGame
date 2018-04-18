@@ -1,5 +1,5 @@
 {
-	"gameStart":["Hello"],
+	"gameStart":["No", "This isnt right", "You shouldn't be here yet.", "It's not safe", "But ok, since you're here...", "Would you mind turning the lights back on?", "The fuses burnt out and I cant replace them from here"],
 	"enteringFirstDungeon":[],
 	"deathMessages":[],
 	"respawnMessages":[],
