@@ -32,6 +32,7 @@ public class Player : MonoBehaviour {
     [SerializeField] InteractableObject gazedObject;
 	private Shade gazedShade;
     [SerializeField] LayerMask layerMask;
+	bool dying = false;
 
     Camera view;
     RaycastHit reachCast;
@@ -186,9 +187,11 @@ public class Player : MonoBehaviour {
         // {
             // TODO: Manipulate rotation to make the player fall over
         // }
+		if (dying)
+			return;
+		dying = true;
         sound.PlayOneShot(deathNoise);
         Invoke("resetPosition", DEATHTIME);
-        
     }
 
     public void resetPosition()
@@ -200,6 +203,9 @@ public class Player : MonoBehaviour {
 		//Color temp = hitCameraOverlay.color;
 		//temp.a = 0.0f;
 		//hitCameraOverlay.color = temp;
+		hitCameraOverlay.color = Color.clear;
+		hitByLaser = false;
+		dying = false;
     }
 
 	// Change currently equipped item.
