@@ -19,8 +19,8 @@ public class DungeonConfigurator : MonoBehaviour {
         saveString = "NarrativeComplete" + narrativeID.ToString();
         if (GameManager.INSTANCE.LoadSomething(saveString) == null) {
             StartCoroutine(WaitAndStartNarrative());
-        } else {
-            narrationDelayedObject.SetActive(true);
+        } else { 
+            ActivateDelayedObject();
         }
         GameManager.INSTANCE.SaveSomething(saveString, "true");
         DontDestroyOnLoad(this.gameObject);
