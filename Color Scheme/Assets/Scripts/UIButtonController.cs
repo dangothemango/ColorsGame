@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class UIButtonController : MonoBehaviour {
 
 	public void LoadSceneByIndex(int sceneIndex){
-		SceneManager.LoadScene (sceneIndex);
+        GameManager.INSTANCE.LoadScene(sceneIndex);
 	}
 
 	public void ExitToDesktop(){
