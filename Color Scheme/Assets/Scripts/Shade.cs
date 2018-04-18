@@ -41,79 +41,79 @@ public class Shade : SimplePaintableObject, ShadeInterface
         {
             time += Time.deltaTime;
 
-            if (time > 1.0f)
-            {
+            //if (time > 1.0f)
+            //{
                 x = Random.Range(-maxSpeed, maxSpeed);
                 z = Random.Range(-maxSpeed, maxSpeed);
-                angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 90;
-                transform.localRotation = Quaternion.Euler(0, angle, 0);
-                time = 0.0f;
+                angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
+                //transform.localRotation = Quaternion.Euler(0, angle, 0);
+              //  time = 0.0f;
+            //}
+            if (transform.position.x + x < highX && transform.position.y + y < highY && transform.position.z + z < highZ
+                && transform.position.x + x > lowX && transform.position.y + y > lowY && transform.position.z + z > lowZ)
+            {
+                transform.position = new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z + z);
             }
-
-            transform.localPosition = new Vector3(transform.localPosition.x + x, transform.localPosition.y + y, transform.localPosition.z + z);
+            else
+            {
+                deflect();
+            }
         }
     }
 
     public void deflect()
     {
-        if (transform.localPosition.x > highX)
+        if (transform.position.x > highX)
         {
             x = Random.Range(-maxSpeed, 0.0f);
             angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
-            transform.localRotation = Quaternion.Euler(0, angle, 0);
-            time = 0.0f;
+            //transform.localRotation = Quaternion.Euler(angle, 0, 0);
         }
-        if (transform.localPosition.x < lowX)
+        if (transform.position.x < lowX)
         {
             x = Random.Range(0.0f, maxSpeed);
             angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
-            transform.localRotation = Quaternion.Euler(0, angle, 0);
-            time = 0.0f;
+            //transform.localRotation = Quaternion.Euler(angle, 0, 0);
         }
-        if (transform.localPosition.y > highY)
+        if (transform.position.y > highY)
         {
             y = Random.Range(-maxSpeed, 0.0f);
-            angle = Mathf.Atan2(y, x) * (180 / 3.141592f) + 45;
-            transform.localRotation = Quaternion.Euler(0, angle, 0);
-            time = 0.0f;
+            angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
+            //transform.localRotation = Quaternion.Euler(0, angle, 0);
         }
-        if (transform.localPosition.y < lowY)
+        if (transform.position.y < lowY)
         {
             y = Random.Range(0.0f, maxSpeed);
-            angle = Mathf.Atan2(y, x) * (180 / 3.141592f) + 45;
-            transform.localRotation = Quaternion.Euler(0, angle, 0);
-            time = 0.0f;
+            angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
+            //transform.localRotation = Quaternion.Euler(0, angle, 0);
         }
-        if (transform.localPosition.z > highZ)
+        if (transform.position.z > highZ)
         {
             z = Random.Range(-maxSpeed, 0.0f);
             angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
-            transform.localRotation = Quaternion.Euler(0, angle, 0);
-            time = 0.0f;
+            //transform.localRotation = Quaternion.Euler(0, 0, angle);
         }
-        if (transform.localPosition.z < lowZ)
+        if (transform.position.z < lowZ)
         {
             z = Random.Range(0.0f, maxSpeed);
             angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
-            transform.localRotation = Quaternion.Euler(0, angle, 0);
-            time = 0.0f;
+            //transform.localRotation = Quaternion.Euler(0, 0, angle);
         }
-
-        transform.localPosition = new Vector3(transform.localPosition.x + x, transform.localPosition.y + y, transform.localPosition.z + z);
+        transform.position = new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z + z);
     }
 
     public IEnumerator changeColor(GameObject obj)
     {
         yield return new WaitForSecondsRealtime(3);
         int index = Random.Range(0, changeArray.Length);
-        obj.GetComponent<Renderer>().material.color = changeArray[index];
+        obj.GetComponent<PaintableObject>().Paint(changeArray[index]);
         enabled = true;
     }
 
     public void OnCollisionEnter(Collision col)
     {
         // Shade collided with paintable object
-        if (col.gameObject.name == "Cube")
+        if (col.gameObject.name == "Battery")
         {
             int rng = Random.Range(1, 11);
             // 70% chance that the shade stops to change object color
