@@ -18,7 +18,7 @@ public class EyedropperScript : PlayerItem {
 		//sampleAudio = GetComponent<AudioSource> ();
 		//releaseAudio = GetComponent<AudioSource> ();
 		if (!shade) {
-			shade = GetComponentInChildren
+			//shade = GetComponentInChildren
 		}
 	}
 
