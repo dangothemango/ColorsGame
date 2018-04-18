@@ -214,6 +214,21 @@ Prefab:
       propertyPath: m_Shadows.m_Type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
+        type: 2}
+      propertyPath: color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
+        type: 2}
+      propertyPath: color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
+        type: 2}
+      propertyPath: color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135010889137423898, guid: d90c23e7de7eeb145aab6ab0ad2dda36, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d90c23e7de7eeb145aab6ab0ad2dda36, type: 2}
@@ -375,6 +390,7 @@ MonoBehaviour:
   tooltipIcon: {fileID: 0}
   col: {r: 1, g: 0, b: 0, a: 1}
   door: {fileID: 167298505}
+  battery: {fileID: 354290761}
 --- !u!65 &84006498
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -690,7 +706,7 @@ GameObject:
   - component: {fileID: 167298507}
   - component: {fileID: 167298506}
   - component: {fileID: 167298505}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -800,6 +816,7 @@ MonoBehaviour:
   tooltipIcon: {fileID: 0}
   col: {r: 0, g: 1, b: 0, a: 1}
   door: {fileID: 1658769963}
+  battery: {fileID: 615163912}
 --- !u!65 &176693155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1099,6 +1116,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 337357860}
   m_Mesh: {fileID: 4300054, guid: a0c0dc2b97d4bee478e14d931939e774, type: 3}
+--- !u!114 &354290761 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
+    type: 2}
+  m_PrefabInternal: {fileID: 19384636}
+  m_Script: {fileID: 11500000, guid: c560fc4f150735047b65d2d1ee132257, type: 3}
 --- !u!1 &359480961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,7 +1430,7 @@ Prefab:
     - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
         type: 2}
       propertyPath: color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
         type: 2}
@@ -1437,6 +1460,11 @@ Prefab:
     - target: {fileID: 108414311797053880, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
         type: 2}
       propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
+        type: 2}
+      propertyPath: color.b
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -1516,6 +1544,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 607460585}
   m_Mesh: {fileID: 4300054, guid: a0c0dc2b97d4bee478e14d931939e774, type: 3}
+--- !u!114 &615163912 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
+    type: 2}
+  m_PrefabInternal: {fileID: 601118118}
+  m_Script: {fileID: 11500000, guid: c560fc4f150735047b65d2d1ee132257, type: 3}
 --- !u!1 &619651665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,7 +1562,7 @@ GameObject:
   - component: {fileID: 619651668}
   - component: {fileID: 619651667}
   - component: {fileID: 619651670}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4710,6 +4744,7 @@ MonoBehaviour:
   tooltipIcon: {fileID: 0}
   col: {r: 0, g: 1, b: 0, a: 1}
   door: {fileID: 1658769963}
+  battery: {fileID: 1984729426}
 --- !u!65 &1255712824
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4838,7 +4873,7 @@ Prefab:
     - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
         type: 2}
       propertyPath: color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
         type: 2}
@@ -4868,6 +4903,11 @@ Prefab:
     - target: {fileID: 108414311797053880, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
         type: 2}
       propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
+        type: 2}
+      propertyPath: color.g
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -5119,7 +5159,7 @@ GameObject:
   - component: {fileID: 1658769965}
   - component: {fileID: 1658769964}
   - component: {fileID: 1658769963}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5896,6 +5936,12 @@ Transform:
   m_Father: {fileID: 901396896}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1984729426 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
+    type: 2}
+  m_PrefabInternal: {fileID: 1270982034}
+  m_Script: {fileID: 11500000, guid: c560fc4f150735047b65d2d1ee132257, type: 3}
 --- !u!1001 &1996756143
 Prefab:
   m_ObjectHideFlags: 0
