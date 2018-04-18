@@ -30,6 +30,7 @@ public class Player : MonoBehaviour {
     [SerializeField]
     float stepSize = Mathf.PI/6;
     [SerializeField] InteractableObject gazedObject;
+	private Shade gazedShade;
     [SerializeField] LayerMask layerMask;
 
     Camera view;
@@ -140,6 +141,13 @@ public class Player : MonoBehaviour {
             }
         }
 
+		if (reachCast.collider == null || reachCast.collider.GetComponent<Shade>()==null) {
+			if (gazedShade != null) {
+				gazedShade.onGazeExit ();
+				gazedShade = null;
+			}
+		} // deal with entry and exit of this code. Do we want to consider what item is equiped or nah.
+
         if (reachCast.collider == null || reachCast.collider.GetComponent<InteractableObject>()==null) {
             if (gazedObject != null) {
                 gazedObject.onGazeExit();
@@ -147,6 +155,7 @@ public class Player : MonoBehaviour {
             }
             return;
         }
+
         if (gazedObject != null) {
             if (reachCast.collider.gameObject == gazedObject.gameObject) {
                 return;

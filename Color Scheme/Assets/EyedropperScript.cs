@@ -7,16 +7,16 @@ using UnityEngine;
 public class EyedropperScript : PlayerItem {
 	[SerializeField] private SimplePaintableObject paint;
 	[SerializeField] private Shade shade;
-	private AudioSource sampleAudio;
-	private AudioSource releaseAudio;
+	[SerializeField] private AudioSource sampleAudio;
+	[SerializeField] private AudioSource releaseAudio;
 
 	public Color currentColor = Color.clear;
 	bool hasPaint = false;
 	bool hasShade = false;
 
 	void Awake() {
-		sampleAudio = GetComponent<AudioSource> ();
-		releaseAudio = GetComponent<AudioSource> ();
+		//sampleAudio = GetComponent<AudioSource> ();
+		//releaseAudio = GetComponent<AudioSource> ();
 		if (!shade) {
 			shade = GetComponentInChildren
 		}
@@ -56,5 +56,4 @@ public class EyedropperScript : PlayerItem {
 		c = currentColor;
 		return primaryTooltip;
 	}
-
 }
