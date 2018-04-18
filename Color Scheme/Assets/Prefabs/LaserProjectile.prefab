@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23976787850428576}
   - component: {fileID: 54950869997178256}
   - component: {fileID: 114072495024583064}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: LaserProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,6 +113,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decay: 1
   reflectOnChargeLevel: 0.3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 65536
+  setColor: 6
 --- !u!135 &135432050344321934
 SphereCollider:
   m_ObjectHideFlags: 1

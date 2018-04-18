@@ -154,9 +154,9 @@ public class MountedLaserMain : ButtonableObject {
 		}
 
 		// lerp the movement of the laser main body
-		while (elapsedTime < aimDuration){
+		while (elapsedTime < aimDuration) {
 			elapsedTime += Time.deltaTime;
-			transform.localRotation = Quaternion.Lerp(currentAim, newAim, elapsedTime / aimDuration);
+			transform.localRotation = Quaternion.Lerp (currentAim, newAim, elapsedTime / aimDuration);
 			yield return null;
 		}
 		interactable = true;
