@@ -8,7 +8,6 @@ public class ButtonCode : ButtonableObject {
     public int codeLength = 5;
     public float flashTime = 1f;
     public Battery battery;
-    
 
     [Header("Code 1")]
     public Color[] code1;
@@ -22,6 +21,10 @@ public class ButtonCode : ButtonableObject {
     public Color[] code2;
     public Battery[] code2Lights;
     public ButtonActivatedDoor code2Door;
+
+    [Header("Other Attributes")]
+    public Texture[] cookies;
+    public Light codeLight;
 
     int currentCode = 1;
     int codeIndex = 0;
@@ -53,6 +56,7 @@ public class ButtonCode : ButtonableObject {
         if (loadedCode != null) {
             currentCode = int.Parse(loadedCode);
         }
+        codeLight.cookie = currentCode <= cookies.Length ? cookies[currentCode-1] : null; 
     }
 
     // Update is called once per frame
@@ -72,6 +76,10 @@ public class ButtonCode : ButtonableObject {
                 case 2:
                     battery.Paint(code2[(++codeIndex)%codeLength]);
                     break;
+                case 3:
+                    battery.Paint(Color.green);
+                    this.enabled = false;
+                    break;
             }
         }
     }
@@ -85,9 +93,6 @@ public class ButtonCode : ButtonableObject {
                 break;
             case 2:
                 code2Lights[pressIndex % codeLength].Paint(c);
-                break;
-            case 3:
-                this.enabled = false;
                 break;
         }
         currentPresses[(pressIndex++)%codeLength] = c;
@@ -151,6 +156,7 @@ public class ButtonCode : ButtonableObject {
                 break;
         }
         currentCode++;
+        codeLight.cookie = currentCode <= cookies.Length ? cookies[currentCode-1] : null;
         GameManager.INSTANCE.SaveSomething(saveString, currentCode.ToString());
         pressIndex = 0;
         currentPresses = new Color[codeLength];
