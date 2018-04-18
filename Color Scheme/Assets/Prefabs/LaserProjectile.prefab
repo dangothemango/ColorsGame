@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23976787850428576}
   - component: {fileID: 54950869997178256}
   - component: {fileID: 114072495024583064}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: LaserProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4060f90626104d94a955d17d81b226ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,6 +112,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decay: 1
+  reflectOnChargeLevel: 0.3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 65536
+  setColor: 6
 --- !u!135 &135432050344321934
 SphereCollider:
   m_ObjectHideFlags: 1

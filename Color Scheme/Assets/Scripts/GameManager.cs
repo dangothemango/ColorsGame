@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	public KeyCode NO_ITEM = KeyCode.BackQuote;
 	public KeyCode BUCKET = KeyCode.Alpha1;
 	public KeyCode FLASHLIGHT = KeyCode.Alpha2;
+	public KeyCode PAUSE_GAME = KeyCode.Escape;
 
     [Header("Game System References")]
     public Narrator narrator;
@@ -23,9 +24,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager INSTANCE;
 
-    public int currentDungeon = 0;
-
-    Dictionary<string,string> savedGameState;
+    public DungeonConfigurator currentDungeon;
     
     public enum PUZZLE_ID {
         NONE,
@@ -42,8 +41,10 @@ public class GameManager : MonoBehaviour {
             return;
         }
         INSTANCE = this;
-        savedGameState = new Dictionary<string, string>();
-	}
+#if UNITY_EDITOR
+        PlayerPrefs.DeleteAll();
+#endif
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -52,13 +53,13 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
-    public void SaveSomething(string key, string data) { 
-        savedGameState[key] = data;
+    public void SaveSomething(string key, string data) {
+        PlayerPrefs.SetString(key, data);
     }
 
     public string LoadSomething(string key) {
-        if (savedGameState.ContainsKey(key)) {
-            return savedGameState[key];
+        if (PlayerPrefs.HasKey(key)) {
+            return PlayerPrefs.GetString(key);
         }
         return null;
     }
@@ -66,5 +67,14 @@ public class GameManager : MonoBehaviour {
     public void OnPuzzleCompleted(PUZZLE_ID p = PUZZLE_ID.NONE) {
         mainAudioSource.PlayOneShot(puzzleCompleted);
     } 
+
+    public string GetItemSaveString(KeyCode item) {
+        return item.ToString() + "PlayerItem";
+    }
+
+    public void LoadScene(int scene) {
+        Initiate.Fade(scene, Random.ColorHSV(), 1f);
+    }
+    
 
 }

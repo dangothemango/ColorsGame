@@ -89,7 +89,6 @@ public class ShimmeringObject : ComplexPaintableObject {
         sound.clip = freeze;
         sound.Play();
         gameObject.layer = LayerMask.NameToLayer("SolidShimmering");
-    
     }
 
     protected virtual void DeSolidify() {

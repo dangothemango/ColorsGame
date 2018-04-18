@@ -12,22 +12,16 @@ public class MountedLaserMain : ButtonableObject {
 
 	Vector3 tPosRestore;
 	Quaternion tRotRestore;
-	Vector3 crystalPosRestore;
-	Quaternion crystalRotRestore;
-	Vector3 laserRingPosRestore;
-	Quaternion laserRingRotRestore;
-	Vector3 laserRingSmallPosRestore;
-	Quaternion laserRingSmallRotRestore;
 	[HideInInspector] public bool equiped;
 	bool isReset;
 	public float floatRate = 0.1f;
 	public float amplitude = 0.1f;
-	Aim aim;
+	public Aim aim = Aim.REST;
 	public float aimTime = .5f;
 	public float aimDuration = 1.0f;
 	bool interactable = true;
 
-	enum Aim{ // all local rotations i.e. w.r.t parent orientation
+	public enum Aim{ // all local rotations i.e. w.r.t parent orientation
 		REST,
 		NORTH, // x-axis rotation positive
 		SOUTH, // x-axis rotation negative
@@ -44,22 +38,17 @@ public class MountedLaserMain : ButtonableObject {
 		laserRingSmall = this.gameObject.transform.GetChild(2).gameObject;
 
 		//restore variables for each child of the laser gun object
-		//some can be ignored due to implementation changes i.e...
 		tPosRestore = t.localPosition;
 		tRotRestore = t.localRotation;
-		crystalPosRestore = crystal.transform.localPosition; //ignore
-		crystalRotRestore = crystal.transform.localRotation; //ignore
-		laserRingPosRestore = laserRing.transform.localPosition; //ignore
-		laserRingRotRestore = laserRing.transform.localRotation; //ignore
-		laserRingSmallPosRestore = laserRingSmall.transform.localPosition; //ignore
-		laserRingSmallRotRestore = laserRingSmall.transform.localRotation; //ignore
 
 		cam = Player.INSTANCE.GetComponent<Camera> ();
 
 		equiped = false;
 		isReset = true;
-		aim = Aim.REST;
-		// currentAim = t.localRotation;
+
+		if (aim != Aim.REST) {
+			StartCoroutine(AimInitialisation());
+		}
 	}
 	
 	// Update is called once per frame
@@ -101,7 +90,6 @@ public class MountedLaserMain : ButtonableObject {
 			aim++;
 		}
 		float elapsedTime = 0.0f;
-		Debug.Log (aim);
 
 		switch (aim) { //enumerate between all the possible directions toggle by player interactions
 		case Aim.NORTH:
@@ -125,7 +113,6 @@ public class MountedLaserMain : ButtonableObject {
 				break;
 			}
 		}
-		Debug.Log (newAim);
 
 		// lerp the movement of the laser main body
 		while (elapsedTime < aimDuration){
@@ -136,17 +123,42 @@ public class MountedLaserMain : ButtonableObject {
 		// currentAim = newAim;
 		interactable = true;
 	}
-}
 
+	IEnumerator AimInitialisation() {
+		Quaternion newAim = tRotRestore;
+		Quaternion currentAim = transform.rotation;
 
-//firing objects
-/*public class ExampleClass : MonoBehaviour {
-	public Rigidbody projectile;
-	void Update() {
-		if (Input.GetButtonDown("Fire1")) {
-			Rigidbody clone;
-			clone = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody;
-			clone.velocity = transform.TransformDirection(Vector3.forward * 10);
+		float elapsedTime = 0.0f;
+
+		switch (aim) { //enumerate between all the possible directions toggle by player interactions
+		case Aim.NORTH:
+			{
+				newAim = Quaternion.Euler (90.0f, 0.0f, 0.0f);
+				break;
+			}
+		case Aim.SOUTH:
+			{
+				newAim = Quaternion.Euler (-90.0f, 0.0f, 0.0f);
+				break;
+			}
+		case Aim.EAST:
+			{
+				newAim = Quaternion.Euler (0.0f, 0.0f, 90.0f);
+				break;
+			}
+		case Aim.WEST:
+			{
+				newAim = Quaternion.Euler (0.0f, 0.0f, -90.0f);
+				break;
+			}
 		}
+
+		// lerp the movement of the laser main body
+		while (elapsedTime < aimDuration) {
+			elapsedTime += Time.deltaTime;
+			transform.localRotation = Quaternion.Lerp (currentAim, newAim, elapsedTime / aimDuration);
+			yield return null;
+		}
+		interactable = true;
 	}
-}*/
+}

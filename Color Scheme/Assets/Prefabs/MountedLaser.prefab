@@ -288,7 +288,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1659920028537176}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0000003844, y: 0.37, z: -0.39812}
+  m_LocalPosition: {x: 0.0000003844, y: 0.37, z: 3.98}
   m_LocalScale: {x: 0.12333507, y: 0.10611006, z: 0.12333499}
   m_Children:
   - {fileID: 4953412198822746}
@@ -736,7 +736,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &114346075080605392
 MonoBehaviour:
@@ -754,7 +754,7 @@ MonoBehaviour:
   interactable: 1
   tooltipIcon: {fileID: 0}
   projectile: {fileID: 1991707710397232, guid: 0374a46aa0be3234fbfb0c6ff6f299ee, type: 2}
-  speed: 10
+  speed: 1
 --- !u!114 &114568699178854282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -769,6 +769,7 @@ MonoBehaviour:
   equiped: 0
   floatRate: 1
   amplitude: 0.005
+  aim: 4
   aimTime: 0.5
   aimDuration: 1
 --- !u!136 &136131098271334240

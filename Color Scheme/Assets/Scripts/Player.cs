@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Player : MonoBehaviour {
 
     public static Player INSTANCE;
+	GameObject PauseMenuBGPanel;
 	[HideInInspector] public Fuse carriedFuse;
 	[HideInInspector] public Graphic hitCameraOverlay;
 	[HideInInspector] bool hitByLaser = false;
@@ -28,13 +30,16 @@ public class Player : MonoBehaviour {
     [SerializeField]
     float stepSize = Mathf.PI/6;
     [SerializeField] InteractableObject gazedObject;
+	private Shade gazedShade;
     [SerializeField] LayerMask layerMask;
+	bool dying = false;
 
     Camera view;
     RaycastHit reachCast;
 
     public SpriteRenderer tooltipRenderer;
     public float tooltipOffset = .5f;
+	float currTime;
 
     void Awake() {
         if (INSTANCE == null) {
@@ -42,16 +47,21 @@ public class Player : MonoBehaviour {
         } else {
             Destroy(this.gameObject);
         }
+
+        view = GetComponentInChildren<Camera>();
+        sound = gameObject.GetComponent<AudioSource>();
     }
 
 
     void Start() {
         view = GetComponentInChildren<Camera>();
         sound = gameObject.GetComponent<AudioSource>();
-		hitCameraOverlay = GetComponentInChildren<Image> ().GetComponent<Graphic> ();
+		//GetComponentInChildren<Image> ().GetComponent<Graphic> ();
+		hitCameraOverlay = GameObject.Find ("Player/FirstPersonCharacter/PlayerUITransitionCanvas/HitImage").GetComponent<Image> ().GetComponent<Image> (); 
 		Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
 		temp.a = 0.0f;
 		hitCameraOverlay.color = temp;
+		PauseMenuBGPanel = GameObject.Find ("Player/FirstPersonCharacter/PlayerUITransitionCanvas/PauseMenuBGPanel");
     }
 
     // Update is called once per frame
@@ -92,12 +102,15 @@ public class Player : MonoBehaviour {
 			equippedItem.SecondaryUsage();
 
 		if (hitByLaser) {
-			float currTime = Time.time;
 			hitCameraOverlay.color = hitColor;
-			//hitCameraOverlay.color.a = 0.0f;
-			Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
-			temp.a = Mathf.Lerp (0.0f, 1.0f, Time.time / (currTime + 10));
+			Color temp = hitCameraOverlay.color; // apparently one cannot do this directly, temp is the workaround
+			temp.a = Mathf.Lerp (0.0f, 1.0f, Time.time / (currTime + 3.0f));
 			hitCameraOverlay.color = temp;
+		}
+
+		//Pause Game code
+		if (Input.GetKeyDown (GameManager.INSTANCE.PAUSE_GAME)) {
+			PauseGame ();
 		}
 		
     }
@@ -129,13 +142,21 @@ public class Player : MonoBehaviour {
             }
         }
 
-        if (reachCast.collider == null ||  reachCast.collider.GetComponent<InteractableObject>()==null) {
+		if (reachCast.collider == null || reachCast.collider.GetComponent<Shade>()==null) {
+			if (gazedShade != null) {
+				gazedShade.onGazeExit ();
+				gazedShade = null;
+			}
+		} // deal with entry and exit of this code. Do we want to consider what item is equiped or nah.
+
+        if (reachCast.collider == null || reachCast.collider.GetComponent<InteractableObject>()==null) {
             if (gazedObject != null) {
                 gazedObject.onGazeExit();
                 gazedObject = null;
             }
             return;
         }
+
         if (gazedObject != null) {
             if (reachCast.collider.gameObject == gazedObject.gameObject) {
                 return;
@@ -166,9 +187,11 @@ public class Player : MonoBehaviour {
         // {
             // TODO: Manipulate rotation to make the player fall over
         // }
+		if (dying)
+			return;
+		dying = true;
         sound.PlayOneShot(deathNoise);
         Invoke("resetPosition", DEATHTIME);
-        
     }
 
     public void resetPosition()
@@ -177,9 +200,12 @@ public class Player : MonoBehaviour {
         transform.localPosition = startLocation.position;
         transform.localRotation = startLocation.rotation;
         transform.localScale = startLocation.localScale;    // Just covering all bases
-		Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
-		temp.a = 0.0f;
-		hitCameraOverlay.color = temp;
+		//Color temp = hitCameraOverlay.color;
+		//temp.a = 0.0f;
+		//hitCameraOverlay.color = temp;
+		hitCameraOverlay.color = Color.clear;
+		hitByLaser = false;
+		dying = false;
     }
 
 	// Change currently equipped item.
@@ -204,6 +230,7 @@ public class Player : MonoBehaviour {
 
 	public void addItem(PlayerItem item)
 	{
+        GameManager.INSTANCE.SaveSomething(GameManager.INSTANCE.GetItemSaveString(item.itemKey),true.ToString());
 		items.Add(item);
         configItem(item);
 		setItem(item);
@@ -219,5 +246,19 @@ public class Player : MonoBehaviour {
 	public void hitByLaserTrigger(Color c){
 		hitByLaser = true;
 		hitColor = c;
+		currTime = Time.time;
+	}
+
+	public void PauseGame(){
+		Debug.Log ("Pause");
+		if (PauseMenuBGPanel.activeInHierarchy == false) {
+			PauseMenuBGPanel.SetActive(true);
+			Time.timeScale = 0;
+			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = false;
+		} else {
+			PauseMenuBGPanel.SetActive(false);
+			Time.timeScale = 1;
+			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = true;
+		}
 	}
 }

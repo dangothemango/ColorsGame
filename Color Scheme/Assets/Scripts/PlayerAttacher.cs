@@ -6,12 +6,21 @@ public class PlayerAttacher : MonoBehaviour {
 
     public Platform_Movement_Script movingScript;
 
-
     private void OnTriggerEnter(Collider other) {
-        movingScript.Attach(other.transform);
+        Attach(other.transform);
     }
 
     private void OnTriggerExit(Collider other) {
-        movingScript.Detach(other.transform);
+        Detach(other.transform);
     }
+
+	protected virtual void Attach(Transform other)
+	{
+		movingScript.Attach(other);
+	}
+
+	protected virtual void Detach(Transform other)
+	{
+		movingScript.Detach(other);
+	}
 }
