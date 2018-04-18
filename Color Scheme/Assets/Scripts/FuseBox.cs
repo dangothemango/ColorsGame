@@ -30,6 +30,7 @@ public class FuseBox : InteractableObject
         base.DoStart();
 		GetComponent<Renderer>().material.color = col;
         fuse = GetComponentInChildren<Fuse>();
+        fuse.col = col;
         fuse.gameObject.SetActive(false);
         if (GameManager.INSTANCE.LoadSomething(col.ToString() + "FuseBox") != null) {
             EnableFuse();
