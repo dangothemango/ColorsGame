@@ -7,6 +7,7 @@ public class FlashlightRoom : ButtonableObject
 	[SerializeField] ButtonActivatedDoor buttonDoor;
 	[SerializeField] LightActivatedDoor lightDoor;
 	[SerializeField] Lightbulb lightooooooooooooooo;
+	[SerializeField] RaceShade shadooo;
 
 	// Use this for initialization
 	void Start() 
@@ -32,7 +33,10 @@ public class FlashlightRoom : ButtonableObject
 	public override void OnPressed(Color c)
 	{
 		lightooooooooooooooo.enabled = true;
+		lightooooooooooooooo.battery.Paint(Color.blue);
 		buttonDoor.gameObject.SetActive(false);
+		if (shadooo)
+			Destroy(shadooo.gameObject);
 		Destroy(buttonDoor.gameObject);
 		Destroy(gameObject);
 	}
