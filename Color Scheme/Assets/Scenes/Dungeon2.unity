@@ -22446,7 +22446,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh59264
+  m_Name: pb_Mesh229924
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -29121,7 +29121,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh40486
+  m_Name: pb_Mesh229994
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -32729,39 +32729,6 @@ Prefab:
     - target: {fileID: 4494700369746600, guid: 62d662fac1eacae47939d0544731a6e3, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114396527510394466, guid: 62d662fac1eacae47939d0544731a6e3,
-        type: 2}
-      propertyPath: sceneNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4494700369746600, guid: 62d662fac1eacae47939d0544731a6e3, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 81
-      objectReference: {fileID: 0}
-    - target: {fileID: 23267583852369264, guid: 62d662fac1eacae47939d0544731a6e3,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 97f3e56c2df08be439933fab4d72d89d, type: 2}
-    - target: {fileID: 23285936986831970, guid: 62d662fac1eacae47939d0544731a6e3,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 97f3e56c2df08be439933fab4d72d89d, type: 2}
-    - target: {fileID: 23310294295965888, guid: 62d662fac1eacae47939d0544731a6e3,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 97f3e56c2df08be439933fab4d72d89d, type: 2}
-    - target: {fileID: 23454644716129742, guid: 62d662fac1eacae47939d0544731a6e3,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0cdf3e211170a5645bd9e1a3320de84c, type: 2}
-    - target: {fileID: 1437986221963802, guid: 62d662fac1eacae47939d0544731a6e3, type: 2}
-      propertyPath: m_Layer
-      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62d662fac1eacae47939d0544731a6e3, type: 2}
