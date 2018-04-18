@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 public class UIButtonController : MonoBehaviour {
 
 	public void LoadSceneByIndex(int sceneIndex){
-        GameManager.INSTANCE.LoadScene(sceneIndex);
+        GameManager.LoadScene(sceneIndex);
 	}
+
+    public void ClearPlayerPrefs() {
+        PlayerPrefs.DeleteAll();
+    }
 
 	public void ExitToDesktop(){
 		#if UNITY_EDITOR
