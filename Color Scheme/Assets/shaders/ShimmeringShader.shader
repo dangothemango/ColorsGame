@@ -22,9 +22,13 @@ Shader "Custom/ShimmeringShader" {
 		Cull back
 		//Grab a render of the background to shader calling object and turn into 
 		// a texture called ScreenGrab
+
+		UsePass "Opaque/Diffuse/FORWARD"
+
 		GrabPass{
 			"_ScreenGrab"
 		}
+
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standard keepalpha addshadow fullforwardshadows
