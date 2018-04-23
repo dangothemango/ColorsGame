@@ -30,7 +30,9 @@ public class Player : MonoBehaviour {
     [SerializeField]
     float stepSize = Mathf.PI/6;
     [SerializeField] InteractableObject gazedObject;
+	private Shade gazedShade;
     [SerializeField] LayerMask layerMask;
+	bool dying = false;
 
     Camera view;
     RaycastHit reachCast;
@@ -140,6 +142,13 @@ public class Player : MonoBehaviour {
             }
         }
 
+		if (reachCast.collider == null || reachCast.collider.GetComponent<Shade>()==null) {
+			if (gazedShade != null) {
+				gazedShade.onGazeExit ();
+				gazedShade = null;
+			}
+		} // deal with entry and exit of this code. Do we want to consider what item is equiped or nah.
+
         if (reachCast.collider == null || reachCast.collider.GetComponent<InteractableObject>()==null) {
             if (gazedObject != null) {
                 gazedObject.onGazeExit();
@@ -147,6 +156,7 @@ public class Player : MonoBehaviour {
             }
             return;
         }
+
         if (gazedObject != null) {
             if (reachCast.collider.gameObject == gazedObject.gameObject) {
                 return;
@@ -177,9 +187,11 @@ public class Player : MonoBehaviour {
         // {
             // TODO: Manipulate rotation to make the player fall over
         // }
+		if (dying)
+			return;
+		dying = true;
         sound.PlayOneShot(deathNoise);
         Invoke("resetPosition", DEATHTIME);
-        
     }
 
     public void resetPosition()
@@ -191,6 +203,9 @@ public class Player : MonoBehaviour {
 		//Color temp = hitCameraOverlay.color;
 		//temp.a = 0.0f;
 		//hitCameraOverlay.color = temp;
+		hitCameraOverlay.color = Color.clear;
+		hitByLaser = false;
+		dying = false;
     }
 
 	// Change currently equipped item.

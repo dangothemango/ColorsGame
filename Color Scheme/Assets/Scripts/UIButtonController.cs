@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 public class UIButtonController : MonoBehaviour {
 
 	public void LoadSceneByIndex(int sceneIndex){
-		SceneManager.LoadScene (sceneIndex);
+        GameManager.LoadScene(sceneIndex);
 	}
+
+    public void ClearPlayerPrefs() {
+        PlayerPrefs.DeleteAll();
+    }
 
 	public void ExitToDesktop(){
 		#if UNITY_EDITOR
@@ -20,6 +24,5 @@ public class UIButtonController : MonoBehaviour {
 	public void ChangeMenu(Canvas options) {
 		options.enabled = true;
 		enabled = false;
-		Debug.Log (11);
 	}
 }

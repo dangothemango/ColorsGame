@@ -31,7 +31,7 @@ public class PauseMenuScript : MonoBehaviour {
 	}
 
 	public void ExitToMainMenu (int menuIndex){
-		SceneManager.LoadScene (menuIndex);
+        GameManager.LoadScene(menuIndex);
 	}
 
 	public void Exit(){

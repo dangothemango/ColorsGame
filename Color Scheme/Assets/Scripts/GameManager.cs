@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour {
         }
         INSTANCE = this;
 #if UNITY_EDITOR
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
 #endif
     }
 	
@@ -71,5 +71,10 @@ public class GameManager : MonoBehaviour {
     public string GetItemSaveString(KeyCode item) {
         return item.ToString() + "PlayerItem";
     }
+
+    public static void LoadScene(int scene) {
+        Initiate.Fade(scene, Random.ColorHSV(), 1f);
+    }
+    
 
 }

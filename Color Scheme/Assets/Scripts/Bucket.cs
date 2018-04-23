@@ -66,7 +66,7 @@ public class Bucket : PlayerItem
         if (target == null) { return; }
 		if (target is PaintFountain)
 		{
-			PaintFountain p = target as PaintFountain;
+			PaintFountain p 	= target as PaintFountain;
 			FillBucket(p.color);
             p.SendMessage("GurgleNoise");
 

@@ -1,7 +1,7 @@
 {
-	"gameStart":["Hello"],
-	"enteringFirstDungeon":[],
+	"gameStart":["No", "This isnt right", "You shouldn't be here yet.", "It's not safe", "But ok, since you're here...", "Would you mind turning the lights back on?", "The fuses burnt out and I cant replace them from here", "I'll activate the red arch so you can at least leave this blasted room"],
+	"enteringFirstDungeon":["Some of the lights in this room run off backup power", "Oh, I do hope you're not colorblind.", "The last guy who was here was colorblind"],
+	"enteringMainRoomD1":["The red fuse is up in that corner over there. Please hurry."],
 	"deathMessages":[],
-	"respawnMessages":[],
-	"debugMessages":["Hey Friend", "Message 2", "Glorious", "This is fun", "How low can you go?"]
+	"respawnMessages":[]
 }

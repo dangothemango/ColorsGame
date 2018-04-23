@@ -20,6 +20,7 @@ public class Shade : SimplePaintableObject, ShadeInterface
     private float z;
     private float time;
     private float angle;
+	private bool  highlightShade;
 
     public Color shadeColor;
     public Color[] changeArray;
@@ -148,4 +149,9 @@ public class Shade : SimplePaintableObject, ShadeInterface
             Destroy(this.gameObject);
         }
     }
+
+	public void onGazeExit(){
+		// stop shade emitting particles or glowing
+		highlightShade = false;
+	}
 }

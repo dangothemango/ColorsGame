@@ -6,6 +6,8 @@ public class FuseBox : InteractableObject
 {
 	public Color col;
 	[SerializeField] LevelDoor door;
+    [SerializeField]
+    Battery battery;
     Fuse fuse;
 
     private void Awake() 
@@ -30,11 +32,12 @@ public class FuseBox : InteractableObject
         base.DoStart();
 		GetComponent<Renderer>().material.color = col;
         fuse = GetComponentInChildren<Fuse>();
+        fuse.col = col;
         fuse.gameObject.SetActive(false);
         if (GameManager.INSTANCE.LoadSomething(col.ToString() + "FuseBox") != null) {
             EnableFuse();
         }
-        else {
+        else if (door!=null){
             door.gameObject.SetActive(false);
         }
 	}
@@ -54,6 +57,9 @@ public class FuseBox : InteractableObject
         fuse.gameObject.SetActive(true);
         fuse.setColor();
         Destroy(fuse);
-        door.gameObject.SetActive(true);
+        if (door != null) {
+            door.gameObject.SetActive(true);
+        }
+        battery.Paint(col);
     }
 }

@@ -691,8 +691,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756662611065076}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.230003, y: -0.67300034, z: -10.446768}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4528707935216066}
@@ -1162,7 +1162,7 @@ MonoBehaviour:
   particleSystem: {fileID: 0}
   chargeRate: 0.5
   externalRenderer: {fileID: 0}
-  useRaycast: 0
+  useRaycast: 1
   isFlorescent: 0
 --- !u!114 &114458633342573384
 MonoBehaviour:
