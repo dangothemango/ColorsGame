@@ -95,14 +95,19 @@ public class Narrator : MonoBehaviour {
         if (message != null) {
             subtitleText.text = message;
         }
-        float t = 0;
         float duration = Mathf.Min(Mathf.Max(1f,showTimePerCharacter * subtitleText.text.Length),4f);
-        while (t < duration) {
+        yield return StartCoroutine(WaitForSecondsOrSkip(duration));
+        subtitleGameObject.SetActive(false);
+
+    }
+
+    IEnumerator WaitForSecondsOrSkip(float d) {
+        float t = 0;
+        while (t < d && !Input.GetKeyDown(GameManager.INSTANCE.SKIP_NARRATIVE)) {
             t += Time.deltaTime;
             yield return null;
         }
-        subtitleGameObject.SetActive(false);
-
+        yield return null;
     }
 
     void TriggerSequentialNarrative(NarrativeID id) {
