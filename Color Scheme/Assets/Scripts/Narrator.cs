@@ -82,18 +82,21 @@ public class Narrator : MonoBehaviour {
         }
         else {
             index = Random.Range(0, phrases.Length);
+            StartCoroutine(ShowAndHideSubtitle(null));
             if (phrases[index] == null) yield break;
         }
         string message = phrases[index];
         phrases[index] = null;
-        yield return StartCoroutine(ShowAndHideSubtitle(message,index));
+        yield return StartCoroutine(ShowAndHideSubtitle(message));
     }
 
-    IEnumerator ShowAndHideSubtitle(string message,int index) {
+    IEnumerator ShowAndHideSubtitle(string message) {
         subtitleGameObject.SetActive(true);
-        subtitleText.text = message;
+        if (message != null) {
+            subtitleText.text = message;
+        }
         float t = 0;
-        float duration = Mathf.Min(Mathf.Max(1f,showTimePerCharacter * message.Length),4f);
+        float duration = Mathf.Min(Mathf.Max(1f,showTimePerCharacter * subtitleText.text.Length),4f);
         while (t < duration) {
             t += Time.deltaTime;
             yield return null;
