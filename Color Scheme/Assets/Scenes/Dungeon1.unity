@@ -755,8 +755,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52778983}
-  m_LocalRotation: {x: 0.114530854, y: 0.87516075, z: 0.2529831, w: -0.39620197}
-  m_LocalPosition: {x: -9.348337, y: 9.017921, z: -32.660522}
+  m_LocalRotation: {x: 0.060981523, y: 0.87719727, z: 0.114259206, w: -0.46233228}
+  m_LocalPosition: {x: -3.6612463, y: 5.9770555, z: -21.68616}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 913612244}
@@ -7329,8 +7329,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 509948337}
-  m_LocalRotation: {x: 0.114530854, y: 0.87516075, z: 0.2529831, w: -0.39620197}
-  m_LocalPosition: {x: -9.348337, y: 9.017912, z: -33.600525}
+  m_LocalRotation: {x: 0.060981523, y: 0.87719727, z: 0.114259206, w: -0.46233228}
+  m_LocalPosition: {x: -3.6612463, y: 5.9770517, z: -22.62616}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 913612244}
@@ -10398,7 +10398,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh18974
+  m_Name: pb_Mesh147786
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -10707,7 +10707,7 @@ Prefab:
     - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
         type: 2}
       propertyPath: color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4864693474288130, guid: d90c23e7de7eeb145aab6ab0ad2dda36, type: 2}
       propertyPath: m_LocalPosition.x
@@ -10739,7 +10739,7 @@ Prefab:
     - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
         type: 2}
       propertyPath: color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114776477215980674, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
         type: 2}
@@ -16611,7 +16611,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh17020
+  m_Name: pb_Mesh145838
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -24133,7 +24133,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16564
+  m_Name: pb_Mesh145386
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
