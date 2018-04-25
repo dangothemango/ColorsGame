@@ -7,8 +7,8 @@ using UnityEngine;
 public class EyedropperScript : PlayerItem {
 	[SerializeField] private SimplePaintableObject paint;
 	[SerializeField] private Shade shade;
-	[SerializeField] private AudioSource sampleAudio;
-	[SerializeField] private AudioSource releaseAudio;
+	//[SerializeField] private AudioSource sampleAudio;
+	//[SerializeField] private AudioSource releaseAudio;
 
 	public Color currentColor = Color.clear;
 	bool hasPaint = false;
