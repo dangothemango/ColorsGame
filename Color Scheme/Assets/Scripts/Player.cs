@@ -92,7 +92,7 @@ public class Player : MonoBehaviour {
 		if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) { 
 		
             if (equippedItem != null && equippedItem.CanUseOn(gazedObject)) {
-                equippedItem.UseOn(gazedObject);
+				equippedItem.UseOn(gazedObject);
             } else if (gazedObject != null) {
 			    gazedObject.Interact();
 			}
@@ -132,7 +132,7 @@ public class Player : MonoBehaviour {
             for (float angle = 0; angle < Mathf.PI * 2; angle += stepSize) {
                 Vector3 direction = (view.transform.forward*reachDistance) + (view.transform.right*Mathf.Cos(angle) + view.transform.up * Mathf.Sin(angle)).normalized*coneRadius;
 
-                Physics.Raycast(view.transform.position, direction.normalized, out reachCast, direction.magnitude,layerMask);
+                Physics.Raycast(view.transform.position, direction.normalized, out reachCast, direction.magnitude, layerMask);
                 if (GameManager.INSTANCE.debug) {
                     Debug.DrawLine(view.transform.position, view.transform.position + direction, Color.green);
                 }

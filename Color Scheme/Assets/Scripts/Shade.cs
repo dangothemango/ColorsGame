@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class Shade : SimplePaintableObject, ShadeInterface
     public float lowX;
     public float lowY;
     public float lowZ;
+    public bool shadeIsInteractedWith = false;
 
     private float x;
     private float y;
@@ -28,9 +30,9 @@ public class Shade : SimplePaintableObject, ShadeInterface
 
     public void Start()
     {
-        x = Random.Range(-maxSpeed, maxSpeed);
-        y = Random.Range(-maxSpeed, maxSpeed);
-        z = Random.Range(-maxSpeed, maxSpeed);
+        x = UnityEngine.Random.Range(-maxSpeed, maxSpeed);
+        y = UnityEngine.Random.Range(-maxSpeed, maxSpeed);
+        z = UnityEngine.Random.Range(-maxSpeed, maxSpeed);
         angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 90;
         transform.localRotation = Quaternion.Euler(0, angle, 0);
         enabled = true;
@@ -38,14 +40,14 @@ public class Shade : SimplePaintableObject, ShadeInterface
 
     public void Update()
     {
-        if (enabled)
+        if (enabled && !shadeIsInteractedWith)
         {
             time += Time.deltaTime;
 
             //if (time > 1.0f)
             //{
-                x = Random.Range(-maxSpeed, maxSpeed);
-                z = Random.Range(-maxSpeed, maxSpeed);
+                x = UnityEngine.Random.Range(-maxSpeed, maxSpeed);
+                z = UnityEngine.Random.Range(-maxSpeed, maxSpeed);
                 angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
                 //transform.localRotation = Quaternion.Euler(0, angle, 0);
               //  time = 0.0f;
@@ -59,44 +61,58 @@ public class Shade : SimplePaintableObject, ShadeInterface
             {
                 deflect();
             }
+            if (shadeColor.a < 1.0) {
+                StartCoroutine(replenishShade());
+            }
+
         }
+    }
+
+    private IEnumerator replenishShade()
+    {
+        while (shadeColor.a < 1.0 && !shadeIsInteractedWith)
+        {
+            shadeColor.a += 0.05f;
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return null;
     }
 
     public void deflect()
     {
         if (transform.position.x > highX)
         {
-            x = Random.Range(-maxSpeed, 0.0f);
+            x = UnityEngine.Random.Range(-maxSpeed, 0.0f);
             angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
             //transform.localRotation = Quaternion.Euler(angle, 0, 0);
         }
         if (transform.position.x < lowX)
         {
-            x = Random.Range(0.0f, maxSpeed);
+            x = UnityEngine.Random.Range(0.0f, maxSpeed);
             angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
             //transform.localRotation = Quaternion.Euler(angle, 0, 0);
         }
         if (transform.position.y > highY)
         {
-            y = Random.Range(-maxSpeed, 0.0f);
+            y = UnityEngine.Random.Range(-maxSpeed, 0.0f);
             angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
             //transform.localRotation = Quaternion.Euler(0, angle, 0);
         }
         if (transform.position.y < lowY)
         {
-            y = Random.Range(0.0f, maxSpeed);
+            y = UnityEngine.Random.Range(0.0f, maxSpeed);
             angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
             //transform.localRotation = Quaternion.Euler(0, angle, 0);
         }
         if (transform.position.z > highZ)
         {
-            z = Random.Range(-maxSpeed, 0.0f);
+            z = UnityEngine.Random.Range(-maxSpeed, 0.0f);
             angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
             //transform.localRotation = Quaternion.Euler(0, 0, angle);
         }
         if (transform.position.z < lowZ)
         {
-            z = Random.Range(0.0f, maxSpeed);
+            z = UnityEngine.Random.Range(0.0f, maxSpeed);
             angle = Mathf.Atan2(x, z) * (180 / 3.141592f) + 45;
             //transform.localRotation = Quaternion.Euler(0, 0, angle);
         }
@@ -106,7 +122,7 @@ public class Shade : SimplePaintableObject, ShadeInterface
     public IEnumerator changeColor(GameObject obj)
     {
         yield return new WaitForSecondsRealtime(3);
-        int index = Random.Range(0, changeArray.Length);
+        int index = UnityEngine.Random.Range(0, changeArray.Length);
         obj.GetComponent<PaintableObject>().Paint(changeArray[index]);
         enabled = true;
     }
@@ -116,7 +132,7 @@ public class Shade : SimplePaintableObject, ShadeInterface
         // Shade collided with paintable object
         if (col.gameObject.name == "Battery")
         {
-            int rng = Random.Range(1, 11);
+            int rng = UnityEngine.Random.Range(1, 11);
             // 70% chance that the shade stops to change object color
             if (rng < 7)
             {

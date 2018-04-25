@@ -6,12 +6,14 @@ public class PlayerLoader : MonoBehaviour {
 
     public GameObject bucket;
     public GameObject flashlight;
+    public GameObject eyedropper;
 
     private void Start() {
-        Debug.LogWarning("Eyedropper and Laser gun are not implemented in loader");
+        Debug.LogWarning("Laser gun are not implemented in loader");
 
         bool hasBucket = GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(GameManager.INSTANCE.BUCKET)) != null;
         bool hasFlashlight = GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(GameManager.INSTANCE.FLASHLIGHT)) != null;
+        bool hasEyedropper = GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(GameManager.INSTANCE.EYEDROPPER)) != null; 
 
         if (hasBucket) {
             GameObject b = Instantiate(bucket, Vector3.zero, new Quaternion());
@@ -25,6 +27,12 @@ public class PlayerLoader : MonoBehaviour {
             pp.Interact();
         }
 
+        if (hasEyedropper)
+        {
+            GameObject e = Instantiate(eyedropper, Vector3.zero, new Quaternion());
+            PlayerItemPickup pp = e.GetComponent<PlayerItemPickup>();
+            pp.Interact();
+        }
         Destroy(this);
     }
     
