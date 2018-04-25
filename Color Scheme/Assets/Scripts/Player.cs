@@ -206,6 +206,8 @@ public class Player : MonoBehaviour {
 		//hitCameraOverlay.color = Color.clear;
 		hitByLaser = false;
 		dying = false;
+		FilterItems(Color.black);
+
     }
 
 	// Change currently equipped item.

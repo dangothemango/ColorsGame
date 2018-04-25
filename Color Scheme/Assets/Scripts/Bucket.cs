@@ -94,7 +94,7 @@ public class Bucket : PlayerItem
 		{
 			Color temp = currentColor;
 			EmptyBucket();
-			if (temp * c == c)
+			if (c != Color.black && temp * c == c)
 				FillBucket(c);
 		}
 	}
