@@ -82,24 +82,32 @@ public class Narrator : MonoBehaviour {
         }
         else {
             index = Random.Range(0, phrases.Length);
+            StartCoroutine(ShowAndHideSubtitle(null));
             if (phrases[index] == null) yield break;
         }
         string message = phrases[index];
         phrases[index] = null;
-        yield return StartCoroutine(ShowAndHideSubtitle(message,index));
+        yield return StartCoroutine(ShowAndHideSubtitle(message));
     }
 
-    IEnumerator ShowAndHideSubtitle(string message,int index) {
+    IEnumerator ShowAndHideSubtitle(string message) {
         subtitleGameObject.SetActive(true);
-        subtitleText.text = message;
+        if (message != null) {
+            subtitleText.text = message;
+        }
+        float duration = Mathf.Min(Mathf.Max(1f,showTimePerCharacter * subtitleText.text.Length),4f);
+        yield return StartCoroutine(WaitForSecondsOrSkip(duration));
+        subtitleGameObject.SetActive(false);
+
+    }
+
+    IEnumerator WaitForSecondsOrSkip(float d) {
         float t = 0;
-        float duration = Mathf.Min(Mathf.Max(1f,showTimePerCharacter * message.Length),4f);
-        while (t < duration) {
+        while (t < d && !Input.GetKeyDown(GameManager.INSTANCE.SKIP_NARRATIVE)) {
             t += Time.deltaTime;
             yield return null;
         }
-        subtitleGameObject.SetActive(false);
-
+        yield return null;
     }
 
     void TriggerSequentialNarrative(NarrativeID id) {

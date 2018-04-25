@@ -92,7 +92,10 @@ public class Bucket : PlayerItem
 	{
 		if (hasPaint && currentColor != c)
 		{
+			Color temp = currentColor;
 			EmptyBucket();
+			if (c != Color.black && temp * c == c)
+				FillBucket(c);
 		}
 	}
 
