@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaceShade : SimplePaintableObject, ShadeInterface
+public class RaceShade : Shade
 {
     Renderer rd;
 	bool changingColor;
@@ -11,16 +11,19 @@ public class RaceShade : SimplePaintableObject, ShadeInterface
 
     public Color shadeColor;
     public Color change;
-    public Color killColor;
 
-    public void Start()
+    protected override void Start()
     {
+        base.Start();
         enabled = true;
     }
 
-    public void Update()
+    protected override void Update()
     {
-		if (!changingColor)
+        base.Update();
+        if (dying) return;
+
+        if (!changingColor)
         {
             float step = maxSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
@@ -56,16 +59,4 @@ public class RaceShade : SimplePaintableObject, ShadeInterface
         }
     }
 
-    public void deflect()
-    {
-
-    }
-
-    public override void Paint(Color c)
-    {
-        if (c == killColor)
-        {
-            Destroy(this.gameObject);
-        }
-    }
 }

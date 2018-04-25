@@ -2,24 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MPShade : SimplePaintableObject, ShadeInterface
+public class MPShade : Shade
 {
 	public PaintableObject target;
     public float maxSpeed;
 
     public Color shadeColor;
     public Color[] changeArray;
-    public Color killColor;
+    
 
     public bool called;
 
-    public void Start()
+    protected override void Start()
     {
+        base.Start();
         called = false;
     }
 
-    public void Update()
+    protected override void Update()
     {
+        base.Update();
+        if (dying) return;
+
         while (called)
         {
             StartCoroutine(changeColor(target.gameObject));
@@ -34,15 +38,4 @@ public class MPShade : SimplePaintableObject, ShadeInterface
 		obj.GetComponent<PaintableObject>().Paint(changeArray[index]);
         called = false;
     }
-
-    public override void Paint(Color c)
-    {
-        if (c == killColor)
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    public void deflect() { }
-    public void OnCollisionEnter(Collision col) { }
 }
