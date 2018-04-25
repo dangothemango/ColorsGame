@@ -16,7 +16,7 @@ public class MPShadeManager : MonoBehaviour
     {
         int index = Random.Range(0, shades.Length);
         shades[index].called = true;
-        shades[index].Update();
+        // shades[index].Update();
     }
 
     void Update()
