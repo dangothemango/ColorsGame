@@ -7,7 +7,6 @@ public class MPShade : Shade
 	public PaintableObject target;
     public float maxSpeed;
 
-    public Color shadeColor;
     public Color[] changeArray;
     
 

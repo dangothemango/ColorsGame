@@ -9,7 +9,6 @@ public class RaceShade : Shade
     public Transform target;
     public float maxSpeed;
 
-    public Color shadeColor;
     public Color change;
 
     protected override void Start()
