@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 	public KeyCode BUCKET = KeyCode.Alpha1;
 	public KeyCode FLASHLIGHT = KeyCode.Alpha2;
     public KeyCode EYEDROPPER = KeyCode.Alpha3;
-	public KeyCode PAUSE_GAME = KeyCode.Escape;
+	public KeyCode PAUSE_GAME = KeyCode.Tab;
 
     [Header("Game System References")]
     public Narrator narrator;

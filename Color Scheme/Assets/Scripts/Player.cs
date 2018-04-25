@@ -50,6 +50,7 @@ public class Player : MonoBehaviour {
 
         view = GetComponentInChildren<Camera>();
         sound = gameObject.GetComponent<AudioSource>();
+
     }
 
 
@@ -110,6 +111,7 @@ public class Player : MonoBehaviour {
 
 		//Pause Game code
 		if (Input.GetKeyDown (GameManager.INSTANCE.PAUSE_GAME)) {
+            Debug.Log("hit");
 			PauseGame ();
 		}
 		
@@ -250,15 +252,16 @@ public class Player : MonoBehaviour {
 	}
 
 	public void PauseGame(){
-		Debug.Log ("Pause");
-		if (PauseMenuBGPanel.activeInHierarchy == false) {
+        if (PauseMenuBGPanel.activeInHierarchy == false) {
 			PauseMenuBGPanel.SetActive(true);
 			Time.timeScale = 0;
 			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = false;
-		} else {
+        } else {
 			PauseMenuBGPanel.SetActive(false);
 			Time.timeScale = 1;
 			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = true;
-		}
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
 	}
 }

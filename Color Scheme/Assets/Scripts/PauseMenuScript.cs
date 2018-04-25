@@ -7,7 +7,6 @@ public class PauseMenuScript : MonoBehaviour {
 	
 
 	void Start(){
-
 	}
 
 	void OnEnable(){
