@@ -75,9 +75,9 @@ public class EyedropperScript : PlayerItem {
                 shade.shadeIsInteractedWith = false; 
                 yield return null;
             }
-            c.a -= 0.1f;
+            c.a -= 0.001f;
             Debug.Log(c.a);
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.001f);
         }
         currentColor = shade.shadeColor;
         currentColor.a = 1.0f;
