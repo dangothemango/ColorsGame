@@ -1,8 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public static class StateLoader {
+public class StateLoader :MonoBehaviour {
+
+    [SerializeField]
+    GameObject buttonPrefab;
+    [SerializeField]
+    GameObject contentWindow;
 
     static string saveNamesString = "SAVE_NAMES";
     static HashSet<string> names;
@@ -113,8 +119,36 @@ public static class StateLoader {
         return SaveData.ToDictionary(sd);
     }
 
-    public static void SetCurrentSaveName(string s) {
-        currentSaveName = s;
+    public void SetCurrentSaveName(string name) {
+        currentSaveName = name;
+    }
+
+    private void OnEnable() {
+        RectTransform contentRect = contentWindow.transform as RectTransform;
+        foreach (RectTransform t in contentRect) {
+            Destroy(t.gameObject);
+        }
+        int topPadding = (int)((buttonPrefab.transform as RectTransform).rect.height * .2f);
+        int heightStep = topPadding * 5;
+        int count = 0;
+        foreach (string name in saveNames) {
+            GameObject newButton = Instantiate(buttonPrefab, contentRect);
+            RectTransform newT = newButton.transform as RectTransform;
+
+            Vector3 pos = newT.anchoredPosition3D;
+            Debug.Log(newT.localPosition.y);
+            pos.y =  -topPadding - (count * heightStep);
+            newT.anchoredPosition3D = pos;
+
+            Debug.Log(newT.localPosition.y);
+            Text text = newButton.GetComponentInChildren<Text>();
+            text.text = name;
+
+            UnityEngine.UI.Button b = newButton.GetComponent<UnityEngine.UI.Button>();
+            b.onClick.AddListener(delegate { SetCurrentSaveName(name); });
+
+            count += 1;
+        }
     }
 
 }

@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
         INSTANCE = this;
-        currentState = new Dictionary<string, string>();
+        currentState = StateLoader.LoadState();
     }
 	
 	// Update is called once per frame
