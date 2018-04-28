@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 
     public static Player INSTANCE;
 	GameObject PauseMenuBGPanel;
+    GameObject CameraOverlay;
 	[HideInInspector] public Fuse carriedFuse;
 	[HideInInspector] public Graphic hitCameraOverlay;
 	[HideInInspector] bool hitByLaser = false;
@@ -57,8 +58,9 @@ public class Player : MonoBehaviour {
     void Start() {
         view = GetComponentInChildren<Camera>();
         sound = gameObject.GetComponent<AudioSource>();
-		//GetComponentInChildren<Image> ().GetComponent<Graphic> ();
-		hitCameraOverlay = GameObject.Find ("Player/FirstPersonCharacter/PlayerUITransitionCanvas/HitImage").GetComponent<Image> ().GetComponent<Image> (); 
+        //GetComponentInChildren<Image> ().GetComponent<Graphic> ();
+        CameraOverlay = GameObject.Find("Player/FirstPersonCharacter/PlayerUITransitionCanvas/HitImage");
+        hitCameraOverlay = CameraOverlay.GetComponent<Image> ().GetComponent<Image> (); 
 		Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
 		temp.a = 0.0f;
 		hitCameraOverlay.color = temp;
@@ -256,14 +258,19 @@ public class Player : MonoBehaviour {
 	public void PauseGame(){
         if (PauseMenuBGPanel.activeInHierarchy == false) {
 			PauseMenuBGPanel.SetActive(true);
+            CameraOverlay.SetActive(false);
 			Time.timeScale = 0;
 			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
         } else {
 			PauseMenuBGPanel.SetActive(false);
+            CameraOverlay.SetActive(true);
 			Time.timeScale = 1;
 			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = true;
             Cursor.lockState = CursorLockMode.None;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 	}
 }
