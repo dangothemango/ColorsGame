@@ -29,75 +29,7 @@ public class GameManager : MonoBehaviour {
     public DungeonConfigurator currentDungeon;
 
     Dictionary<string, string> currentState;
-    HashSet<string> saveNames;
-    string currentSaveName;
-    string saveNamesString = "SAVE_NAMES";
-
-    [System.Serializable]
-    public class SaveData {
-
-        public SaveItem[] saveItems;
-
-        public SaveData(int count) {
-            saveItems = new SaveItem[count];
-        }
-
-        public static SaveData FromDictionary(Dictionary<string,string> dict) {
-            SaveData sd= new SaveData(dict.Count);
-
-            int i = 0;
-            foreach (KeyValuePair<string,string> pair in dict) {
-                sd.saveItems[i] = new SaveItem(pair);
-                i++;
-            }
-
-            return sd;
-        }
-
-        public static Dictionary<string,string> ToDictionary(SaveData s) {
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-
-            foreach (SaveItem si in s.saveItems) {
-                dict.Add(si.key, si.value);
-            }
-
-            return dict;
-        }
-
-    }
-
-    [System.Serializable]
-    public class SaveItem {
-        public string key;
-        public string value;
-
-        public SaveItem(KeyValuePair<string,string> pair) {
-            this.key = pair.Key;
-            this.value = pair.Value;
-        }
-    }
-
-    [System.Serializable]
-    public class SaveNames {
-        public string[] names;
-
-        public static SaveNames FromSet(HashSet<string> hs) {
-            SaveNames sn = new SaveNames();
-            sn.names = new string[hs.Count];
-
-            int i = 0;
-            foreach (string s in hs) {
-                sn.names[i] = s;
-                i++;
-            }
-
-            return sn;
-        } 
-
-        public static HashSet<string> ToSet(SaveNames sn) {
-            return new HashSet<string>(sn.names);
-        }
-    }
+    
     
     public enum PUZZLE_ID {
         NONE,
@@ -114,12 +46,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
         INSTANCE = this;
-        currentState = new Dictionary<string, string>();
-        if (PlayerPrefs.HasKey(saveNamesString)) {
-            saveNames = SaveNames.ToSet(JsonUtility.FromJson<SaveNames>(PlayerPrefs.GetString(saveNamesString)));
-        } else {
-            saveNames = new HashSet<string>();
-        }
+        currentState = StateLoader.LoadState();
     }
 	
 	// Update is called once per frame
@@ -147,28 +74,6 @@ public class GameManager : MonoBehaviour {
         return null;
     }
 
-    public void SaveState(Dictionary<string, string> state, string saveName) {
-        if (saveName == null) {
-            //TODO Prompt user for savename
-            saveName = System.DateTime.Now.ToString(new System.Globalization.CultureInfo("en-US"));
-        }
-        Debug.Log("Saving with name: " + saveName);
-        string saveData = JsonUtility.ToJson(SaveData.FromDictionary(state),true);
-        if (saveNames.Add(saveName)) {
-            PlayerPrefs.SetString(saveNamesString, JsonUtility.ToJson(SaveNames.FromSet(saveNames)));
-        }
-
-        PlayerPrefs.SetString(saveName, saveData);
-    }
-
-    public Dictionary<string,string> LoadState(string saveName) {
-        if (!saveNames.Contains(saveName)) return new Dictionary<string, string>();
-        SaveData sd = JsonUtility.FromJson<SaveData>(PlayerPrefs.GetString(saveName));
-        currentSaveName = saveName;
-
-        return SaveData.ToDictionary(sd);
-    }
-
     public void OnPuzzleCompleted(PUZZLE_ID p = PUZZLE_ID.NONE) {
         mainAudioSource.PlayOneShot(puzzleCompleted);
     } 
@@ -183,7 +88,7 @@ public class GameManager : MonoBehaviour {
 
     private void OnDestroy() {
         if (INSTANCE == this) {
-            SaveState(currentState, currentSaveName);
+            StateLoader.SaveState(currentState);
         }
     }
 
