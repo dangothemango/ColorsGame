@@ -65,8 +65,6 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-
-
     public string LoadSomething(string key) {
         if (currentState.ContainsKey(key)) {
             return currentState[key];
