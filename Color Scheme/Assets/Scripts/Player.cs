@@ -113,7 +113,6 @@ public class Player : MonoBehaviour {
 
 		//Pause Game code
 		if (Input.GetKeyDown (GameManager.INSTANCE.PAUSE_GAME)) {
-            Debug.Log("hit");
 			PauseGame ();
 		}
 		

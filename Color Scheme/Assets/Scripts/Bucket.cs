@@ -14,7 +14,7 @@ public class Bucket : PlayerItem
 
 	public Color currentColor = Color.clear;
 	bool hasPaint = false;
-
+    
 	// Use this for initialization
 	void Awake() 
 	{
