@@ -75,22 +75,24 @@ public class Player : MonoBehaviour {
         if (equippedItem != null) {
             configItem(equippedItem);
         }
-		if (Input.GetKeyDown(GameManager.INSTANCE.NO_ITEM))
-			setItem(null);
-		else if (Input.GetKeyDown(GameManager.INSTANCE.BUCKET))
-		{
-//			foreach (PlayerItem i in items)
-//			{
-//				if (Input.GetKeyDown(i.itemKey))
-//				{
-//					setItem(i);
-//					break;
-//				}
-//			}
-			setItem(items[0]);
-		}
-		else if (Input.GetKeyDown(GameManager.INSTANCE.FLASHLIGHT))
-			setItem(items[1]);
+        if (Input.GetKeyDown(GameManager.INSTANCE.NO_ITEM))
+            setItem(null);
+        else if (Input.GetKeyDown(GameManager.INSTANCE.BUCKET))
+        {
+            //			foreach (PlayerItem i in items)
+            //			{
+            //				if (Input.GetKeyDown(i.itemKey))
+            //				{
+            //					setItem(i);
+            //					break;
+            //				}
+            //			}
+            setItem(items[0]);
+        }
+        else if (Input.GetKeyDown(GameManager.INSTANCE.FLASHLIGHT))
+            setItem(items[1]);
+        else if (Input.GetKeyDown(GameManager.INSTANCE.EYEDROPPER))
+            setItem(items[2]);
 
 		if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) { 
 		

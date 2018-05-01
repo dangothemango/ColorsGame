@@ -95,7 +95,7 @@ public class Flashlight : PlayerItem {
     }
 
     public void Charge(float c) {
-        Debug.Log("charging Fleshlight");
+        Debug.Log("charging Flashlight");
         ChargeLevel += c;
     }
 }
