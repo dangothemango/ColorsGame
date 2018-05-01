@@ -24,9 +24,9 @@ public class PlayerItemPickup : InteractableObject
 
 	public override void Interact()
 	{
-		Player player =Player.INSTANCE;
+		Player player = Player.INSTANCE;
 		GetComponent<PlayerItem>().enabled = true;
-		player.addItem(GetComponent<PlayerItem>());
+		player.addItem(GetComponent<PlayerItem> ());
         GetComponent<Collider>().isTrigger = true;
 		Destroy(this);
 	}
