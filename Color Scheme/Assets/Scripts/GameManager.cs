@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour {
     [Header("Audio")]
     public AudioSource mainAudioSource;
     public AudioClip puzzleCompleted;
+    public AudioClip shadeSound;
+    public AudioClip shadeDeath;
+    public float shadeMinFreq;
+    public float shadeMaxFreq;
 
     [Header("Debug")]
     public bool debug = false;

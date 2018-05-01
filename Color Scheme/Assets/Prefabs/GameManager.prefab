@@ -149,11 +149,19 @@ MonoBehaviour:
   ITEM_SECONDARY: 324
   NO_ITEM: 96
   BUCKET: 49
+  FLASHLIGHT: 50
+  EYEDROPPER: 51
+  PAUSE_GAME: 27
+  SKIP_NARRATIVE: 32
   narrator: {fileID: 114899685468508216}
   mainAudioSource: {fileID: 82635857538319786}
   puzzleCompleted: {fileID: 8300000, guid: 391661d43594c084385d18acb4c6b2bf, type: 3}
+  shadeSound: {fileID: 8300000, guid: 908254a104dfe46408d17007c39aad73, type: 3}
+  shadeDeath: {fileID: 8300000, guid: 1a691b3bab87c35479facf934b02a0f3, type: 3}
+  shadeMinFreq: 5
+  shadeMaxFreq: 10
   debug: 1
-  currentDungeon: 0
+  currentDungeon: {fileID: 0}
 --- !u!114 &114899685468508216
 MonoBehaviour:
   m_ObjectHideFlags: 1

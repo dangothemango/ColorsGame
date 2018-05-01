@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public abstract class Shade : SimplePaintableObject {
 
@@ -10,9 +11,26 @@ public abstract class Shade : SimplePaintableObject {
     public Color shadeColor;
     public bool shadeIsInteractedWith = false;
 
+    // [Header("Audio Frequency Controls")]
+    float minTime;
+    float maxTime;
+    float audioTimer;
+
+    AudioSource mouth;
+
+    AudioClip sound;
+    AudioClip deathSound;
+
     // Use this for initialization
     protected virtual void Start () {
         dying = false;
+        minTime = GameManager.INSTANCE.shadeMinFreq;
+        maxTime = GameManager.INSTANCE.shadeMaxFreq;
+        setAudioTimer();
+        sound = GameManager.INSTANCE.shadeSound;
+        deathSound = GameManager.INSTANCE.shadeDeath;
+        mouth = GetComponent<AudioSource>();
+        mouth.clip = sound;
 	}
 	
 	// Update is called once per frame
@@ -20,6 +38,15 @@ public abstract class Shade : SimplePaintableObject {
         if (dying)
         {
             // Do Dying Stuff
+            return;
+        }
+
+        // Not Dying stuff
+        audioTimer -= Time.deltaTime;
+        if(audioTimer <= 0f)
+        {
+            mouth.Play();
+            setAudioTimer();
         }
 	}
 
@@ -33,7 +60,11 @@ public abstract class Shade : SimplePaintableObject {
         yield return null;
     }
 
-
+    private void setAudioTimer()
+    {
+        float rand = Random.value;
+        audioTimer = (minTime * (1.0f - rand) + maxTime * rand);
+    }
 
     // 
     public override void Paint(Color c)
