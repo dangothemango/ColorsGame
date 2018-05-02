@@ -37,12 +37,25 @@ public class EyedropperScript : PlayerItem {
 	}
 
 	public override bool CanUseOn(InteractableObject target) {
-		return target.GetComponent<Shade>() != null;
+		if (hasShade)
+		{
+			ShadeCage cage = target.GetComponent<ShadeCage>();
+			return (cage && !cage.IsOccupied());
+		}
+		else
+			return (target.GetComponent<Shade>());
 	}
 
 	//do what eyedropper do!!
 	public override void UseOn (InteractableObject target)
     {			
+		if (hasShade && target.GetComponent<ShadeCage>())
+		{
+			target.GetComponent<ShadeCage>().ImprisonShade(shade.shadeColor);
+			hasShade = false;
+			shade = null;
+			return;
+		}
 		shade = target.GetComponent<Shade> ();
         shade.shadeIsInteractedWith = true;
 
@@ -88,5 +101,6 @@ public class EyedropperScript : PlayerItem {
         {
             Destroy(shade.gameObject, 0.0f);
         }
+		hasShade = true;
     }
 }
