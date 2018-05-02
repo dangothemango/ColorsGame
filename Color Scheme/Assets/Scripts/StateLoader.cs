@@ -119,7 +119,7 @@ public class StateLoader :MonoBehaviour {
         return SaveData.ToDictionary(sd);
     }
 
-    public void SetCurrentSaveName(string name) {
+    public static void SetCurrentSaveName(string name) {
         currentSaveName = name;
     }
 
@@ -136,11 +136,9 @@ public class StateLoader :MonoBehaviour {
             RectTransform newT = newButton.transform as RectTransform;
 
             Vector3 pos = newT.anchoredPosition3D;
-            Debug.Log(newT.localPosition.y);
             pos.y =  -topPadding - (count * heightStep);
             newT.anchoredPosition3D = pos;
-
-            Debug.Log(newT.localPosition.y);
+            
             Text text = newButton.GetComponentInChildren<Text>();
             text.text = name;
 
