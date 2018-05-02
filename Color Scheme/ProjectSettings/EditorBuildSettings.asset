@@ -17,3 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dungeon2.unity
     guid: 28acbff33733cd7409261c43dee7c7b3
+  - enabled: 1
+    path: Assets/Scenes/Dungeon3.unity
+    guid: 9fa905c78be57d445ab51df178c721df
+  - enabled: 1
+    path: Assets/Scenes/FinalRoom.unity
+    guid: 0513c4b399588234aa385710a8af328d

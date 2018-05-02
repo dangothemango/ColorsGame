@@ -9,6 +9,7 @@ public class FuseBox : InteractableObject
     [SerializeField]
     Battery battery;
     Fuse fuse;
+    public bool hasFuse = false;
 
     private void Awake() 
 	{
@@ -61,5 +62,6 @@ public class FuseBox : InteractableObject
             door.gameObject.SetActive(true);
         }
         battery.Paint(col);
+        hasFuse = true;
     }
 }
