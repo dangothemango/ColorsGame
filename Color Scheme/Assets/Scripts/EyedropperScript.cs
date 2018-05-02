@@ -51,7 +51,6 @@ public class EyedropperScript : PlayerItem {
 			// direct them to particle attractor at front of eyedropper tool
 			// if battery
 		// call its deposit function
-		// 
 	}
 
 	public override void Filter (Color c) {}

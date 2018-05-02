@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114649644992223372}
   - component: {fileID: 114764285473494066}
   - component: {fileID: 82473487955337582}
+  - component: {fileID: 136598762933316778}
   m_Layer: 0
   m_Name: Eyedropper
   m_TagString: Untagged
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1111978920278632}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 8.605381, y: 2.08, z: 2.7783}
+  m_LocalPosition: {x: 8.605381, y: 1.497, z: 2.7783}
   m_LocalScale: {x: 0.42035455, y: 0.42035463, z: 0.42035463}
   m_Children: []
   m_Father: {fileID: 0}
@@ -179,9 +180,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemKey: 0
-  itemOffset: {x: 0, y: 0, z: 0}
-  itemRotation: {x: 0, y: 0, z: 0}
-  itemScale: 1
+  itemOffset: {x: 1.01, y: -0.67, z: 0.22}
+  itemRotation: {x: 74.55, y: 4.9, z: 0}
+  itemScale: 0.5
   primaryTooltip: {fileID: 0}
   secondaryTooltip: {fileID: 0}
   paint: {fileID: 0}
@@ -202,3 +203,16 @@ MonoBehaviour:
   outlineWidth: 0.2
   interactable: 1
   tooltipIcon: {fileID: 0}
+--- !u!136 &136598762933316778
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111978920278632}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.0846083
+  m_Height: 3.2324584
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.7555407, z: -0.054710925}
