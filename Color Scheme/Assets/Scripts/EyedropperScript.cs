@@ -10,7 +10,8 @@ public class EyedropperScript : PlayerItem {
 	// [SerializeField] private AudioSource sampleAudio;
 	// [SerializeField] private AudioSource releaseAudio;
 
-	public Color currentColor = Color.clear;
+	Color gazedColor;
+    float alpha = 0.0f;
 	bool hasPaint = false;
 	bool hasShade = false;
 
@@ -24,12 +25,16 @@ public class EyedropperScript : PlayerItem {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        GetComponent<Renderer>().material.color = Color.white;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		//while clicking
+        Debug.Log(gazedColor);
+        Color temp = gazedColor;
+        temp.a = 1.0f;
+        GetComponent<Renderer>().material.color =  Color.Lerp(Color.white, temp, alpha);
+        //while clicking
 			//sampleTarget
 	}
 
@@ -38,7 +43,8 @@ public class EyedropperScript : PlayerItem {
 	}
 
 	//do what eyedropper do!!
-	public override void UseOn (InteractableObject target) {			
+	public override void UseOn (InteractableObject target)
+    {			
 		shade = target.GetComponent<Shade> ();
         shade.shadeIsInteractedWith = true;
 
@@ -47,7 +53,7 @@ public class EyedropperScript : PlayerItem {
 		// while interacting
 			// freeze shade
 			// lower alpha value of its colour
-			// emit particles from transform position 
+			// emit particles from transform position
 			// direct them to particle attractor at front of eyedropper tool
 			// if battery
 		// call its deposit function
@@ -61,24 +67,28 @@ public class EyedropperScript : PlayerItem {
 	}
 
 	public override Sprite GetTooltipIcon(InteractableObject io, out Color c) {
-		c = currentColor;
+		c = gazedColor;
 		return primaryTooltip;
 	}
 
     private IEnumerator SampleShade(Shade shade) {
-        Color c = shade.GetComponent<Renderer>().material.color;
-        while (c.a >= 0.0f) {
+        Color c = shade.GetComponent<Shade>().shadeColor;
+        while (c.a >= 0.0f)
+        {
+            gazedColor = shade.shadeColor;
+            alpha = 1.0f - c.a;
             if (Input.GetKeyUp(GameManager.INSTANCE.INTERACT)) {
                 shade.shadeIsInteractedWith = false;
-                yield return null;
+                break;
             }
-            c.a -= 0.001f;
-            Debug.Log(c.a);
-            yield return new WaitForSeconds(0.001f);
+            c.a -= 0.01f;
+            //Debug.Log(shade.GetComponent<Shade>().shadeColor);
+            shade.GetComponent<Shade>().shadeColor = c;
+            yield return new WaitForSeconds(0.01f);
         }
-        currentColor = shade.shadeColor;
-        currentColor.a = 1.0f;
-        Destroy(shade.gameObject, 0.0f);
-        yield return null;
+        if (c.a <= 0.0f)
+        {
+            Destroy(shade.gameObject, 0.0f);
+        }
     }
 }
