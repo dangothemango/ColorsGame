@@ -119,7 +119,7 @@ public class StateLoader :MonoBehaviour {
         return SaveData.ToDictionary(sd);
     }
 
-    public void SetCurrentSaveName(string name) {
+    public static void SetCurrentSaveName(string name) {
         currentSaveName = name;
     }
 

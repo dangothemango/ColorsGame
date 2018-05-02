@@ -94,5 +94,10 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void SaveNewState(string name) {
+        StateLoader.SetCurrentSaveName(name);
+        StateLoader.SaveState(currentState);
+    }
+
 
 }
