@@ -36,4 +36,4 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _NaturalTint: {r: 0.19204153, g: 0.7058823, b: 0.68461984, a: 1}
+    - _NaturalTint: {r: 0, g: 1, b: 1, a: 1}
