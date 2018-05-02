@@ -666,9 +666,6 @@ MonoBehaviour:
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  killColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeIsInteractedWith: 0
   maxSpeed: 0.05
   highX: 3.8
   highY: 0.9
@@ -676,8 +673,13 @@ MonoBehaviour:
   lowX: -3.8
   lowY: 0.2
   lowZ: -5
+  shadeColor: {r: 0, g: 0, b: 0, a: 0}
   changeArray:
   - {r: 0, g: 0, b: 1, a: 0}
+  killColor: {r: 0, g: 0, b: 0, a: 0}
+<<<<<<< HEAD
+=======
+  called: 0
 --- !u!1 &25999816
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,6 +745,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+>>>>>>> 4688f5af01da3936ffcd226808c11e2b157fea98
 --- !u!1 &46404358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,7 +2295,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 106804514}
-  m_LocalRotation: {x: 0.97236997, y: 0.23344529, z: 0.00000001490116, w: -0.00000012412879}
+  m_LocalRotation: {x: 0.9723699, y: 0.23344527, z: 0.000000014901159, w: -0.00000012412877}
   m_LocalPosition: {x: 0, y: 0, z: 0.85066545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3399,13 +3402,12 @@ MonoBehaviour:
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  killColor: {r: 1, g: 1, b: 1, a: 1}
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeIsInteractedWith: 0
   target: {fileID: 1773197552}
   maxSpeed: 0
+  shadeColor: {r: 0, g: 0, b: 0, a: 0}
   changeArray:
   - {r: 0, g: 0, b: 1, a: 1}
+  killColor: {r: 1, g: 1, b: 1, a: 1}
   called: 0
 --- !u!1 &219181148
 GameObject:
@@ -5086,12 +5088,6 @@ Prefab:
       propertyPath: currentDungeon
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114899685468508216, guid: 33e787432088f4449a77a11b82636633,
-        type: 2}
-      propertyPath: subtitleGameObject
-      value: 
-      objectReference: {fileID: 1576249340596606, guid: b3e0d10c2e217d34a84a50058fd9bdb1,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33e787432088f4449a77a11b82636633, type: 2}
   m_IsPrefabParent: 0
@@ -21809,7 +21805,11 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
+  m_Name: pb_Mesh242484
+=======
   m_Name: pb_Mesh60886
+>>>>>>> 4688f5af01da3936ffcd226808c11e2b157fea98
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -27038,7 +27038,11 @@ MonoBehaviour:
   Waypoints:
   - {fileID: 985467966}
   - {fileID: 985467965}
+<<<<<<< HEAD
+  speed: 4
+=======
   speed: 2
+>>>>>>> 4688f5af01da3936ffcd226808c11e2b157fea98
   forward: 1
 --- !u!114 &985467969
 MonoBehaviour:
@@ -27262,9 +27266,6 @@ MonoBehaviour:
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  killColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeIsInteractedWith: 0
   maxSpeed: 0.05
   highX: 3.8
   highY: 0.9
@@ -27272,8 +27273,10 @@ MonoBehaviour:
   lowX: -3.8
   lowY: 0.2
   lowZ: -5
+  shadeColor: {r: 0, g: 0, b: 0, a: 0}
   changeArray:
   - {r: 1, g: 0, b: 0, a: 0}
+  killColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &997892855
 GameObject:
   m_ObjectHideFlags: 0
@@ -31618,9 +31621,6 @@ MonoBehaviour:
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  killColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeIsInteractedWith: 0
   maxSpeed: 0.05
   highX: 3.8
   highY: 0.9
@@ -31628,8 +31628,10 @@ MonoBehaviour:
   lowX: -3.8
   lowY: 0.2
   lowZ: -5
+  shadeColor: {r: 0, g: 0, b: 0, a: 0}
   changeArray:
   - {r: 1, g: 1, b: 0, a: 0}
+  killColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1417830672
 GameObject:
   m_ObjectHideFlags: 0
@@ -32577,9 +32579,6 @@ MonoBehaviour:
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  killColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeIsInteractedWith: 0
   maxSpeed: 0.05
   highX: 3.8
   highY: 0.9
@@ -32587,8 +32586,10 @@ MonoBehaviour:
   lowX: -3.8
   lowY: 0.2
   lowZ: -5
+  shadeColor: {r: 0, g: 0, b: 0, a: 0}
   changeArray:
   - {r: 0, g: 1, b: 0, a: 0}
+  killColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1546901493
 GameObject:
   m_ObjectHideFlags: 0
@@ -33890,12 +33891,11 @@ MonoBehaviour:
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  killColor: {r: 1, g: 1, b: 1, a: 1}
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeIsInteractedWith: 0
   target: {fileID: 385756921}
   maxSpeed: 1
+  shadeColor: {r: 0, g: 0, b: 0, a: 0}
   change: {r: 1, g: 0, b: 0, a: 1}
+  killColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1716837088
 Prefab:
   m_ObjectHideFlags: 0
@@ -35703,7 +35703,11 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
+  m_Name: pb_Mesh241246
+=======
   m_Name: pb_Mesh59650
+>>>>>>> 4688f5af01da3936ffcd226808c11e2b157fea98
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -37417,20 +37421,23 @@ MonoBehaviour:
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  killColor: {r: 1, g: 1, b: 1, a: 1}
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeIsInteractedWith: 0
   target: {fileID: 1773197552}
   maxSpeed: 0
+  shadeColor: {r: 0, g: 0, b: 0, a: 0}
   changeArray:
   - {r: 1, g: 1, b: 1, a: 1}
+  killColor: {r: 1, g: 1, b: 1, a: 1}
   called: 0
 --- !u!43 &1925730696
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
+  m_Name: pb_Mesh38148
+=======
   m_Name: pb_Mesh269020
+>>>>>>> 4688f5af01da3936ffcd226808c11e2b157fea98
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -37901,13 +37908,12 @@ MonoBehaviour:
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  killColor: {r: 1, g: 1, b: 1, a: 1}
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeIsInteractedWith: 0
   target: {fileID: 1773197552}
   maxSpeed: 0
+  shadeColor: {r: 0, g: 0, b: 0, a: 0}
   changeArray:
   - {r: 1, g: 0, b: 1, a: 1}
+  killColor: {r: 1, g: 1, b: 1, a: 1}
   called: 0
 --- !u!1 &1972505514
 GameObject:
@@ -38882,13 +38888,12 @@ MonoBehaviour:
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  killColor: {r: 1, g: 1, b: 1, a: 1}
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeIsInteractedWith: 0
   target: {fileID: 1773197552}
   maxSpeed: 0
+  shadeColor: {r: 0, g: 0, b: 0, a: 0}
   changeArray:
   - {r: 0, g: 1, b: 0, a: 1}
+  killColor: {r: 1, g: 1, b: 1, a: 1}
   called: 0
 --- !u!1 &2027741111
 GameObject:
@@ -40247,13 +40252,12 @@ MonoBehaviour:
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  killColor: {r: 1, g: 1, b: 1, a: 1}
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeIsInteractedWith: 0
   target: {fileID: 1773197552}
   maxSpeed: 0
+  shadeColor: {r: 0, g: 0, b: 0, a: 0}
   changeArray:
   - {r: 1, g: 0, b: 0, a: 1}
+  killColor: {r: 1, g: 1, b: 1, a: 1}
   called: 0
 --- !u!1 &2122119589
 GameObject:
@@ -42666,8 +42670,8 @@ Transform:
   - {fileID: 1717172893}
   - {fileID: 109693022}
   - {fileID: 1949485875}
-  - {fileID: 2045419131}
   - {fileID: 1122895200}
+  - {fileID: 2045419131}
   - {fileID: 1493703688}
   - {fileID: 1543957715}
   - {fileID: 24888008}
