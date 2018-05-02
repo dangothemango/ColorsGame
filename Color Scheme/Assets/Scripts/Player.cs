@@ -96,11 +96,13 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) { 
 		
-            if (equippedItem != null && equippedItem.CanUseOn(gazedObject)) {
+            if (!(equippedItem is Flashlight) && equippedItem != null && equippedItem.CanUseOn(gazedObject)) {
 				equippedItem.UseOn(gazedObject);
             } else if (gazedObject != null) {
 			    gazedObject.Interact();
-			}
+			} else if (equippedItem is Flashlight) {
+                equippedItem.UseOn(gazedObject);
+            }
 		}
 
 		else if (Input.GetKeyDown(GameManager.INSTANCE.ITEM_SECONDARY) && equippedItem != null)
