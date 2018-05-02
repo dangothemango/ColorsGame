@@ -755,8 +755,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52778983}
-  m_LocalRotation: {x: -0.15017912, y: 0.61992246, z: 0.12244068, w: 0.7603622}
-  m_LocalPosition: {x: -35.350212, y: -5.760751, z: -6.1083126}
+  m_LocalRotation: {x: -0.00008709796, y: 0.9570923, z: 0.28978336, w: 0.00028448782}
+  m_LocalPosition: {x: -14.503181, y: 2.5557156, z: -26.547287}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 913612244}
@@ -5210,7 +5210,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh418846
+  m_Name: pb_Mesh86606
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -7267,6 +7267,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+  - {fileID: 2100000, guid: 25a3b8ed36b408d4c910b2836d7cf90b, type: 2}
   - {fileID: 2100000, guid: c2b168012e0555d4986a6d88cf15f1e5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -7329,8 +7330,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 509948337}
-  m_LocalRotation: {x: -0.15017912, y: 0.61992246, z: 0.12244068, w: 0.7603622}
-  m_LocalPosition: {x: -35.350212, y: -5.760752, z: -6.648309}
+  m_LocalRotation: {x: -0.00008709796, y: 0.9570923, z: 0.28978336, w: 0.00028448782}
+  m_LocalPosition: {x: -14.503181, y: 2.555709, z: -27.487286}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 913612244}
@@ -19661,7 +19662,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh419254
+  m_Name: pb_Mesh87008
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -27179,7 +27180,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh418220
+  m_Name: pb_Mesh85982
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -34903,6 +34904,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 2752889519fb5684499f435d98698fe5, type: 2}
+  - {fileID: 2100000, guid: 006ee43ddd5991f43ba9b4fcfafc09e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

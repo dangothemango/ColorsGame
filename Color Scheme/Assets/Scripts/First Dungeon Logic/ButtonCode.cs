@@ -102,23 +102,24 @@ public class ButtonCode : ButtonableObject {
                 break;
         }
         currentPresses[(pressIndex++)%codeLength] = c;
-
-        if (pressIndex >= codeLength) {
+        
             checkCode();
-        }
     }
 
     void checkCode() {
-        int pressesItr = pressIndex+1;
+        int pressesItr =  pressIndex-1+codeLength;
         Color[] code = currentCode == 1 ? code1 : code2;
-        int codeItr = FindInArray(code,currentPresses[pressesItr%codeLength]);
+        int codeItr = FindInArray(code,currentPresses[pressesItr%codeLength])+codeLength;
+        Material m = codeLabels[currentCode - 1].materials[1];
+        m.SetFloat("_Cutoff", 1);
         if (codeItr == -1) {
             return;
         }
         for (int i=0; i<codeLength; i++) {
-            if (currentPresses[(pressesItr++) % codeLength]!=(code[(codeItr++)%codeLength])) {
+            if (currentPresses[(pressesItr--) % codeLength]!=(code[(codeItr--)%codeLength])) {
                 return;
             }
+            m.SetFloat("_Cutoff", 1-(((float)i+1f)/ (float)codeLength));
         }
         OnSuccessfulCode();
     }
@@ -146,11 +147,6 @@ public class ButtonCode : ButtonableObject {
     }
 
     void OnSuccessfulCode() {
-        if (currentCode <= codeLabels.Length) {
-            Renderer r = codeLabels[currentCode-1];
-            r.material.SetColor("_MainColor", Color.green);
-            r.material.SetColor("_EmissionColor", Color.green);
-        }
         switch (currentCode) {
             case 1:
                 code1Door.TriggerOpen();
