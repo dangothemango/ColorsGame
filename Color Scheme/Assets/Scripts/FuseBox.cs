@@ -61,5 +61,6 @@ public class FuseBox : InteractableObject
             door.gameObject.SetActive(true);
         }
         battery.Paint(col);
+        GameObject.Find("FuseBoxes").SendMessage("Activate", col);
     }
 }
