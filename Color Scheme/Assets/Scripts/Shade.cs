@@ -6,10 +6,13 @@ using UnityEditor;
 public abstract class Shade : SimplePaintableObject {
 
     protected bool dying;
-    public Color killColor;
+    private Color killColor;
     private bool highlightShade;
     public Color shadeColor;
     public bool shadeIsInteractedWith = false;
+
+	[SerializeField] Renderer[] rends;
+	[SerializeField] float colorFactor = 0.5f;
 
     // [Header("Audio Frequency Controls")]
     float minTime;
@@ -23,6 +26,7 @@ public abstract class Shade : SimplePaintableObject {
 
     // Use this for initialization
     protected virtual void Start () {
+		killColor = shadeColor;
         dying = false;
         minTime = GameManager.INSTANCE.shadeMinFreq;
         maxTime = GameManager.INSTANCE.shadeMaxFreq;
@@ -31,6 +35,12 @@ public abstract class Shade : SimplePaintableObject {
         deathSound = GameManager.INSTANCE.shadeDeath;
         mouth = GetComponent<AudioSource>();
         mouth.clip = sound;
+		foreach (Renderer r in rends)
+		{
+			
+			r.material.EnableKeyword("_EMISSION");
+			r.material.SetColor("_EmissionColor", shadeColor / (1 / colorFactor));
+		}
 	}
 	
 	// Update is called once per frame

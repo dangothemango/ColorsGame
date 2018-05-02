@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33173646854861656}
   - component: {fileID: 183324812168405694}
   - component: {fileID: 137110430130944628}
+  - component: {fileID: 64452814445240728}
+  - component: {fileID: 64858026367819508}
   m_Layer: 0
   m_Name: Body (Cloth)
   m_TagString: Untagged
@@ -119,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1293906168739894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.821, y: 0.409, z: 2.912}
+  m_LocalPosition: {x: 25.3137, y: 24, z: 27.522022}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4903271503797698}
@@ -155,7 +157,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 13668fbe47bd0be449a6a163faeed2f8, type: 3}
+  - {fileID: 2100000, guid: bad1f15973fa39640a6617d8b9a34621, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,6 +220,34 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 0}
+--- !u!64 &64452814445240728
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002719017911804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300002, guid: 06b48d44892cf294c86d1c71a41db9bf, type: 3}
+--- !u!64 &64858026367819508
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002719017911804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300002, guid: 06b48d44892cf294c86d1c71a41db9bf, type: 3}
 --- !u!82 &82501269783156594
 AudioSource:
   m_ObjectHideFlags: 1
@@ -329,9 +359,12 @@ MonoBehaviour:
   botherSaving: 1
   debugObject: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  killColor: {r: 0, g: 0, b: 0, a: 0}
-  shadeColor: {r: 0, g: 0, b: 0, a: 0}
+  shadeColor: {r: 1, g: 1, b: 1, a: 1}
   shadeIsInteractedWith: 0
+  rends:
+  - {fileID: 137110430130944628}
+  - {fileID: 23029992117314886}
+  colorFactor: 0.5
   maxSpeed: 1
   highX: 5
   highY: 1
@@ -409,7 +442,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1587d7a2e60076b4ca0951ac3509a592, type: 3}
+  - {fileID: 2100000, guid: bad1f15973fa39640a6617d8b9a34621, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -438,8 +471,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0, y: -0.29999065, z: 0}
-    m_Extent: {x: 0.6000004, y: 0.30000973, z: 0.5999985}
+    m_Center: {x: 0, y: -0.2999897, z: 0}
+    m_Extent: {x: 0.5999985, y: 0.30000877, z: 0.5999985}
   m_DirtyAABB: 0
 --- !u!137 &137615267538180130
 SkinnedMeshRenderer:
