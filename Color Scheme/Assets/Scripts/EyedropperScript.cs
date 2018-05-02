@@ -10,7 +10,8 @@ public class EyedropperScript : PlayerItem {
 	// [SerializeField] private AudioSource sampleAudio;
 	// [SerializeField] private AudioSource releaseAudio;
 
-	public Color currentColor = Color.clear;
+	Color gazedColor;
+    float alpha = 0.0f;
 	bool hasPaint = false;
 	bool hasShade = false;
 
@@ -24,13 +25,16 @@ public class EyedropperScript : PlayerItem {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        GetComponent<Renderer>().material.color = Color.white;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        GetComponent<Renderer> ().material.color = currentColor;
-		//while clicking
+        Debug.Log(gazedColor);
+        Color temp = gazedColor;
+        temp.a = 1.0f;
+        GetComponent<Renderer>().material.color =  Color.Lerp(Color.white, temp, alpha);
+        //while clicking
 			//sampleTarget
 	}
 
@@ -63,23 +67,23 @@ public class EyedropperScript : PlayerItem {
 	}
 
 	public override Sprite GetTooltipIcon(InteractableObject io, out Color c) {
-		c = currentColor;
+		c = gazedColor;
 		return primaryTooltip;
 	}
 
     private IEnumerator SampleShade(Shade shade) {
-        Color c = shade.GetComponent<Renderer>().material.color;
+        Color c = shade.GetComponent<Shade>().shadeColor;
         while (c.a >= 0.0f)
         {
-            currentColor = shade.shadeColor;
-            currentColor.a = 1.0f - c.a;
+            gazedColor = shade.shadeColor;
+            alpha = 1.0f - c.a;
             if (Input.GetKeyUp(GameManager.INSTANCE.INTERACT)) {
                 shade.shadeIsInteractedWith = false;
                 break;
             }
             c.a -= 0.01f;
-            Debug.Log(shade.GetComponent<Renderer>().material.color);
-            shade.GetComponent<Renderer>().material.color = c;
+            //Debug.Log(shade.GetComponent<Shade>().shadeColor);
+            shade.GetComponent<Shade>().shadeColor = c;
             yield return new WaitForSeconds(0.01f);
         }
         if (c.a <= 0.0f)

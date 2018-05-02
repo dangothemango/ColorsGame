@@ -39,12 +39,11 @@ public abstract class Shade : SimplePaintableObject {
         mouth = GetComponent<AudioSource>();
         mouth.clip = sound;
         baseAlphaForColor = shadeColor.a;
-        GetComponent<Transform>().Find("ShadeImproved/Body (Cloth)").GetComponent<Renderer>().material.color = shadeColor;
-        GetComponent<Transform>().Find("ShadeImproved/Head (Static)").GetComponent<Renderer>().material.color = shadeColor;
+        GetComponent<Transform>().Find("Shade_Improved/Body (Cloth)").GetComponent<Renderer>().material.SetColor("Albedo", shadeColor);
+        GetComponent<Transform>().Find("Shade_Improved/Head (Static)").GetComponent<Renderer>().material.SetColor("Albedo", shadeColor);
     
 		foreach (Renderer r in rends)
 		{
-			
 			r.material.EnableKeyword("_EMISSION");
 			r.material.SetColor("_EmissionColor", shadeColor / (1 / colorFactor));
 		}
@@ -66,14 +65,17 @@ public abstract class Shade : SimplePaintableObject {
             setAudioTimer();
         }
 
-        Debug.Log(shadeColor.a);
+        //Debug.Log(shadeColor.a);
         if (!shadeIsInteractedWith && shadeColor.a < baseAlphaForColor)
         {
             shadeColor.a += 1.0f / 60.0f;
-            Debug.Log(shadeColor);
+            //Debug.Log(shadeColor);
             //StartCoroutine(replenishShade());
         }
-	}
+        GetComponent<Transform>().Find("Shade_Improved/Body (Cloth)").GetComponent<Renderer>().material.SetColor("Albedo", shadeColor);
+        GetComponent<Transform>().Find("Shade_Improved/Head (Static)").GetComponent<Renderer>().material.SetColor("Albedo", shadeColor);
+
+    }
 
     protected IEnumerator replenishShade()
     {
