@@ -10,11 +10,14 @@ public abstract class Shade : SimplePaintableObject {
     private bool highlightShade;
     public Color shadeColor;
     public bool shadeIsInteractedWith = false;
+    bool replenishing = false;
 
     // [Header("Audio Frequency Controls")]
     float minTime;
     float maxTime;
     float audioTimer;
+
+    float baseAlphaForColor;
 
     AudioSource mouth;
 
@@ -31,7 +34,10 @@ public abstract class Shade : SimplePaintableObject {
         deathSound = GameManager.INSTANCE.shadeDeath;
         mouth = GetComponent<AudioSource>();
         mouth.clip = sound;
-	}
+        baseAlphaForColor = shadeColor.a;
+        GetComponent<Transform>().Find("ShadeImproved/Body (Cloth)").GetComponent<Renderer>().material.color = shadeColor;
+        GetComponent<Transform>().Find("ShadeImproved/Head (Static)").GetComponent<Renderer>().material.color = shadeColor;
+    }
 	
 	// Update is called once per frame
 	protected virtual void Update () {
@@ -48,16 +54,27 @@ public abstract class Shade : SimplePaintableObject {
             mouth.Play();
             setAudioTimer();
         }
+
+        Debug.Log(shadeColor.a);
+        if (!shadeIsInteractedWith && shadeColor.a < baseAlphaForColor)
+        {
+            shadeColor.a += 1.0f / 60.0f;
+            Debug.Log(shadeColor);
+            //StartCoroutine(replenishShade());
+        }
 	}
 
     protected IEnumerator replenishShade()
     {
-        while (shadeColor.a < 1.0 && !shadeIsInteractedWith)
+        replenishing = true;
+        while (shadeColor.a < baseAlphaForColor)
         {
+            if (shadeIsInteractedWith) break;
+            Debug.Log("replenishing!!");
             shadeColor.a += 0.05f;
             yield return new WaitForSeconds(0.1f);
         }
-        yield return null;
+        replenishing = false;
     }
 
     private void setAudioTimer()
