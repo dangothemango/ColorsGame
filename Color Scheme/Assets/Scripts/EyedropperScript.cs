@@ -34,8 +34,6 @@ public class EyedropperScript : PlayerItem {
         Color temp = gazedColor;
         temp.a = 1.0f;
         GetComponent<Renderer>().material.color =  Color.Lerp(Color.white, temp, alpha);
-        //while clicking
-			//sampleTarget
 	}
 
 	public override bool CanUseOn(InteractableObject target) {

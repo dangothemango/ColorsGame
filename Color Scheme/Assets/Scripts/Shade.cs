@@ -72,8 +72,8 @@ public abstract class Shade : SimplePaintableObject {
             //Debug.Log(shadeColor);
             //StartCoroutine(replenishShade());
         }
-        GetComponent<Transform>().Find("Shade_Improved/Body (Cloth)").GetComponent<Renderer>().material.SetColor("Albedo", shadeColor);
-        GetComponent<Transform>().Find("Shade_Improved/Head (Static)").GetComponent<Renderer>().material.SetColor("Albedo", shadeColor);
+        GetComponent<Transform>().Find("Shade_Improved/Body (Cloth)").GetComponent<Renderer>().material.color = shadeColor;
+        GetComponent<Transform>().Find("Shade_Improved/Head (Static)").GetComponent<Renderer>().material.color = shadeColor;
 
     }
 
