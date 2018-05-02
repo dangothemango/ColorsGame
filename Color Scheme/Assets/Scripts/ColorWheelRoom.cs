@@ -60,8 +60,7 @@ public class ColorWheelRoom : MonoBehaviour {
     }
 
     private void OnTriggerStay(Collider other) {
-
-        Debug.Log("F");
+       
         other.transform.position += Vector3.up * liftSpeed * Time.deltaTime;
     }
 
