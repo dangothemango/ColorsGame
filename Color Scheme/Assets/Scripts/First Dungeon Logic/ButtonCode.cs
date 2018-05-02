@@ -11,7 +11,6 @@ public class ButtonCode : ButtonableObject {
 
     [Header("Code 1")]
     public Color[] code1;
-    public Battery[] code1Lights;
     public ButtonActivatedDoor code1Door;
 
     [Header("Transition")]
@@ -19,7 +18,6 @@ public class ButtonCode : ButtonableObject {
 
     [Header("Code 2")]
     public Color[] code2;
-    public Battery[] code2Lights;
     public ButtonActivatedDoor code2Door;
 
     [Header("Other Attributes")]
@@ -93,14 +91,6 @@ public class ButtonCode : ButtonableObject {
     public override void OnPressed(Color c) {
         if (!updateCode) return;
         base.OnPressed(c);
-        switch (currentCode) {
-            case 1:
-                code1Lights[pressIndex % codeLength].Paint(c);
-                break;
-            case 2:
-                code2Lights[pressIndex % codeLength].Paint(c);
-                break;
-        }
         currentPresses[(pressIndex++)%codeLength] = c;
         
             checkCode();
@@ -150,16 +140,10 @@ public class ButtonCode : ButtonableObject {
         switch (currentCode) {
             case 1:
                 code1Door.TriggerOpen();
-                foreach (Battery b in code1Lights) {
-                    b.Paint(Color.green);
-                }
                 StartCoroutine(FlashNewColor());
                 break;
             case 2:
                 code2Door.TriggerOpen();
-                foreach (Battery b in code2Lights) {
-                    b.Paint(Color.green);
-                }
                 break;
         }
         currentCode++;
