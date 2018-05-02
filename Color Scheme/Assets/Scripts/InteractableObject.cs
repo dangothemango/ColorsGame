@@ -29,7 +29,7 @@ public class InteractableObject : MonoBehaviour {
 	}
 
     protected virtual void DoStart() {
-        if (outlinedMesh) {
+        if (outlinedMesh) { 
             r = outlinedMesh.GetComponent<Renderer>();
         }
         else {

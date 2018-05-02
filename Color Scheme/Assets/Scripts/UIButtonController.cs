@@ -20,9 +20,4 @@ public class UIButtonController : MonoBehaviour {
 		Application.Quit();
 		#endif
 	}
-
-	public void ChangeMenu(Canvas options) {
-		options.enabled = true;
-		enabled = false;
-	}
 }

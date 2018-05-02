@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 
     public static Player INSTANCE;
 	GameObject PauseMenuBGPanel;
+    GameObject CameraOverlay;
 	[HideInInspector] public Fuse carriedFuse;
 	[HideInInspector] public Graphic hitCameraOverlay;
 	[HideInInspector] bool hitByLaser = false;
@@ -41,6 +42,8 @@ public class Player : MonoBehaviour {
     public float tooltipOffset = .5f;
 	float currTime;
 
+    FirstPersonController controller;
+
     void Awake() {
         if (INSTANCE == null) {
             INSTANCE = this;
@@ -50,18 +53,25 @@ public class Player : MonoBehaviour {
 
         view = GetComponentInChildren<Camera>();
         sound = gameObject.GetComponent<AudioSource>();
+
     }
 
+    public void TransitionRooms()
+    {
+        dying = true;
+    }
 
     void Start() {
         view = GetComponentInChildren<Camera>();
         sound = gameObject.GetComponent<AudioSource>();
-		//GetComponentInChildren<Image> ().GetComponent<Graphic> ();
-		hitCameraOverlay = GameObject.Find ("Player/FirstPersonCharacter/PlayerUITransitionCanvas/HitImage").GetComponent<Image> ().GetComponent<Image> (); 
+        //GetComponentInChildren<Image> ().GetComponent<Graphic> ();
+        CameraOverlay = GameObject.Find("Player/FirstPersonCharacter/PlayerUITransitionCanvas/HitImage");
+        hitCameraOverlay = CameraOverlay.GetComponent<Image> ().GetComponent<Image> (); 
 		Color temp = hitCameraOverlay.color; // apparently one cannot do this directly here is the workaround
 		temp.a = 0.0f;
 		hitCameraOverlay.color = temp;
 		PauseMenuBGPanel = GameObject.Find ("Player/FirstPersonCharacter/PlayerUITransitionCanvas/PauseMenuBGPanel");
+        controller = GetComponent<FirstPersonController>();
     }
 
     // Update is called once per frame
@@ -72,30 +82,34 @@ public class Player : MonoBehaviour {
         if (equippedItem != null) {
             configItem(equippedItem);
         }
-		if (Input.GetKeyDown(GameManager.INSTANCE.NO_ITEM))
-			setItem(null);
-		else if (Input.GetKeyDown(GameManager.INSTANCE.BUCKET))
-		{
-//			foreach (PlayerItem i in items)
-//			{
-//				if (Input.GetKeyDown(i.itemKey))
-//				{
-//					setItem(i);
-//					break;
-//				}
-//			}
-			setItem(items[0]);
-		}
-		else if (Input.GetKeyDown(GameManager.INSTANCE.FLASHLIGHT))
-			setItem(items[1]);
+        if (Input.GetKeyDown(GameManager.INSTANCE.NO_ITEM))
+            setItem(null);
+        else if (Input.GetKeyDown(GameManager.INSTANCE.BUCKET))
+        {
+            //			foreach (PlayerItem i in items)
+            //			{
+            //				if (Input.GetKeyDown(i.itemKey))
+            //				{
+            //					setItem(i);
+            //					break;
+            //				}
+            //			}
+            setItem(items[0]);
+        }
+        else if (Input.GetKeyDown(GameManager.INSTANCE.FLASHLIGHT))
+            setItem(items[1]);
+        else if (Input.GetKeyDown(GameManager.INSTANCE.EYEDROPPER))
+            setItem(items[2]);
 
 		if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) { 
 		
-            if (equippedItem != null && equippedItem.CanUseOn(gazedObject)) {
+            if (!(equippedItem is Flashlight) && equippedItem != null && equippedItem.CanUseOn(gazedObject)) {
 				equippedItem.UseOn(gazedObject);
             } else if (gazedObject != null) {
 			    gazedObject.Interact();
-			}
+			} else if (equippedItem is Flashlight) {
+                equippedItem.UseOn(gazedObject);
+            }
 		}
 
 		else if (Input.GetKeyDown(GameManager.INSTANCE.ITEM_SECONDARY) && equippedItem != null)
@@ -185,11 +199,12 @@ public class Player : MonoBehaviour {
     public void die(bool fallOver) {
         // if(fallOver)
         // {
-            // TODO: Manipulate rotation to make the player fall over
+        // TODO: Manipulate rotation to make the player fall over
         // }
 		if (dying)
 			return;
 		dying = true;
+        controller.ToggleDead(true);
         sound.PlayOneShot(deathNoise);
         Invoke("resetPosition", DEATHTIME);
     }
@@ -207,6 +222,7 @@ public class Player : MonoBehaviour {
 		hitByLaser = false;
 		dying = false;
 		FilterItems(Color.black);
+        controller.ToggleDead(false);
 
     }
 
@@ -252,15 +268,21 @@ public class Player : MonoBehaviour {
 	}
 
 	public void PauseGame(){
-		Debug.Log ("Pause");
-		if (PauseMenuBGPanel.activeInHierarchy == false) {
+        if (PauseMenuBGPanel.activeInHierarchy == false) {
 			PauseMenuBGPanel.SetActive(true);
+            CameraOverlay.SetActive(false);
 			Time.timeScale = 0;
 			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = false;
-		} else {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        } else {
 			PauseMenuBGPanel.SetActive(false);
+            CameraOverlay.SetActive(true);
 			Time.timeScale = 1;
 			INSTANCE.GetComponent<Transform>().GetComponent<FirstPersonController> ().enabled = true;
-		}
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 	}
 }

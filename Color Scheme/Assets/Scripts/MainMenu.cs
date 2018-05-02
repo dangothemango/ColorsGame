@@ -4,14 +4,31 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
+    [Header("Panels")]
+    public GameObject main;
+    public GameObject loadSave;
+    public GameObject options;
+
+    void SetActivePanel(string panel) {
+        main.SetActive(panel == "main");
+        loadSave.SetActive(panel == "loadSave");
+        options.SetActive(panel == "options");
+    }
+
 	// Use this for initialization
 	void Start () {
-		// TODO: set main menu to be enabled programmatically
-		//transform.Find ("MainMenuPanel").active = true;
+        OpenMainPanel();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void OpenLoadPanel() {
+        SetActivePanel("loadSave");
+    }
+
+    public void OpenMainPanel() {
+        SetActivePanel("main");
+    }
+
+    public void OpenOptionsPanel() {
+        SetActivePanel("options");
+    }
 }

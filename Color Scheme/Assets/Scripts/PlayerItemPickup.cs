@@ -9,6 +9,7 @@ public class PlayerItemPickup : InteractableObject
 	// Use this for initialization
 	void Start () 
 	{
+        DoStart();
         if (GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(GetComponent<PlayerItem>().itemKey)) != null && !this.gameObject.name.Contains("Clone")) {
             Destroy(this.gameObject);
         }
@@ -19,14 +20,14 @@ public class PlayerItemPickup : InteractableObject
 	// Update is called once per frame
 	void Update () 
 	{
-		
+        DoUpdate();
 	}
 
 	public override void Interact()
 	{
-		Player player =Player.INSTANCE;
+		Player player = Player.INSTANCE;
 		GetComponent<PlayerItem>().enabled = true;
-		player.addItem(GetComponent<PlayerItem>());
+		player.addItem(GetComponent<PlayerItem> ());
         GetComponent<Collider>().isTrigger = true;
 		Destroy(this);
 	}

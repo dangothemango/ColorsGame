@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour {
     [Header("Audio")]
     public AudioSource mainAudioSource;
     public AudioClip puzzleCompleted;
+    public AudioClip shadeSound;
+    public AudioClip shadeDeath;
+    public float shadeMinFreq;
+    public float shadeMaxFreq;
 
     [Header("Debug")]
     public bool debug = false;
@@ -27,6 +31,9 @@ public class GameManager : MonoBehaviour {
     public static GameManager INSTANCE;
 
     public DungeonConfigurator currentDungeon;
+
+    Dictionary<string, string> currentState;
+    
     
     public enum PUZZLE_ID {
         NONE,
@@ -43,9 +50,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
         INSTANCE = this;
-#if UNITY_EDITOR
-        PlayerPrefs.DeleteAll();
-#endif
+        currentState = StateLoader.LoadState();
     }
 	
 	// Update is called once per frame
@@ -56,12 +61,17 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void SaveSomething(string key, string data) {
-        PlayerPrefs.SetString(key, data);
+        if (currentState.ContainsKey(key)) {
+            currentState[key] = data;
+        }
+        else {
+            currentState.Add(key, data);
+        }
     }
 
     public string LoadSomething(string key) {
-        if (PlayerPrefs.HasKey(key)) {
-            return PlayerPrefs.GetString(key);
+        if (currentState.ContainsKey(key)) {
+            return currentState[key];
         }
         return null;
     }
@@ -77,6 +87,18 @@ public class GameManager : MonoBehaviour {
     public static void LoadScene(int scene) {
         Initiate.Fade(scene, Random.ColorHSV(), 1f);
     }
-    
+
+    private void OnDestroy() {
+        if (INSTANCE == this) {
+            StateLoader.SetCurrentSaveName(null);
+            StateLoader.SaveState(currentState);
+        }
+    }
+
+    public void SaveNewState(string name) {
+        StateLoader.SetCurrentSaveName(name);
+        StateLoader.SaveState(currentState);
+    }
+
 
 }

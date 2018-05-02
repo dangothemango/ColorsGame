@@ -7,8 +7,8 @@ using UnityEngine;
 public class EyedropperScript : PlayerItem {
 	[SerializeField] private SimplePaintableObject paint;
 	[SerializeField] private Shade shade;
-	//[SerializeField] private AudioSource sampleAudio;
-	//[SerializeField] private AudioSource releaseAudio;
+	// [SerializeField] private AudioSource sampleAudio;
+	// [SerializeField] private AudioSource releaseAudio;
 
 	public Color currentColor = Color.clear;
 	bool hasPaint = false;
@@ -43,20 +43,17 @@ public class EyedropperScript : PlayerItem {
         shade.shadeIsInteractedWith = true;
 
         StartCoroutine(SampleShade(shade));
-		//through interactable script attached to Shade grab Shade script
-		//while interacting
-			//freeze shade
-			//lower alpha value of its colour
-			//emit particles from transform position 
-			//direct them to particle attractor at front of eyedropper tool
-			//if battery
-		//call its deposit function
-		//
+		// through interactable script attached to Shade grab Shade script
+		// while interacting
+			// freeze shade
+			// lower alpha value of its colour
+			// emit particles from transform position 
+			// direct them to particle attractor at front of eyedropper tool
+			// if battery
+		// call its deposit function
 	}
 
-	public override void Filter (Color c){
-
-	}
+	public override void Filter (Color c) {}
 
 	public override void SecondaryUsage(){
 
@@ -72,7 +69,7 @@ public class EyedropperScript : PlayerItem {
         Color c = shade.GetComponent<Renderer>().material.color;
         while (c.a >= 0.0f) {
             if (Input.GetKeyUp(GameManager.INSTANCE.INTERACT)) {
-                shade.shadeIsInteractedWith = false; 
+                shade.shadeIsInteractedWith = false;
                 yield return null;
             }
             c.a -= 0.001f;
