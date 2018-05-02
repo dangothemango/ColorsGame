@@ -100,7 +100,7 @@ public class EyedropperScript : PlayerItem {
         if (c.a <= 0.0f)
         {
             Destroy(shade.gameObject, 0.0f);
+			hasShade = true;
         }
-		hasShade = true;
     }
 }

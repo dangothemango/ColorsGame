@@ -14,6 +14,11 @@ public class Player : MonoBehaviour {
 	[HideInInspector] bool hitByLaser = false;
 	[HideInInspector] Color hitColor;
 
+    private bool hasBucket;
+    private bool hasFlashlight;
+    private bool hasEyedropper;
+    private bool hasFuse;
+
     [SerializeField] float DEATHTIME = 2.3f;
 
 	[SerializeField] List<PlayerItem> items = new List<PlayerItem>();
@@ -72,7 +77,11 @@ public class Player : MonoBehaviour {
 		hitCameraOverlay.color = temp;
 		PauseMenuBGPanel = GameObject.Find ("Player/FirstPersonCharacter/PlayerUITransitionCanvas/PauseMenuBGPanel");
         controller = GetComponent<FirstPersonController>();
-    }
+        hasBucket = false;
+        hasFlashlight = false;
+        hasEyedropper = false;
+        hasFuse = false;
+}
 
     // Update is called once per frame
     void Update() {
@@ -250,9 +259,45 @@ public class Player : MonoBehaviour {
 	{
         GameManager.INSTANCE.SaveSomething(GameManager.INSTANCE.GetItemSaveString(item.itemKey),true.ToString());
 		items.Add(item);
+        if (item.name == "bucket")
+        {
+            hasBucket = true;
+        }
+        else if (item.name == "Flashlight")
+        {
+            hasFlashlight = true;
+        }
+        else if (item.name == "Eyedropper")
+        {
+            hasEyedropper = true;
+        }
+        else if (carriedFuse != null)
+        {
+            hasFuse = true;
+        }
         configItem(item);
 		setItem(item);
 	}
+
+    public bool bucket()
+    {
+        return hasBucket;
+    }
+
+    public bool flashlight()
+    {
+        return hasFlashlight;
+    }
+
+    public bool eyedropper()
+    {
+        return hasEyedropper;
+    }
+
+    public bool fuse()
+    {
+        return hasFuse;
+    }
 
     void configItem(PlayerItem item) {
         item.transform.SetParent(view.gameObject.transform);

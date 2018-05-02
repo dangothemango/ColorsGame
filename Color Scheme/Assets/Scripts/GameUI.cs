@@ -4,27 +4,49 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
-    public RawImage uiimage;
+    public bool uiimage;
+    public Image b;
+    public Image f;
+    public Image e;
+    public Image fus;
 
     void Start()
     {
-        uiimage = GetComponent<RawImage>();
-        uiimage.enabled = false;
+        uiimage = false;
+        b.enabled = false;
+        f.enabled = false;
+        e.enabled = false;
+        fus.enabled = false;
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.M) && uiimage.name == "mapui")
+        if (Input.GetKeyUp(KeyCode.I))
         {
-            uiimage.enabled = !uiimage.enabled;
+            uiimage = !uiimage;
+            b.enabled = false;
+            f.enabled = false;
+            e.enabled = false;
+            fus.enabled = false;
         }
-        else if (Input.GetKeyUp(KeyCode.I) && uiimage.name == "bucketinv")
+        if (uiimage)
         {
-            uiimage.enabled = !uiimage.enabled;
-        }
-        else if (Input.GetKeyUp(KeyCode.C) && uiimage.name == "bucketcol")
-        {
-            uiimage.enabled = !uiimage.enabled;
+            if (Player.INSTANCE.bucket())
+            {
+                b.enabled = true;
+            }
+            if (Player.INSTANCE.flashlight())
+            {
+                f.enabled = true;
+            }
+            if (Player.INSTANCE.eyedropper())
+            {
+                e.enabled = true;
+            }
+            if (Player.INSTANCE.fuse())
+            {
+                fus.enabled = true;
+            }
         }
     }
 }
