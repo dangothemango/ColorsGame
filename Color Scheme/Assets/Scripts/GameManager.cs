@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour {
 
     private void OnDestroy() {
         if (INSTANCE == this) {
+            StateLoader.SetCurrentSaveName(null);
             StateLoader.SaveState(currentState);
         }
     }
