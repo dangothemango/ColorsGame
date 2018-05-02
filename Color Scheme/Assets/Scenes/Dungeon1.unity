@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -755,8 +755,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52778983}
-  m_LocalRotation: {x: 0.060981523, y: 0.87719727, z: 0.114259206, w: -0.46233228}
-  m_LocalPosition: {x: -3.6612463, y: 5.9770555, z: -21.68616}
+  m_LocalRotation: {x: -0.15017912, y: 0.61992246, z: 0.12244068, w: 0.7603622}
+  m_LocalPosition: {x: -35.350212, y: -5.760751, z: -6.1083126}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 913612244}
@@ -7329,8 +7329,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 509948337}
-  m_LocalRotation: {x: 0.060981523, y: 0.87719727, z: 0.114259206, w: -0.46233228}
-  m_LocalPosition: {x: -3.6612463, y: 5.9770517, z: -22.62616}
+  m_LocalRotation: {x: -0.15017912, y: 0.61992246, z: 0.12244068, w: 0.7603622}
+  m_LocalPosition: {x: -35.350212, y: -5.760752, z: -6.648309}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 913612244}
@@ -23274,7 +23274,7 @@ Prefab:
     - target: {fileID: 23641809612541912, guid: 2d7f5a278a3b07a4fa991e8eec00fc9c,
         type: 2}
       propertyPath: m_Materials.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4155896898853908, guid: 2d7f5a278a3b07a4fa991e8eec00fc9c, type: 2}
       propertyPath: m_LocalPosition.x
@@ -23344,18 +23344,22 @@ Prefab:
         type: 2}
       propertyPath: outlinedMesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1896729068}
     - target: {fileID: 23641809612541912, guid: 2d7f5a278a3b07a4fa991e8eec00fc9c,
         type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: 5ae6d6d5e6a589c42896059b23cd52c9, type: 2}
     - target: {fileID: 114138543530626358, guid: 2d7f5a278a3b07a4fa991e8eec00fc9c,
         type: 2}
       propertyPath: interactionTooltip
       value: 
       objectReference: {fileID: 21300000, guid: 74e2a587a94a0f04684220d8d9734a71,
         type: 3}
+    - target: {fileID: 1575832295389360, guid: 2d7f5a278a3b07a4fa991e8eec00fc9c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d7f5a278a3b07a4fa991e8eec00fc9c, type: 2}
   m_IsPrefabParent: 0
@@ -32699,6 +32703,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1894407866}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1896729068 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1575832295389360, guid: 2d7f5a278a3b07a4fa991e8eec00fc9c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1336859353}
 --- !u!1 &1900044306
 GameObject:
   m_ObjectHideFlags: 0
