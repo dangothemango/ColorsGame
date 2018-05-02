@@ -42,6 +42,8 @@ public class Player : MonoBehaviour {
     public float tooltipOffset = .5f;
 	float currTime;
 
+    FirstPersonController controller;
+
     void Awake() {
         if (INSTANCE == null) {
             INSTANCE = this;
@@ -54,6 +56,10 @@ public class Player : MonoBehaviour {
 
     }
 
+    public void TransitionRooms()
+    {
+        dying = true;
+    }
 
     void Start() {
         view = GetComponentInChildren<Camera>();
@@ -65,6 +71,7 @@ public class Player : MonoBehaviour {
 		temp.a = 0.0f;
 		hitCameraOverlay.color = temp;
 		PauseMenuBGPanel = GameObject.Find ("Player/FirstPersonCharacter/PlayerUITransitionCanvas/PauseMenuBGPanel");
+        controller = GetComponent<FirstPersonController>();
     }
 
     // Update is called once per frame
@@ -96,11 +103,13 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKeyDown(GameManager.INSTANCE.INTERACT)) { 
 		
-            if (equippedItem != null && equippedItem.CanUseOn(gazedObject)) {
+            if (!(equippedItem is Flashlight) && equippedItem != null && equippedItem.CanUseOn(gazedObject)) {
 				equippedItem.UseOn(gazedObject);
             } else if (gazedObject != null) {
 			    gazedObject.Interact();
-			}
+			} else if (equippedItem is Flashlight) {
+                equippedItem.UseOn(gazedObject);
+            }
 		}
 
 		else if (Input.GetKeyDown(GameManager.INSTANCE.ITEM_SECONDARY) && equippedItem != null)
@@ -190,11 +199,12 @@ public class Player : MonoBehaviour {
     public void die(bool fallOver) {
         // if(fallOver)
         // {
-            // TODO: Manipulate rotation to make the player fall over
+        // TODO: Manipulate rotation to make the player fall over
         // }
 		if (dying)
 			return;
 		dying = true;
+        controller.ToggleDead(true);
         sound.PlayOneShot(deathNoise);
         Invoke("resetPosition", DEATHTIME);
     }
@@ -212,6 +222,7 @@ public class Player : MonoBehaviour {
 		hitByLaser = false;
 		dying = false;
 		FilterItems(Color.black);
+        controller.ToggleDead(false);
 
     }
 
