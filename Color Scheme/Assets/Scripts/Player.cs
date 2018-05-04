@@ -59,6 +59,10 @@ public class Player : MonoBehaviour {
         view = GetComponentInChildren<Camera>();
         sound = gameObject.GetComponent<AudioSource>();
 
+        view = GetComponentInChildren<Camera>();
+        sound = gameObject.GetComponent<AudioSource>();
+        controller = GetComponent<FirstPersonController>();
+
     }
 
     public void TransitionRooms()
@@ -67,8 +71,6 @@ public class Player : MonoBehaviour {
     }
 
     void Start() {
-        view = GetComponentInChildren<Camera>();
-        sound = gameObject.GetComponent<AudioSource>();
         //GetComponentInChildren<Image> ().GetComponent<Graphic> ();
         CameraOverlay = GameObject.Find("Player/FirstPersonCharacter/PlayerUITransitionCanvas/HitImage");
         hitCameraOverlay = CameraOverlay.GetComponent<Image> ().GetComponent<Image> (); 
@@ -76,7 +78,6 @@ public class Player : MonoBehaviour {
 		temp.a = 0.0f;
 		hitCameraOverlay.color = temp;
 		PauseMenuBGPanel = GameObject.Find ("Player/FirstPersonCharacter/PlayerUITransitionCanvas/PauseMenuBGPanel");
-        controller = GetComponent<FirstPersonController>();
         hasBucket = false;
         hasFlashlight = false;
         hasEyedropper = false;

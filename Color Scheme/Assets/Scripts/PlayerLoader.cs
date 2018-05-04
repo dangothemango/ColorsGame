@@ -22,6 +22,7 @@ public class PlayerLoader : MonoBehaviour {
         }
 
         if (hasFlashlight) {
+            Debug.Log("Loading Flashlight");
             GameObject f = Instantiate(flashlight, Vector3.zero, new Quaternion());
             PlayerItemPickup pp = f.GetComponent<PlayerItemPickup>();
             pp.Interact();
