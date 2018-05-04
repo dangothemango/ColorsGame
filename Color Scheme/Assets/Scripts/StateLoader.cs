@@ -144,6 +144,7 @@ public class StateLoader :MonoBehaviour {
 
             UnityEngine.UI.Button b = newButton.GetComponent<UnityEngine.UI.Button>();
             b.onClick.AddListener(delegate { SetCurrentSaveName(name); });
+            b.onClick.AddListener(delegate { GameManager.LoadScene(1); });
 
             count += 1;
         }
