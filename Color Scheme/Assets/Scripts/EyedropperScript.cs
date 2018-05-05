@@ -30,10 +30,6 @@ public class EyedropperScript : PlayerItem {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(gazedColor);
-        Color temp = gazedColor;
-        temp.a = 1.0f;
-        GetComponent<Renderer>().material.color =  Color.Lerp(Color.white, temp, alpha);
 	}
 
 	public override bool CanUseOn(InteractableObject target) {
@@ -52,7 +48,8 @@ public class EyedropperScript : PlayerItem {
 		if (hasShade && target.GetComponent<ShadeCage>())
 		{
 			target.GetComponent<ShadeCage>().ImprisonShade(shade.shadeColor);
-			hasShade = false;
+            GetComponent<Renderer>().material.color = Color.white;
+            hasShade = false;
 			shade = null;
 			return;
 		}
@@ -83,10 +80,16 @@ public class EyedropperScript : PlayerItem {
 	}
 
     private IEnumerator SampleShade(Shade shade) {
+
+        Debug.Log(gazedColor);
         Color c = shade.GetComponent<Shade>().shadeColor;
+        
         while (c.a >= 0.0f)
         {
             gazedColor = shade.shadeColor;
+            Color temp = gazedColor;
+            temp.a = 1.0f;
+            GetComponent<Renderer>().material.color = Color.Lerp(Color.white, temp, alpha);
             alpha = 1.0f - c.a;
             if (Input.GetKeyUp(GameManager.INSTANCE.INTERACT)) {
                 shade.shadeIsInteractedWith = false;
