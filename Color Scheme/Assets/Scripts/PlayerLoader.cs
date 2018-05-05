@@ -11,9 +11,9 @@ public class PlayerLoader : MonoBehaviour {
     private void Start() {
         Debug.LogWarning("Laser gun are not implemented in loader");
 
-        bool hasBucket = GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(GameManager.INSTANCE.BUCKET)) != null;
-        bool hasFlashlight = GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(GameManager.INSTANCE.FLASHLIGHT)) != null;
-        bool hasEyedropper = GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(GameManager.INSTANCE.EYEDROPPER)) != null; 
+        bool hasBucket = GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(typeof(Bucket).Name)) != null;
+        bool hasFlashlight = GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(typeof(Flashlight).Name)) != null;
+        bool hasEyedropper = GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(typeof(EyedropperScript).Name)) != null; 
 
         if (hasBucket) {
             GameObject b = Instantiate(bucket, Vector3.zero, new Quaternion());

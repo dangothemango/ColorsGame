@@ -258,7 +258,7 @@ public class Player : MonoBehaviour {
 
 	public void addItem(PlayerItem item)
 	{
-        GameManager.INSTANCE.SaveSomething(GameManager.INSTANCE.GetItemSaveString(item.itemKey),true.ToString());
+        GameManager.INSTANCE.SaveSomething(GameManager.INSTANCE.GetItemSaveString(item.GetType().Name),true.ToString());
 		items.Add(item);
         if (item.name == "bucket")
         {
