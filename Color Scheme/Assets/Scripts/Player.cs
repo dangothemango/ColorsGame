@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
     private bool hasBucket;
     private bool hasFlashlight;
     private bool hasEyedropper;
-    private bool hasFuse;
+    public bool hasFuse;
 
     [SerializeField] float DEATHTIME = 2.3f;
 
@@ -270,10 +270,6 @@ public class Player : MonoBehaviour {
         else if (item.name == "Eyedropper")
         {
             hasEyedropper = true;
-        }
-        else if (carriedFuse != null)
-        {
-            hasFuse = true;
         }
         configItem(item);
 		setItem(item);

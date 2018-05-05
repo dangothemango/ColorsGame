@@ -50,6 +50,7 @@ public class FuseBox : InteractableObject
             EnableFuse();
 			Destroy(Player.INSTANCE.carriedFuse.gameObject);
 			Player.INSTANCE.carriedFuse = null;
+            Player.INSTANCE.hasFuse = false;
             GameManager.INSTANCE.SaveSomething(col.ToString() + "FuseBox", "true");
 		}
     }
