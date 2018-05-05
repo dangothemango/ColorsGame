@@ -57,6 +57,7 @@ public class ColorWheelRoom : MonoBehaviour {
         GetComponent<ReverseNormals>().InvertNormals();
         other.GetComponent<FirstPersonController>().m_StickToGroundForce = 0;
         other.GetComponent<FirstPersonController>().m_GravityMultiplier = 0;
+        GameObject.Find("FuseBoxes").GetComponent<HubMusicManager>().PlayerInLift();
     }
 
     private void OnTriggerStay(Collider other) {

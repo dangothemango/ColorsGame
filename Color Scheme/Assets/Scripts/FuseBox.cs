@@ -65,4 +65,9 @@ public class FuseBox : InteractableObject
         battery.Paint(col);
         hasFuse = true;
     }
+
+    public bool getFuse()
+    {
+        return hasFuse;
+    }
 }
