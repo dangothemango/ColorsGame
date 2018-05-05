@@ -373,6 +373,19 @@ GameObject:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 13668fbe47bd0be449a6a163faeed2f8, type: 3}
   m_PrefabInternal: {fileID: 112541468}
+--- !u!136 &84006495
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 84006493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.500001
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 0.0000008344651, y: -0.191421, z: -0.0000014305115}
 --- !u!114 &84006497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,18 +405,6 @@ MonoBehaviour:
   door: {fileID: 167298505}
   battery: {fileID: 354290761}
   hasFuse: 0
---- !u!65 &84006498
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 84006493}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.0000005, y: 0.6171585, z: 5.0000014}
-  m_Center: {x: 0.00000035762784, y: -0.19142097, z: 2.842171e-14}
 --- !u!1 &86246440
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,8 +820,8 @@ MonoBehaviour:
   door: {fileID: 1658769963}
   battery: {fileID: 615163912}
   hasFuse: 0
---- !u!65 &176693155
-BoxCollider:
+--- !u!136 &176693155
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -828,9 +829,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.0000005, y: 0.6171585, z: 5.0000014}
-  m_Center: {x: 0.00000035762784, y: -0.19142097, z: 2.842171e-14}
+  m_Radius: 2.500001
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 0.0000008344651, y: -0.191421, z: -0.0000014305115}
 --- !u!4 &242666620 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4101170474284938, guid: d90c23e7de7eeb145aab6ab0ad2dda36,
@@ -4855,8 +4857,8 @@ MonoBehaviour:
   door: {fileID: 0}
   battery: {fileID: 1984729426}
   hasFuse: 0
---- !u!65 &1255712824
-BoxCollider:
+--- !u!136 &1255712824
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -4864,9 +4866,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.0000005, y: 0.6171585, z: 5.0000014}
-  m_Center: {x: 0.00000035762784, y: -0.19142097, z: 2.842171e-14}
+  m_Radius: 2.500001
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 0.0000008344651, y: -0.191421, z: -0.0000014305115}
 --- !u!1 &1261742855
 GameObject:
   m_ObjectHideFlags: 0

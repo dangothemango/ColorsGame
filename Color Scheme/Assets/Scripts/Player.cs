@@ -225,10 +225,10 @@ public class Player : MonoBehaviour {
         transform.localPosition = startLocation.position;
         transform.localRotation = startLocation.rotation;
         transform.localScale = startLocation.localScale;    // Just covering all bases
-		//Color temp = hitCameraOverlay.color;
-		//temp.a = 0.0f;
-		//hitCameraOverlay.color = temp;
-		//hitCameraOverlay.color = Color.clear;
+		Color temp = hitCameraOverlay.color;
+		temp.a = 0.0f;
+		hitCameraOverlay.color = temp;
+		hitCameraOverlay.color = Color.clear;
 		hitByLaser = false;
 		dying = false;
 		FilterItems(Color.black);
