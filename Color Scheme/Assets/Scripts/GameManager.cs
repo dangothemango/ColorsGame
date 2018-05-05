@@ -80,8 +80,8 @@ public class GameManager : MonoBehaviour {
         mainAudioSource.PlayOneShot(puzzleCompleted);
     } 
 
-    public string GetItemSaveString(KeyCode item) {
-        return item.ToString() + "PlayerItem";
+    public string GetItemSaveString(string item) {
+        return item + "PlayerItem";
     }
 
     public static void LoadScene(int scene) {

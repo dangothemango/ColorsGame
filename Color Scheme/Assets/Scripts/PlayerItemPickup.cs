@@ -10,7 +10,8 @@ public class PlayerItemPickup : InteractableObject
 	void Start () 
 	{
         DoStart();
-        if (GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(GetComponent<PlayerItem>().itemKey)) != null && !this.gameObject.name.Contains("Clone")) {
+        if (GameManager.INSTANCE.LoadSomething(GameManager.INSTANCE.GetItemSaveString(GetComponent<PlayerItem>().GetType().Name)) != null && !this.gameObject.name.Contains("Clone")) {
+            Debug.Log("ObjectFound");
             Destroy(this.gameObject);
         }
         GetComponent<PlayerItem>().enabled = false;
