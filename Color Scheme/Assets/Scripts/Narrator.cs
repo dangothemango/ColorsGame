@@ -44,7 +44,8 @@ public class Narrator : MonoBehaviour {
         narrative = JsonUtility.FromJson<Narrative>(narrativeText.text);
 	}
 	
-	public void TriggerNarrative(NarrativeID id, bool sequential = false) { 
+	public void TriggerNarrative(NarrativeID id, bool sequential = false) {
+        return;
         if (!narrationActive) return;
         if (sequential) {
             TriggerSequentialNarrative(id);
@@ -73,6 +74,7 @@ public class Narrator : MonoBehaviour {
     }
 
     IEnumerator ShowMessage(string[] phrases,bool sequential, int i) {
+        yield break;
         if (phrases.Length == 0) yield break;
         int index = i;
         if (sequential) {
@@ -91,6 +93,7 @@ public class Narrator : MonoBehaviour {
     }
 
     IEnumerator ShowAndHideSubtitle(string message) {
+        yield break;
         subtitleGameObject.SetActive(true);
         if (message != null) {
             subtitleText.text = message;
@@ -102,6 +105,7 @@ public class Narrator : MonoBehaviour {
     }
 
     IEnumerator WaitForSecondsOrSkip(float d) {
+        yield break;
         float t = 0;
         while (t < d && !Input.GetKeyDown(GameManager.INSTANCE.SKIP_NARRATIVE)) {
             t += Time.deltaTime;
@@ -111,12 +115,14 @@ public class Narrator : MonoBehaviour {
     }
 
     void TriggerSequentialNarrative(NarrativeID id) {
+        return;
         if (!narrationActive) return;
         StopAllCoroutines();
         StartCoroutine(SequentialNarrative(id));
     }
 
     IEnumerator SequentialNarrative(NarrativeID id) {
+        yield break;
         string[] sequence = GetNarrativeById(id);
         for (int i =0; i <sequence.Length; i++) {
             yield return ShowMessage(sequence, true, i);

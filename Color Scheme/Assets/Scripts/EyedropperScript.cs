@@ -33,13 +33,12 @@ public class EyedropperScript : PlayerItem {
 	}
 
 	public override bool CanUseOn(InteractableObject target) {
-		if (hasShade)
-		{
-			ShadeCage cage = target.GetComponent<ShadeCage>();
-			return (cage && !cage.IsOccupied());
-		}
-		else
-			return (target.GetComponent<Shade>());
+        if (hasShade) {
+            ShadeCage cage = target.GetComponent<ShadeCage>();
+            return (cage != null && !cage.IsOccupied());
+        }
+        else
+            return (target.GetComponent<Shade>() != null);
 	}
 
 	//do what eyedropper do!!
@@ -76,7 +75,10 @@ public class EyedropperScript : PlayerItem {
 
 	public override Sprite GetTooltipIcon(InteractableObject io, out Color c) {
 		c = gazedColor;
-		return primaryTooltip;
+        if (io.GetComponent<ShadeCage>() != null) {
+            return secondaryTooltip;
+        }
+        return primaryTooltip;
 	}
 
     private IEnumerator SampleShade(Shade shade) {
