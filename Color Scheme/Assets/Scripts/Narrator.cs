@@ -45,6 +45,10 @@ public class Narrator : MonoBehaviour {
 	}
 	
 	public void TriggerNarrative(NarrativeID id, bool sequential = false) {
+        if (narratorCallback != null) {
+            narratorCallback.Invoke();
+            narratorCallback = null;
+        }
         return;
         if (!narrationActive) return;
         if (sequential) {
