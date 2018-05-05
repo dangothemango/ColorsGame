@@ -320,8 +320,11 @@ MonoBehaviour:
   outlineWidth: 0.2
   interactable: 1
   tooltipIcon: {fileID: 21300000, guid: a9c356b09db674e48b4141bbd45e6d78, type: 3}
-  affectedObjects: []
-  shade: []
+  affectedObjects:
+  - {fileID: 0}
+  shade:
+  - {fileID: 23079606338430928}
+  - {fileID: 23296553539930112}
 --- !u!136 &136510050587131100
 CapsuleCollider:
   m_ObjectHideFlags: 1
