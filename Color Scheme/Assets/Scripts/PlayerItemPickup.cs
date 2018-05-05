@@ -26,6 +26,7 @@ public class PlayerItemPickup : InteractableObject
 
 	public override void Interact()
 	{
+        this.onGazeExit();
 		Player player = Player.INSTANCE;
         Debug.Log("Bucket!");
         GetComponent<PlayerItem>().enabled = true;
