@@ -18,6 +18,7 @@ public class Fuse : InteractableObject
 	public override void Interact()
 	{
 		Player.INSTANCE.carriedFuse = this;
+        Player.INSTANCE.hasFuse = true;
 		transform.SetParent(Player.INSTANCE.transform);
 		GetComponent<Renderer>().enabled = false;
 	}
